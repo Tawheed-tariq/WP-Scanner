@@ -19,7 +19,7 @@ export default function Working(){
                     </p>
                 </div>
 
-                <div className={`w-full px-[200px] flex justify-center gap-[25px] py-[100px]`}>
+                <div className={`w-full px-[250px] flex justify-center gap-[25px] py-[100px]`}>
                     <div className={`py-[20px]  scan border-l-[5px] border-t-[5px] border-home-primary px-[30px] rounded-3xl bg-home-secondary max-w-[500px]`}>
                         <div className="flex items-center gap-[30px] mb-[20px]">
                             <img src="Vector.png" alt="" />
@@ -62,3 +62,12 @@ export default function Working(){
         </>
     )
 }
+
+const elements = [
+    {
+        id: 1,
+        name : 'Active Scan',
+        desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
+        
+    }
+]
