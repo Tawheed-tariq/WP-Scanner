@@ -1,9 +1,13 @@
+import Hero from "./Hero";
 import NavBar from "./Navbar";
+import Working from "./Working";
 
 export default function Home(){
     return(
-        <div className={`w-[100vw] h-[100vh] `}>
+        <div className={`w-[100vw] h-[100vh] bg-home-bg`}>
             <NavBar/>
+            <Hero/>
+            <Working/>
         </div>
     )
 }
