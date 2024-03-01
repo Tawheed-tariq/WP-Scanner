@@ -1,4 +1,5 @@
 import About from "./About";
+import Footer from "./Footer";
 import Hero from "./Hero";
 import NavBar from "./Navbar";
 import Working from "./Working";
@@ -10,6 +11,7 @@ export default function Home(){
             <Hero/>
             <Working/>
             <About/>
+            <Footer/>
         </div>
     )
 }

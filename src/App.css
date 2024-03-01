@@ -5,3 +5,13 @@
 .property{
     background: linear-gradient(to right ,rgba(29, 99, 73, 0.2) , rgba(29, 99, 73, 1));
 }
+
+.rotated-text{
+    letter-spacing: 15px;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    background: linear-gradient(to bottom, #45CE52,#3EBB8C);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}

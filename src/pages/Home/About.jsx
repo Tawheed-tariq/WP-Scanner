@@ -22,13 +22,13 @@ export default function About(){
                     It's really easy to scan your web application for vulnerabilities
                 </h1>
 
-                <div className={`w-full flex h-[100vh]`}>
-                    <div>
-                        <h1 className="text-[130px] mt-[400px] rotate-[270deg] -tracking-[-20px] font-extrabold">
+                <div className={`w-full flex justify-between h-[100vh]`}>
+                    <div className={`w-[30%]`}>
+                        <h1 className="text-[130px] mt-[30px] rotate-180 rotated-text font-extrabold">
                             WPScans
                         </h1>
                     </div>
-                    <div className="w-[70%] mt-[60px]">
+                    <div className="w-[60%] mt-[60px]">
                         {
                             properties.map((item) => (
                                 <div key={item.id} className={`flex items-center my-[30px] px-[60px] py-[30px] property gap-[20px] rounded-r-full `}>
@@ -48,8 +48,6 @@ export default function About(){
                         }
                     </div>
                 </div>
-
-
             </div>
         </>
     )
