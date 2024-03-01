@@ -35,7 +35,7 @@ export default function Working(){
 
     return(
         <>
-            <div className={`bg-home-bg w-full text-txt flex flex-col items-center justify-center pt-[220px]`}>
+            <div className={`bg-home-bg w-full px-[250px] text-txt flex flex-col items-center justify-center pt-[200px]`}>
                 <div className={`w-[1200px]`}>
                     <h1 className="text-[58px] mx-auto font-extrabold w-[1000px]">How does the Website Vulnerability scanner work</h1>
 
@@ -53,11 +53,10 @@ export default function Working(){
                     </p>
                 </div>
 
-                <div className={`w-full px-[250px] flex flex-wrap justify-center gap-[25px] py-[100px]`}>
-
+                <div className={`w-full flex flex-wrap justify-center gap-[30px] py-[100px]`}>
                     {
                         elements.map((ele) => (
-                            <div key={ele.id} className={`py-[20px]  scan border-l-[5px] border-t-[5px] border-home-primary px-[30px] rounded-3xl bg-home-secondary max-w-[500px]`}>
+                            <div key={ele.id} className={`py-[20px]  scan border-l-[5px] border-t-[5px] border-home-primary px-[30px] rounded-3xl bg-home-secondary max-w-[600px]`}>
                                 <div className="flex items-center gap-[30px] mb-[20px]">
                                     <img src={ele.url} alt="" />
                                     <h1 className="text-[40px] font-bold ">{ele.title}</h1>

@@ -1,3 +1,7 @@
 .scan{
     box-shadow: 10px 7px 15px rgba(0, 0,0, 0.6);
 }
+
+.property{
+    background: linear-gradient(to right ,rgba(29, 99, 73, 0.2) , rgba(29, 99, 73, 1));
+}
