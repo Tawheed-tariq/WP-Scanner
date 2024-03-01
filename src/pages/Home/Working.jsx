@@ -1,4 +1,38 @@
 export default function Working(){
+
+    const elements = [
+        {
+            id: 1,
+            title : 'Active Scan',
+            desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
+            url : 'Vector.png'
+        },
+        {
+            id: 2,
+            title : 'Subdomain Finder',
+            desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
+            url : 'Vector.png'
+        },
+        {
+            id: 3,
+            title : 'Password Attack',
+            desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
+            url : 'Vector.png'
+        },
+        {
+            id: 4,
+            title : 'Vulnerability Scan',
+            desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
+            url : 'Vector.png'
+        },
+        {
+            id: 5,
+            title : "Way BAck Url's",
+            desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
+            url : 'Vector.png'
+        }
+    ]
+
     return(
         <>
             <div className={`bg-home-bg w-full text-txt flex flex-col items-center justify-center pt-[220px]`}>
@@ -19,55 +53,24 @@ export default function Working(){
                     </p>
                 </div>
 
-                <div className={`w-full px-[250px] flex justify-center gap-[25px] py-[100px]`}>
-                    <div className={`py-[20px]  scan border-l-[5px] border-t-[5px] border-home-primary px-[30px] rounded-3xl bg-home-secondary max-w-[500px]`}>
-                        <div className="flex items-center gap-[30px] mb-[20px]">
-                            <img src="Vector.png" alt="" />
-                            <h1 className="text-[40px] font-bold ">Active Scan</h1>
-                        </div>
-                        <p className={`text-[16px]`}>
-                            While the Spider is running, another component of the Website Scanner  
-                            takes each previously discovered Injection Point and injects multiple  
-                            payloads to detect vulnerabilities.
-                        </p>
-                    </div>
+                <div className={`w-full px-[250px] flex flex-wrap justify-center gap-[25px] py-[100px]`}>
 
-                    <div className={`py-[20px] border-l-[5px] border-t-[5px] border-home-primary px-[40px] rounded-3xl bg-home-secondary max-w-[500px]`}>
-                        <div>
-                            <img src="" alt="" />
-                            <h1 className="text-[40px] font-bold ">Active Scan</h1>
-                        </div>
-                        <p className={`text-[16px]`}>
-                            While the Spider is running, another component of the Website Scanner  
-                            takes each previously discovered Injection Point and injects multiple  
-                            payloads to detect vulnerabilities.
-                        </p>
-                    </div>
-
-
-                    <div className={`py-[20px] border-l-[5px] border-t-[5px] border-home-primary px-[40px] rounded-3xl bg-home-secondary max-w-[500px]`}>
-                        <div>
-                            <img src="" alt="" />
-                            <h1 className="text-[40px] font-bold ">Active Scan</h1>
-                        </div>
-                        <p className={`text-[16px]`}>
-                            While the Spider is running, another component of the Website Scanner  
-                            takes each previously discovered Injection Point and injects multiple  
-                            payloads to detect vulnerabilities.
-                        </p>
-                    </div>
-
+                    {
+                        elements.map((ele) => (
+                            <div key={ele.id} className={`py-[20px]  scan border-l-[5px] border-t-[5px] border-home-primary px-[30px] rounded-3xl bg-home-secondary max-w-[500px]`}>
+                                <div className="flex items-center gap-[30px] mb-[20px]">
+                                    <img src={ele.url} alt="" />
+                                    <h1 className="text-[40px] font-bold ">{ele.title}</h1>
+                                </div>
+                                <p className={`text-[16px]`}>
+                                    {ele.desc}
+                                </p>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </>
     )
 }
 
-const elements = [
-    {
-        id: 1,
-        name : 'Active Scan',
-        desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
-        
-    }
-]
