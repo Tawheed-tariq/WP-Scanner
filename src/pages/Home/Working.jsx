@@ -34,7 +34,7 @@ export default function Working(){
     ]
 
     return(
-        <div id="work" className={`bg-home-bg w-full px-[250px] text-txt flex flex-col items-center justify-center pt-[200px]`}>
+        <div id="work" className={`bg-home-bg w-full working px-[250px] text-txt flex flex-col items-center justify-center pt-[200px]`}>
             <div className={`w-[1200px]`}>
                 <h1 className="text-[58px] mx-auto font-extrabold w-[1000px]">How does the Website Vulnerability scanner work</h1>
 

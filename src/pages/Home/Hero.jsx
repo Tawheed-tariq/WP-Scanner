@@ -1,7 +1,7 @@
 export default function Hero(){
     return(
         <>
-            <div className={`w-full h-[91vh] px-[250px] flex items-center justify-between`}>
+            <div className={`w-full h-[100vh] hero px-[250px] flex items-center justify-between`}>
                 <div className="text-txt max-w-[700px]">
                     <h1 className="text-[64px] font-extrabold w-[600px]">Website Vulnerability Scanner</h1>
 

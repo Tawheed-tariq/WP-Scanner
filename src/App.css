@@ -15,3 +15,16 @@
     background-clip: text;
     -webkit-background-clip: text;
 }
+
+.hero{
+    background: url('rect.svg');
+    background-repeat: no-repeat;
+    background-position-y: 22vh;
+    background-size: contain;
+}
+
+.working{
+    background: url('design.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
