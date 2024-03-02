@@ -97,3 +97,4 @@ export const loginInputs = [
         placeholder : 'Password'
     }
 ]
+
