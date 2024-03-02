@@ -1,20 +1,7 @@
 import FormLayout from "../../components/FormLayout";
 import InputIcon from '../../components/InputIcon'
+import { loginInputs } from "../../constants";
 export default function Login(){
-
-    const loginInputs = [
-        {
-            id: 1,
-            icon : 'user.png',
-            placeholder : 'Username'
-        },
-        {
-            id: 1,
-            icon : 'paasword.png',
-            placeholder : 'Password'
-        }
-    ]
-
     return(
         <>
             <FormLayout>

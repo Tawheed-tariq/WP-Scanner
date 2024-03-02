@@ -1,30 +1,7 @@
 import FormLayout from "../../components/FormLayout";
 import InputIcon from '../../components/InputIcon'
+import { signupInputs } from "../../constants";
 export default function SignUp(){
-
-    const signupInputs = [
-        {
-            id: 1,
-            icon : 'user.png',
-            placeholder : 'Username'
-        },
-        {
-            id: 2,
-            icon : 'mail.png',
-            placeholder : 'Email'
-        },
-        {
-            id: 1,
-            icon : 'paasword.png',
-            placeholder : 'Password'
-        },
-        {
-            id: 1,
-            icon : 'paasword.png',
-            placeholder : 'Confirm Password'
-        }
-    ]
-
     return(
         <>
             <FormLayout>
