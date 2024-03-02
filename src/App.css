@@ -28,3 +28,8 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+
+.custom-height {
+    height: calc(100vh - 70px);
+}

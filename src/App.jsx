@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
 
@@ -22,6 +23,10 @@ function App() {
     {
       path: "/login",
       element: <Login/>,
+    },
+    {
+      path: "/dashboard",
+      element: <Dashboard/>,
     },
   ]);
 

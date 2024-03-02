@@ -14,6 +14,7 @@ export default {
         'primary': 'rgba(155, 215, 222, 1)',
         'secondary': 'rgb(154, 226, 199)',
         'secondary-50' : 'rgba(154, 226, 199, 0.5)',
+        'secondary-80' : 'rgba(155, 215, 222, 0.8)',
         'accent': 'rgba(34, 111, 120, 1)',
         'home-bg' : '#040B08',
         'home-primary' : '#269C6F',
