@@ -12,7 +12,7 @@ export default function DashboardLayout({children}){
             <TopNav/>
             <div className="flex w-[100vw]">
                 <SideNav/>
-                <div className="w-full overflow-y-auto overflow-x-hidden px-[100px] py-[50px] mt-[70px]">
+                <div className="w-full overflow-y-auto ml-[300px] overflow-x-hidden px-[100px] py-[30px] mt-[70px]">
                     {children}
                 </div>
             </div>
@@ -25,9 +25,11 @@ export default function DashboardLayout({children}){
 const TopNav = () => {
     return(
         <div className={`h-[70px] backdrop-blur-lg fixed z-[999] w-[100vw] bg-secondary-50 flex items-center`}>
-            <h1 className="text-[35px] text-center w-[300px] font-semibold ">
-                WPScans
-            </h1>
+            <div className="min-w-[300px] flex justify-center">
+                <h1 className="text-[35px] text-center font-semibold ">
+                    WPScans
+                </h1>
+            </div>
             <div className={`w-full h-full flex items-center justify-between px-[100px]`}>
                 <h1 className="text-[30px] font-medium ">
                     Dashboard

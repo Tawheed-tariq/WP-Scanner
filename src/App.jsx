@@ -4,7 +4,9 @@ import SignUp from './pages/signup/SignUp'
 import Login from './pages/login/Login'
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import Dashboard from './pages/Dashboard/Dashboard';
-
+import Report from './pages/report/Report'
+import Findings from './pages/findings/Findings';
+import Scans from './pages/scans/Scans'
 function App() {
 
   const router = createBrowserRouter([
@@ -26,15 +28,15 @@ function App() {
     },
     {
       path: "/scans",
-      element: <Dashboard/>,
+      element: <Scans/>,
     },
     {
       path: "/findings",
-      element: <Dashboard/>,
+      element: <Findings/>,
     },
     {
       path: "/report",
-      element: <Dashboard/>,
+      element: <Report/>,
     }
   ]);
 

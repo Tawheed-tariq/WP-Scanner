@@ -98,3 +98,17 @@ export const loginInputs = [
     }
 ]
 
+export const RecommendedTools = [
+    {
+        id : 1,
+        title : 'Active Scan',
+    },
+    {
+        id : 2,
+        title : 'Subdomain Finder',
+    },
+    {
+        id : 3,
+        title : 'Vulnerability Scan',
+    },
+]
