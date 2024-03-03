@@ -1,4 +1,4 @@
-import { properties } from "../../constants"
+import { properties } from "../../../constants"
 
 export default function About(){
     return(

@@ -2,6 +2,7 @@ import { MdDashboard } from "react-icons/md";
 import { TbReportAnalytics } from "react-icons/tb";
 import { RiScan2Line } from "react-icons/ri";
 import { MdWifiFind } from "react-icons/md";
+import {Link, useLocation} from 'react-router-dom'
 
 
 export default function DashboardLayout({children}){
@@ -49,49 +50,49 @@ const SideNav = () => {
         {
             id: 1,
             title : 'Dashboard',
-            img : <MdDashboard color="#226F78" size={`25`} />
+            img : <MdDashboard color="#226F78" size={`25`} />,
+            link : '/dashboard'
         },
         {
             id: 2,
             title : 'Scans',
-            img : <RiScan2Line color="#226F78" size={`25`}/>
+            img : <RiScan2Line color="#226F78" size={`25`}/>,
+            link : '/scans'
         },
         {
             id: 3,
             title : 'Findings',
-            img : <MdWifiFind color="#226F78" size={`25`} />
+            img : <MdWifiFind color="#226F78" size={`25`} />,
+            link : '/findings'
         },
         {
             id: 4,
             title : 'Report',
-            img : <TbReportAnalytics color="#226F78" size={`25`} />
+            img : <TbReportAnalytics color="#226F78" size={`25`} />,
+            link : '/report'
         },
     
     ]
+    const location = useLocation()
+    const isActiveLink = (link) => {
+        return location.pathname === link
+    }
     return(
         <>
             <div className={`w-[300px] fixed mt-[70px] custom-height flex items-center flex-col  bg-secondary-50`}>
                 <div className={`flex flex-col gap-[30px] py-[40px]`}>
                     {
                         sideNavLinks.map((ele) => (
-                           <SideNavIcon
-                                key={ele.id}
-                                img={ele.img}
-                                title={ele.title}
-                           />
+                           <Link to={ele.link} key={ele.id}>
+                                <div className={`flex gap-[10px] py-[10px] px-[30px] rounded-full ${isActiveLink(ele.link) ? 'bg-primary' : ''} items-center`}>
+                                    {ele.img}
+                                    <p className={`text-[22px]`}>{ele.title}</p>
+                                </div>
+                           </Link>
                         ))
                     }
                 </div>
             </div>
         </>
-    )
-}
-
-const SideNavIcon = ({img, title}) => {
-    return(
-        <div className={`flex gap-[10px] py-[10px] px-[30px] rounded-full bg-primary items-center`}>
-            {img}
-            <p className={`text-[22px]`}>{title}</p>
-        </div>
     )
 }

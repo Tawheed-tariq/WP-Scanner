@@ -1,4 +1,4 @@
-import { navLinks } from "../../constants"
+import { navLinks } from "../../../constants"
 export default function NavBar(){
     return(
         <nav className={`w-full h-[70px] bg-home-secondary fixed z-[999] backdrop-blur-xl px-[250px] flex items-center justify-between`}>

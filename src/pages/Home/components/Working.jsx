@@ -1,4 +1,4 @@
-import { elements } from "../../constants"
+import { elements } from "../../../constants"
 export default function Working(){
     return(
         <div id="work" className={`bg-home-bg w-full working px-[250px] text-txt flex flex-col items-center justify-center pt-[200px]`}>

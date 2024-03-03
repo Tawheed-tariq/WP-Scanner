@@ -1,8 +1,8 @@
-import About from "./About";
-import Footer from "./Footer";
-import Hero from "./Hero";
-import NavBar from "./Navbar";
-import Working from "./Working";
+import About from "./components/About";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import NavBar from "./components/Navbar";
+import Working from "./components/Working";
 
 export default function Home(){
     return(
