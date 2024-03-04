@@ -75,7 +75,7 @@ const SideNav = () => {
     ]
     const location = useLocation()
     const isActiveLink = (link) => {
-        return location.pathname === link
+        return location.pathname === link || location.pathname.startsWith(link)
     }
     return(
         <>
