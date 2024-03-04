@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 export default function Hero(){
     return(
         <>
@@ -13,10 +14,12 @@ export default function Hero(){
                         the needs of both security teams and application security professionals.
                     </p>
 
-                    <button className="bg-home-accent rounded-xl text-text text-[24px] font-medium flex items-center gap-[10px] px-[15px] py-[15px] ">
-                        Create Account
-                        <img className="w-[20px] h-[20px] " src="add.png" alt="" />
-                    </button>
+                    <Link to={`/signup`}>
+                        <button className="bg-home-accent rounded-xl text-text text-[24px] font-medium flex items-center gap-[10px] px-[15px] py-[15px] ">
+                            Create Account
+                            <img className="w-[20px] h-[20px] " src="add.png" alt="" />
+                        </button>
+                    </Link>
                 </div>
                 <div>
                     <img className={`max-w-[700px] max-h-[700px]`} src="scanner.png" alt="" />

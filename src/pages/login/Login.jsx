@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import FormLayout from "../../components/FormLayout";
 import InputIcon from '../../components/InputIcon'
 import { loginInputs } from "../../constants";
@@ -18,6 +19,8 @@ export default function Login(){
                     <button type="submit" className={`flex text-txt text-2xl font-medium items-center justify-center w-[450px] bg-accent h-[60px] rounded-full`}>
                         Sign In
                     </button>
+
+                    <p className={`mt-[20px] text-text font-medium text-[20px]`}>Don't have an account <Link to={`/signup`} className={`text-accent`}>Create One</Link> </p>
                 </div>
             </FormLayout>
         </>

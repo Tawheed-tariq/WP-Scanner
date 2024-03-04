@@ -102,13 +102,16 @@ export const RecommendedTools = [
     {
         id : 1,
         title : 'Active Scan',
+        url: '/scans/new-scan'
     },
     {
         id : 2,
         title : 'Subdomain Finder',
+        url: '/scans/new-scan'
     },
     {
         id : 3,
         title : 'Vulnerability Scan',
-    },
+        url: '/scans/new-scan'
+    }
 ]
