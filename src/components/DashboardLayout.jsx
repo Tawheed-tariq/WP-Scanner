@@ -3,7 +3,7 @@ import { TbReportAnalytics } from "react-icons/tb";
 import { RiScan2Line } from "react-icons/ri";
 import { MdWifiFind } from "react-icons/md";
 import {Link, useLocation} from 'react-router-dom'
-
+import { FaUser } from "react-icons/fa";
 
 export default function DashboardLayout({title, children}){
     
@@ -37,7 +37,7 @@ const TopNav = ({title}) => {
                 <div className={`bg-primary cursor-pointer flex gap-[15px] items-center pl-[20px] pr-[10px] py-[10px] rounded-full`}>
                     <p>Tawheed</p>
                     <div className={`w-[30px] flex items-center justify-center h-[30px] bg-accent rounded-full`}>
-                        <img className={`w-[15px] h-[15px]`} src="user.png" alt="" />
+                        <FaUser size={`15`} color="#F8FCFB"/>
                     </div>
                 </div>
             </div>
