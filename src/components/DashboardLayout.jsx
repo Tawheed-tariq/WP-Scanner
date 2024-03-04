@@ -5,24 +5,22 @@ import { MdWifiFind } from "react-icons/md";
 import {Link, useLocation} from 'react-router-dom'
 
 
-export default function DashboardLayout({children}){
+export default function DashboardLayout({title, children}){
     
     return(
         <>
-            <TopNav/>
+            <TopNav title={title}/>
             <div className="flex w-[100vw]">
                 <SideNav/>
                 <div className="w-full overflow-y-auto ml-[300px] overflow-x-hidden px-[100px] py-[30px] mt-[70px]">
                     {children}
                 </div>
             </div>
-            
-            
         </>
     )
 }
 
-const TopNav = () => {
+const TopNav = ({title}) => {
     return(
         <div className={`h-[70px] backdrop-blur-lg fixed z-[999] w-[100vw] bg-secondary-50 flex items-center`}>
             <div className="min-w-[300px] flex justify-center">
@@ -32,7 +30,7 @@ const TopNav = () => {
             </div>
             <div className={`w-full h-full flex items-center justify-between px-[100px]`}>
                 <h1 className="text-[30px] font-medium ">
-                    Dashboard
+                    {title}
                 </h1>
 
                 {/* user icon */}

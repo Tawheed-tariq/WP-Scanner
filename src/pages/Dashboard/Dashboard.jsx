@@ -4,10 +4,11 @@ import { BsFillLightningChargeFill } from "react-icons/bs";
 import {RecommendedTools} from '../../constants/index'
 import { AiFillPieChart } from "react-icons/ai";
 import { AiFillSignal } from "react-icons/ai";
+import { TbActivityHeartbeat } from "react-icons/tb";
 export default function Dashboard(){
     
     return(
-        <DashboardLayout>
+        <DashboardLayout title={`Dashboard`}>
 
             {/* recommended Tools */}
             <div className={`py-[5px] px-[10px]`}>
@@ -36,7 +37,7 @@ export default function Dashboard(){
                         <AiFillPieChart color={`#226F78`} size={`25`}/>
                         <p className={`text-text font-medium text-[22px]`}>Attack Surface Summary</p>
                     </div>
-                    <div className={`border-text flex items-center justify-center h-[250px] border-[1px] my-[10px]`}>
+                    <div className={`border-text flex items-center justify-center h-[300px] border-[1px] my-[10px]`}>
                         <div className={`flex flex-col items-center justify-center gap-[10px]`}>
                             <p>You don't have any scans yet</p>
                             <button className={`px-[20px] bg-secondary rounded-xl text-[20px] py-[10px]`}>
@@ -51,13 +52,20 @@ export default function Dashboard(){
                         <AiFillSignal color={`#226F78`} size={`25`}/>
                         <p className={`text-text font-medium text-[22px]`}>Vulnerability Summary</p>
                     </div>
-                    <div className={`border-text flex items-center justify-center h-[250px] border-[1px] my-[10px]`}>
+                    <div className={`border-text flex items-center justify-center h-[300px] border-[1px] my-[10px]`}>
                         <p>You don't have any scans yet</p>
                     </div>
                 </div>
             </div>
 
             {/* scan activity */}
+            <div className={`py-[5px] px-[10px] mt-[20px]`}>
+                <div className={`flex gap-[15px] items-center`}>
+                    <TbActivityHeartbeat color={`#226F78`} size={`25`}/>
+                    <p className={`text-text font-medium text-[22px]`}>Scan Activity</p>
+                </div>
+
+            </div>
         </DashboardLayout>
     )
 }
