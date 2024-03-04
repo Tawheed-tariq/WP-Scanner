@@ -1,16 +1,18 @@
 import DashboardLayout from "../../../components/DashboardLayout";
 import { TbActivityHeartbeat } from "react-icons/tb";
-
+import { useNavigate, Link } from "react-router-dom";
 export default function ScanHome(){
-    console.log("scan home rendered")
+    // const navigate = useNavigate()
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
             <div className={`py-[50px] px-[10px] flex justify-end`}>
-                <button className={`px-[20px] flex gap-[10px] items-center bg-secondary rounded-xl text-[22px] py-[10px]`}>
-                    <TbActivityHeartbeat color={`#226F78`} size={`30`}/>
-                    New Scan
-                </button>
+                <Link to={`/scans/scan-templates`}>
+                    <button className={`px-[20px] flex gap-[10px] items-center bg-secondary rounded-xl text-[22px] py-[10px]`}>
+                        <TbActivityHeartbeat color={`#226F78`} size={`30`}/>
+                        New Scan
+                    </button>
+                </Link>
             </div>
 
             {/* Scan results */}
