@@ -24,7 +24,7 @@ export default function NewScan(){
 
                         <div className={`flex flex-col gap-[5px]`}>
                             <label className={`font-medium text-text`} htmlFor="description">Description</label>
-                            <textarea className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 placeholder:text-[18px] focus:outline-none`} name="description" placeholder="Description of your scan" cols="30" rows="10"></textarea>
+                            <textarea className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 placeholder:text-[18px] focus:outline-none`} name="description" placeholder="Description of your scan" cols="30" rows="5"></textarea>
                         </div>
 
                         <button className={`bg-accent mt-[10px] text-[20px] text-txt font-medium max-w-[120px] px-[10px] py-[10px] rounded-xl`} type="submit">
