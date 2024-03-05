@@ -97,12 +97,16 @@ export const loginInputs = [
     {
         id: 1,
         icon : 'user.png',
-        placeholder : 'Username'
+        placeholder : 'Username',
+        type : 'username',
+        name : 'userame'
     },
     {
-        id: 1,
+        id: 2,
         icon : 'paasword.png',
-        placeholder : 'Password'
+        placeholder : 'Password',
+        type : 'password',
+        name : 'password'
     }
 ]
 
