@@ -65,22 +65,30 @@ export const signupInputs = [
     {
         id: 1,
         icon : 'user.png',
-        placeholder : 'Username'
+        placeholder : 'Username',
+        type : 'text',
+        name : 'username'
     },
     {
         id: 2,
         icon : 'mail.png',
-        placeholder : 'Email'
+        placeholder : 'Email',
+        type : 'email',
+        name : 'email'
     },
     {
-        id: 1,
+        id: 3,
         icon : 'paasword.png',
-        placeholder : 'Password'
+        placeholder : 'Password',
+        type : 'password',
+        name : 'password'
     },
     {
-        id: 1,
+        id: 4,
         icon : 'paasword.png',
-        placeholder : 'Confirm Password'
+        placeholder : 'Confirm Password',
+        type : 'password',
+        name : 'confirmPassword'
     }
 ]
 
