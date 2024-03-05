@@ -1,0 +1,39 @@
+.scan{
+    box-shadow: 10px 7px 15px rgba(0, 0,0, 0.6);
+}
+
+.property{
+    background: linear-gradient(to right ,rgba(29, 99, 73, 0.2) , rgba(29, 99, 73, 1));
+}
+
+.rotated-text{
+    letter-spacing: 15px;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+    background: linear-gradient(to bottom, #45CE52,#3EBB8C);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.hero{
+    background: url('rect.svg');
+    background-repeat: no-repeat;
+    background-position-y: 22vh;
+    background-size: contain;
+}
+
+.working{
+    background: url('design.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.custom-height {
+    height: calc(100vh - 70px);
+}
+
+.boxShadow{
+    box-shadow: 5px 4px 10px rgba(0, 0,0, 0.4);
+}
