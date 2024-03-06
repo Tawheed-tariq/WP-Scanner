@@ -16,6 +16,10 @@ export default function Login(){
             [event.target.name] : event.target.value
         })
     }
+    const handleValidation = () => {
+        const {username, password} = values
+        console.log(username + " " + password)
+    }
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(values)

@@ -6,8 +6,8 @@ export default function ScanHome(){
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
             <div className={`py-[50px] px-[10px] flex justify-end`}>
-                <Link to={`/scans/scan-templates`}>
-                    <button className={`px-[20px] flex gap-[10px] items-center bg-secondary rounded-xl text-[22px] py-[10px]`}>
+                <Link className={`bg-secondary boxShadow rounded-xl`} to={`/scans/scan-templates`}>
+                    <button className={`px-[20px] flex gap-[10px] items-center text-[22px] py-[10px]`}>
                         <TbActivityHeartbeat color={`#226F78`} size={`30`}/>
                         New Scan
                     </button>
@@ -22,7 +22,7 @@ export default function ScanHome(){
                     <p className={`text-text font-medium text-[22px]`}>Target</p>
                     <p className={`text-text font-medium text-[22px]`}>Date</p>
                 </div>
-{/* data rows */}
+            {/* data rows */}
                 <div className={`w-full flex justify-between border-text border-[1px] px-[20px] py-[10px]`}>
                     <p className={`text-accent text-[20px]`}>Active Scan</p>
                     <p className={`text-text text-[20px]`}>Completed</p>
