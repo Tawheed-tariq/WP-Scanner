@@ -3,12 +3,21 @@ import FormLayout from "../../components/FormLayout";
 import InputIcon from '../../components/InputIcon'
 import { loginInputs } from "../../constants";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login(){
     const [values , setValues] = useState({
         username : "",
         password: "",
     })
+
+    const toastOptions = {
+        position: "top-right",
+        autoClose: 5000,
+        pauseOnHover: true,
+        draggable: true,
+    };
 
     const handleChange = (event) =>{
         setValues({
@@ -17,13 +26,29 @@ export default function Login(){
         })
     }
     const handleValidation = () => {
-        const {username, password} = values
-        console.log(username + " " + password)
+        const {username , password } = values
+        if(username === ""){
+            toast.error(
+                "Username and password is required",
+                toastOptions
+            )
+            return false
+        }
+        if (password === "") {
+            toast.error(
+                "Username and password is required",
+              toastOptions
+            );
+            return false;
+        }
+        return true;
     }
+
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(values)
-        return false
+        if(handleValidation()){
+            console.log(values)
+        }
     }
     return(
         <>
@@ -53,6 +78,7 @@ export default function Login(){
                     <p className={`mt-[20px] text-text font-medium text-[20px]`}>Don't have an account <Link to={`/signup`} className={`text-accent`}>Create One</Link> </p>
                 </div>
             </FormLayout>
+            <ToastContainer/>
         </>
     )
 }
