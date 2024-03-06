@@ -22,7 +22,10 @@ export default function Hero(){
                     </Link>
                 </div>
                 <div>
-                    <img className={`max-w-[700px] max-h-[700px]`} src="scanner.png" alt="" />
+                    <img className={`max-w-[700px] relative z-[3] max-h-[700px]`} src="scanner.png" alt="" />
+                    {/* <div className="absolute z-[0] w-[40%] h-[35%] top-0 green__gradient"/>
+                    <div className="absolute z-[0] w-[80%] h-[80%] rounded-full bottom-0 white__gradient"/>
+                    <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient"/> */}
                 </div>
             </div>
         </>
