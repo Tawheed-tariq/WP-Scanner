@@ -13,12 +13,12 @@ export default function Dashboard(){
 
             {/* recommended Tools */}
             <div className={`py-[5px] px-[10px]`}>
-                <div className={`flex gap-[15px] items-center`}>
+                <div className={`flex gap-[7px] md:gap-[15px] items-center`}>
                     <HiCheckBadge color={`#226F78`} size={`25`}/>
-                    <p className={`text-text font-medium text-[22px]`}>Recommended Tools</p>
+                    <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Recommended Tools</p>
                 </div>
 
-                <div className={`w-full py-[15px] px-[40px] flex gap-[25px] flex-wrap`}>
+                <div className={`w-full py-[15px] px-[20px] md:px-[40px] flex gap-[15px] md:gap-[25px] flex-wrap`}>
                     {
                         RecommendedTools.map((item) => (
                             <Icon 
@@ -33,18 +33,18 @@ export default function Dashboard(){
             </div>
 
             {/* attack surface summary + vulnerability summary  */}
-            <div className={`py-[5px] mt-[30px] px-[10px] flex items-center gap-[25px]`}>
+            <div className={`py-[5px] mt-[30px] px-[10px] flex flex-wrap items-center gap-[25px]`}>
 
-                <div className={`flex-1`}>
-                    <div className={`flex  gap-[15px] items-center `}>
+                <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[400px]`}>
+                    <div className={`flex gap-[15px] items-center `}>
                         <AiFillPieChart color={`#226F78`} size={`25`}/>
-                        <p className={`text-text font-medium text-[22px]`}>Attack Surface Summary</p>
+                        <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Attack Surface Summary</p>
                     </div>
                     <div className={`border-text flex items-center justify-center h-[300px] border-[1px] my-[10px]`}>
                         <div className={`flex flex-col items-center justify-center gap-[10px]`}>
                             <p>You don't have any scans yet</p>
                             <Link to={`/scans/scan-templates`}>
-                                <button className={`px-[20px] bg-secondary rounded-xl text-[20px] py-[10px]`}>
+                                <button className={`px-[20px] bg-secondary rounded-xl text-[16px] md:text-[20px] py-[10px]`}>
                                     Start a Scan
                                 </button>
                             </Link>
@@ -52,10 +52,10 @@ export default function Dashboard(){
                     </div>
                 </div>
 
-                <div className={`flex-1 `}>
+                <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[400px]`}>
                     <div className={`flex  gap-[15px] items-center `}>
                         <AiFillSignal color={`#226F78`} size={`25`}/>
-                        <p className={`text-text font-medium text-[22px]`}>Vulnerability Summary</p>
+                        <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Vulnerability Summary</p>
                     </div>
                     <div className={`border-text flex items-center justify-center h-[300px] border-[1px] my-[10px]`}>
                         <p>You don't have any scans yet</p>
@@ -67,7 +67,7 @@ export default function Dashboard(){
             <div className={`py-[5px] px-[10px] mt-[20px]`}>
                 <div className={`flex gap-[15px] items-center`}>
                     <TbActivityHeartbeat color={`#226F78`} size={`25`}/>
-                    <p className={`text-text font-medium text-[22px]`}>Scan Activity</p>
+                    <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Scan Activity</p>
                 </div>
 
             </div>
@@ -78,10 +78,10 @@ export default function Dashboard(){
 
 const Icon = ({title, url, id}) => {
     return(
-        <Link to={url} state={{data : id}} className={`border-text boxShadow border-[1px] rounded-3xl`}>
+        <Link to={url} state={{data : id}} className={`border-text boxShadow border-[1px] rounded-xl md:rounded-3xl`}>
             <div className={`flex items-center gap-[10px] py-[20px] px-[40px]`}>
-                <BsFillLightningChargeFill color={`#226F78`} size={`25`}/>
-                <p className={`text-text text-[24px]`}>{title}</p>
+                <BsFillLightningChargeFill color={`#226F78`} size={`20`}/>
+                <p className={`text-text text-[16px] sm:text-[20px] md:text-[24px]`}>{title}</p>
             </div>
         </Link>
     )

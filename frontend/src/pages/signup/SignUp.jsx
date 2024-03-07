@@ -68,8 +68,8 @@ export default function SignUp(){
     return(
         <>
             <FormLayout>
-                <div className={`bg-background-50 flex flex-col w-[600px] items-center justify-center py-[30px] rounded-2xl`}>
-                    <h1 className="text-[40px] text-text font-bold ">Sign Up</h1>
+                <div className={`bg-background-50 flex flex-col px-[40px] md:px-[70px] items-center justify-center py-[30px] rounded-2xl`}>
+                    <h1 className="text-[20px] sm:text-[30px] md:text-[40px] text-text font-bold ">Sign Up</h1>
 
                     <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-[20px] my-[20px]">
                         {
@@ -84,12 +84,12 @@ export default function SignUp(){
                                 />
                             ))
                         }
-                        <button type="submit" className={`flex text-txt text-2xl font-medium items-center justify-center w-[450px] bg-accent h-[60px] rounded-full`}>
+                        <button type="submit" className={`flex text-txt sm:text-xl md:text-2xl font-medium items-center justify-center w-[220px] sm:w-[300px] md:w-[450px] bg-accent h-[40px] md:h-[60px] rounded-full`}>
                             Submit
                         </button>
                     </form>
                     
-                    <p className={`mt-[20px] text-text font-medium text-[20px]`}>Already have an account <Link to={`/login`} className={`text-accent`}>Login</Link> </p>
+                    <p className={` mt-[5px] md:mt-[20px] text-text font-medium text-[12px] sm:text-[16px] md:text-[20px]`}>Already have an account <Link to={`/login`} className={`text-accent`}>Login</Link> </p>
                 </div>
             </FormLayout>
             <ToastContainer/>
