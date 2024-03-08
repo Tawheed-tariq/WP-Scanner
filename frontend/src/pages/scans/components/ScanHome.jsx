@@ -8,7 +8,7 @@ export default function ScanHome(){
             <div className={` py-[20px] md:py-[50px] px-[10px] flex justify-end`}>
                 <Link className={`bg-secondary boxShadow rounded-xl`} to={`/scans/scan-templates`}>
                     <button className={`px-[20px] flex gap-[10px] items-center text-[18px] md:text-[22px] py-[10px]`}>
-                        <TbActivityHeartbeat color={`#226F78`} size={`20`} md:size={`30`}/>
+                        <TbActivityHeartbeat color={`#226F78`} size={`30`}/>
                         New Scan
                     </button>
                 </Link>

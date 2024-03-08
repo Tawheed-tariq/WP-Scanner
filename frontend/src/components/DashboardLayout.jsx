@@ -43,7 +43,7 @@ const TopNav = ({title, toggle, open}) => {
                 <div className={`bg-primary cursor-pointer flex gap-[10px] md:gap-[15px] items-center pl-[15px] md:pl-[20px] pr-[10px] py-[10px] rounded-full`}>
                     <p className="text-[12px] sm:text-[16px] md:text-[18px] ">Tawheed</p>
                     <div className={`w-[20px] md:w-[30px] flex items-center justify-center h-[20px] md:h-[30px] bg-accent rounded-full`}>
-                        <FaUser size={`10`} md:size={`15`} color="#F8FCFB"/>
+                        <FaUser size={`15`} color="#F8FCFB"/>
                     </div>
                 </div>
             </div>
@@ -56,25 +56,25 @@ const SideNav = ({open}) => {
         {
             id: 1,
             title : 'Dashboard',
-            img : <MdDashboard color="#226F78" size={`15`} sm:size={`25`} />,
+            img : <MdDashboard color="#226F78" size={`25`} />,
             link : '/dashboard'
         },
         {
             id: 2,
             title : 'Scans',
-            img : <RiScan2Line color="#226F78" size={`15`} sm:size={`25`}/>,
+            img : <RiScan2Line color="#226F78" size={`25`}/>,
             link : '/scans'
         },
         {
             id: 3,
             title : 'Findings',
-            img : <MdWifiFind color="#226F78" size={`15`} sm:size={`25`}/>,
+            img : <MdWifiFind color="#226F78" size={`25`}/>,
             link : '/findings'
         },
         {
             id: 4,
             title : 'Report',
-            img : <TbReportAnalytics color="#226F78" size={`15`} sm:size={`25`} />,
+            img : <TbReportAnalytics color="#226F78" size={`25`} />,
             link : '/report'
         },
     
