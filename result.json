@@ -1,0 +1,118 @@
+{
+  "nmap": [
+    {
+      "port": 21,
+      "protocol": "tcp",
+      "service": "ftp",
+      "state": "open",
+      "version": "Pure-FTPd"
+    },
+    {
+      "port": 22,
+      "protocol": "tcp",
+      "service": "ssh",
+      "state": "open",
+      "version": "OpenSSH 7.4 (protocol 2.0)"
+    },
+    {
+      "port": 26,
+      "protocol": "tcp",
+      "service": "smtp",
+      "state": "open",
+      "version": "Exim smtpd 4.96.2"
+    },
+    {
+      "port": 53,
+      "protocol": "tcp",
+      "service": "domain",
+      "state": "open",
+      "version": "ISC BIND 9.11.4-P2 (RedHat Enterprise Linux 7)"
+    },
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "service": "http",
+      "state": "open",
+      "version": "Apache httpd"
+    },
+    {
+      "port": 110,
+      "protocol": "tcp",
+      "service": "pop3",
+      "state": "open",
+      "version": "Dovecot pop3d"
+    },
+    {
+      "port": 143,
+      "protocol": "tcp",
+      "service": "imap",
+      "state": "open",
+      "version": "Dovecot imapd"
+    },
+    {
+      "port": 443,
+      "protocol": "tcp",
+      "service": "ssl/http",
+      "state": "open",
+      "version": "Apache httpd"
+    },
+    {
+      "port": 465,
+      "protocol": "tcp",
+      "service": "smtps?",
+      "state": "open",
+      "version": null
+    },
+    {
+      "port": 554,
+      "protocol": "tcp",
+      "service": "rtsp?",
+      "state": "open",
+      "version": null
+    },
+    {
+      "port": 587,
+      "protocol": "tcp",
+      "service": "smtp",
+      "state": "open",
+      "version": "Exim smtpd 4.96.2"
+    },
+    {
+      "port": 993,
+      "protocol": "tcp",
+      "service": "imaps?",
+      "state": "open",
+      "version": null
+    },
+    {
+      "port": 995,
+      "protocol": "tcp",
+      "service": "pop3s?",
+      "state": "open",
+      "version": null
+    },
+    {
+      "port": 1723,
+      "protocol": "tcp",
+      "service": "tcpwrapped",
+      "state": "open",
+      "version": null
+    },
+    {
+      "port": 3306,
+      "protocol": "tcp",
+      "service": "mysql",
+      "state": "open",
+      "version": "MySQL 5.7.23-23"
+    }
+  ],
+  "whatweb": {
+    "bootstrap": "1530021867,6.4.3",
+    "country": "UNITED STATES",
+    "email": "info@casetcollege.in,info@casetcollege.in ",
+    "ip": "216.10.253.176",
+    "jquery": "3.3.1",
+    "server": "nginx/1.23.4",
+    "title": "CASET College Of Computer Sciences &#8211; Successful career starts with good education"
+  }
+}
