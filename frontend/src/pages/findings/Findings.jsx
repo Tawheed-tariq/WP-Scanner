@@ -25,15 +25,17 @@ const Result = ({title, img, target, response}) => {
         <div className={`mx-[20px] my-[30px]`}>
             <div className={`flex gap-[10px] items-center`}>
                 <img src={img} alt="" />
-                <p className={`font-medium text-[24px]`}>{title}</p>
+                <p className={`font-semibold text-[32px] text-accent`}>{title}</p>
             </div>
             {
-                response.map((item) => (
-                    <div className={`mt-[20px]`}>
+                response.map((item, id) => (
+                    <div key={id} className={`mt-[20px]`}>
                         <div className={`flex gap-[10px] items-center`}>
                             <GiGalaxy color={`#226F78`} size={`25`}/>
                             <p className={`font-medium text-[22px]`}>{item.res}</p>
                         </div>
+
+                        {/* table start  */}
                         <div className={`mt-[10px]`}>
                             <div className="flex w-full items-center border-text border-[1px] border-b-0 py-[7px] px-[15px] gap-[10px] bg-primary ">
                                 <HiComputerDesktop color={`#226F78`} size={`25`}/>
@@ -55,7 +57,21 @@ const Result = ({title, img, target, response}) => {
                                             <tr>
                                                 {
                                                     row.map((data, index) => (
-                                                        <td className={index== 0 ? 'font-semibold text-accent text-[22px]': ''}>{data}</td>
+                                                        typeof(data) == "string" || typeof(data) == "number" ? 
+                                                            <td className={index== 0 ? 'font-semibold text-accent text-[22px]': ''}>{data}</td>
+                                                        :
+                                                        <td>
+                                                            {
+                                                                data.map((listItem,key) => (
+                                                                    <li key={key} className={`my-[10px] text-[14px] sm:text-[18px]`}>
+                                                                        <span className={`text-text font-semibold text-[18px] sm:text-[20px]`}>title : </span>
+                                                                        {listItem.title} <br />
+                                                                        <span className={`text-text font-semibold text-[18px] sm:text-[20px]`}>Version : </span>
+                                                                        {listItem.Version} <br />
+                                                                    </li>
+                                                                ))
+                                                            }
+                                                        </td>
                                                     ))
                                                 }
                                             </tr>
@@ -64,6 +80,8 @@ const Result = ({title, img, target, response}) => {
                                 </tbody>
                             </table>
                         </div>
+
+
                     </div>
                 ))
             }

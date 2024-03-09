@@ -54,7 +54,25 @@ export const resultToSend = [
         title : 'Sub Domain Finder results',
         img : 'subdom.svg',
         target : '127.0.0.1',
-        response : []
+        response : [
+            {
+                res : '3 subdomains found',
+                data : {
+                    headings : ["Sub Domain", "IP Address", "NetName"],
+                    dataRows : [
+                        ["Subdomain1.com", "127.0.0.1", "Miscrosoft"],
+                        ["Subdomain2.com", "192.168.91", "Miscrosoft"],
+                        ["Subdomain3.com", "192.168.78", "Google"],
+                        ["Subdomain1.com", "127.0.0.1", "Miscrosoft"],
+                        ["Subdomain2.com", "192.168.91", "Miscrosoft"],
+                        ["Subdomain3.com", "192.168.78", "Google"],
+                        ["Subdomain1.com", "127.0.0.1", "Miscrosoft"],
+                        ["Subdomain2.com", "192.168.91", "Miscrosoft"],
+                        ["Subdomain3.com", "192.168.78", "Google"]
+                    ]
+                }
+            }
+        ]
     },
     {
         id: 3,
@@ -69,19 +87,29 @@ export const resultToSend = [
                     dataRows : [
                         [
                             "elementor", 
-                            `Elementor Website Builder < 3.16.5 - Authenticated (Contributor+) Stored Cross-Site Scripting via get_inline_svg()
-                            Version: 3.16.5
-                            
-                            Elementor Website Builder < 3.16.5 - Missing Authorization to Arbitrary Attachment Read
-                            Version : 3.16.5`
+                            [
+                                {
+                                    title : "Elementor Website Builder < 3.16.5 - Authenticated (Contributor+) Stored Cross-Site Scripting via get_inline_svg()",
+                                    Version: '3.16.5'
+                                },
+                                {
+                                    title : "Elementor Website Builder < 3.16.5 - Missing Authorization to Arbitrary Attachment Read",
+                                    Version : '3.16.5'
+                                }
+                            ]
                         ],
                         [
                             "element-skit-lite", 
-                            `Elements kit Elementor addons < 2.9.2 - Missing Authorization
-                            Version: 2.9.2
-
-                            ElementsKit Lite < 3.0.4 - Unauthenticated Sensitive Information Exposure
-                            Version: 3.0.4`
+                            [
+                                {
+                                    title : "Elements kit Elementor addons < 2.9.2 - Missing Authorization",
+                                    Version: "2.9.2"
+                                },
+                                {
+                                    title : "ElementsKit Lite < 3.0.4 - Unauthenticated Sensitive Information Exposure",
+                                    Version: "3.0.4"
+                                }
+                        ]
                         ],
                     ]
                 }
