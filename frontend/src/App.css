@@ -38,25 +38,9 @@
     box-shadow: 5px 4px 10px rgba(0, 0,0, 0.4);
 }
 
-/* .blue__gradient {
-    background: linear-gradient(180deg, rgba(183, 255, 165, 0) 0%, #217654 100%);
-    filter: blur(123px);
-}
-  
-  
-.green__gradient {
-    background: linear-gradient(90deg, #c4f4d1 0%, #67fcb9 100%);
-    filter: blur(900px);
-}
-
-.white__gradient {
-    background: rgba(255, 255, 255, 0.6);
-    filter: blur(750px);
-} */
-
 .Table td{
     border: 1px solid;
-    padding-left: 15px;
+    padding-inline: 15px;
     font-size: 18px;
     padding-top: 5px;
     padding-bottom: 5px;

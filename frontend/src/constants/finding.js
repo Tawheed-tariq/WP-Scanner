@@ -32,96 +32,75 @@ export const resultToSend = [
                 data : {
                     headings : ["Title", "Country", "HTTP Server", "IP", "Email", "Bootstrap Version", "Jquery Version"],
                     dataRows : [
-                        [' The Lead Generation Form Builder','UNITED STATES', 'Apache', '162.240.76.5', 'info@leadgenapp.io', '4.0.0,6.3.3', '1.11.0,3.6.0,3.7.0']
+                        [' The Lead Generation Form Builder','UNITED STATES', 'Apache', '162.240.76.5', 'info@leadgenapp.io, info@leadgen.io', '4.0.0,6.3.3', '1.11.0,3.6.0,3.7.0']
                     ]
                 }
             },
             {
-                res : '3 subdomains found',
-                data : {
-                    headings : ["Sub Domain", "IP Address", "NetName"],
-                    dataRows : [
-                        ["Subdomain1.com", "127.0.0.1", "Miscrosoft"],
-                        ["Subdomain2.com", "192.168.91", "Miscrosoft"],
-                        ["Subdomain3.com", "192.168.78", "Google"],
-                    ]
-                }
-            }
-        ]
-    },
-
-
-
-    {
-        id: 2,
-        title : 'Sub Domain Finder results',
-        img : 'subdom.svg',
-        target : '127.0.0.1',
-        response : [
-            {
-                res : '3 subdomains found',
-                data : {
-                    headings : ["Sub Domain", "IP Address", "NetName"],
-                    dataRows : [
-                        ["Subdomain1.com", "127.0.0.1", "Miscrosoft"],
-                        ["Subdomain2.com", "192.168.91", "Miscrosoft"],
-                        ["Subdomain3.com", "192.168.78", "Google"],
-                        ["Subdomain1.com", "127.0.0.1", "Miscrosoft"],
-                        ["Subdomain2.com", "192.168.91", "Miscrosoft"],
-                        ["Subdomain3.com", "192.168.78", "Google"],
-                        ["Subdomain1.com", "127.0.0.1", "Miscrosoft"],
-                        ["Subdomain2.com", "192.168.91", "Miscrosoft"],
-                        ["Subdomain3.com", "192.168.78", "Google"]
-                    ]
-                }
-            }
-        ]
-    },
-
-
-    
-    {
-        id: 3,
-        title : 'Vulnerability Scan results',
-        img : 'vulnerability.svg',
-        target : 'http://casetcollege.in',
-        response : [
-            {
-                res : '8 vulnerabilities found',
-                data : {
-                    headings : ["Plugin Name", "vulnerabilities"],
-                    dataRows : [
-                        [
-                            "elementor", 
-                            [
+                res: '8 vulnerabilities found', 
+                data: {
+                    headings: ['Plugin','number', 'vulnerabilities'], 
+                    dataRows: [
+                        ['elementor',5, [
                                 {
-                                    title : "Elementor Website Builder < 3.16.5 - Authenticated (Contributor+) Stored Cross-Site Scripting via get_inline_svg()",
+                                    title: 'Elementor Website Builder < 3.16.5 - Authenticated (Contributor+) Stored Cross-Site Scripting via get_inline_svg()', 
                                     Version: '3.16.5'
-                                },
+                                }, 
                                 {
-                                    title : "Elementor Website Builder < 3.16.5 - Missing Authorization to Arbitrary Attachment Read",
-                                    Version : '3.16.5'
+                                    title: 'Elementor Website Builder < 3.16.5 - Missing Authorization to Arbitrary Attachment Read', 
+                                    Version: '3.16.5'
+                                }, 
+                                {
+                                    title: 'Elementor < 3.18.2 - Contributor+ Arbitrary File Upload to RCE via Template Import', 
+                                    Version: '3.18.2'
+                                }, 
+                                {
+                                    title: 'Elementor < 3.19.1 - Authenticated(Contributor+) Arbitrary File Deletion and PHAR Deserialization', 
+                                    Version: '3.19.1'
+                                }, 
+                                {
+                                    title: 'Elementor Website Builder – More than Just a Page Builder < 3.19.0 - Authenticated (Contributor+) Stored Cross-Site Scripting via get_image_alt', 
+                                    Version: '3.19.0'
                                 }
                             ]
-                        ],
-                        [
-                            "element-skit-lite", 
+                        ], 
+                        ['elementskit-lite', 2,
                             [
                                 {
-                                    title : "Elements kit Elementor addons < 2.9.2 - Missing Authorization",
-                                    Version: "2.9.2"
-                                },
+                                    title: 'Elements kit Elementor addons < 2.9.2 - Missing Authorization', 
+                                    Version: '2.9.2'
+                                }, 
                                 {
-                                    title : "ElementsKit Lite < 3.0.4 - Unauthenticated Sensitive Information Exposure",
-                                    Version: "3.0.4"
+                                    title: 'ElementsKit Lite < 3.0.4 - Unauthenticated Sensitive Information Exposure', 
+                                    Version: '3.0.4'
                                 }
+                            ]
+                        ], 
+                        ['gs-logo-slider', 1,
+                            [
+                                {
+                                    title: 'GS Logo Slider < 3.5.2 - Cross-Site Request Forgery', 
+                                    Version: '3.5.2'
+                                }
+                            ]
                         ]
-                        ],
+                    ]
+                }
+            },
+            {
+                res: '4 Files found',
+                data: {
+                    headings: ['Files', 'Description'], 
+                    dataRows: [
+                        ['Robots.txt', 'https://enterprise.leadgenapp.io/robots.txt'], 
+                        ['xml-RPC', 'https://enterprise.leadgenapp.io/xmlrpc.php'], 
+                        ['wordpress readme', 'https://enterprise.leadgenapp.io/readme.html'], 
+                        ['wordpress version', '6.4.3 identified (Latest, released on 2024-01-30).']
                     ]
                 }
             }
         ]
-    },
+    }
 ]
 
 
