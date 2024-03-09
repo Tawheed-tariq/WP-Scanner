@@ -49,6 +49,9 @@ export const resultToSend = [
             }
         ]
     },
+
+
+
     {
         id: 2,
         title : 'Sub Domain Finder results',
@@ -74,6 +77,9 @@ export const resultToSend = [
             }
         ]
     },
+
+
+    
     {
         id: 3,
         title : 'Vulnerability Scan results',
