@@ -88,14 +88,24 @@ export const resultToSend = [
                 }
             },
             {
-                res: '4 Files found',
+                res: '4 Interesting Enteries Found',
                 data: {
-                    headings: ['Files', 'Description'], 
+                    headings: ['Enteries', 'Description'], 
                     dataRows: [
                         ['Robots.txt', 'https://enterprise.leadgenapp.io/robots.txt'], 
                         ['xml-RPC', 'https://enterprise.leadgenapp.io/xmlrpc.php'], 
                         ['wordpress readme', 'https://enterprise.leadgenapp.io/readme.html'], 
-                        ['wordpress version', '6.4.3 identified (Latest, released on 2024-01-30).']
+                        ['wordpress version', '6.4.3 identified (Latest, released on 2024-01-30).'],
+                    ]
+                }
+            },
+            {
+                res: '2 User(s) Found', 
+                data: {
+                    headings: ['username'], 
+                    dataRows: [
+                        [' admin'], 
+                        [' Shahid Shahmiri']
                     ]
                 }
             }
