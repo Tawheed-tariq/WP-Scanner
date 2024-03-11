@@ -17,7 +17,7 @@ export default function DashboardLayout({title, children}){
             <TopNav open={open} toggle={toggle} title={title}/>
             <div className="flex w-[100vw]">
                 <SideNav open={open} />
-                <div className="w-full overflow-y-auto md:ml-[300px] overflow-x-hidden px-[20px] md:px-[100px] py-[30px] mt-[70px]">
+                <div className="w-full overflow-y-auto md:ml-[200px] overflow-x-hidden px-[20px] md:px-[70px] py-[30px] mt-[70px]">
                     {children}
                 </div>
             </div>
@@ -28,13 +28,13 @@ export default function DashboardLayout({title, children}){
 const TopNav = ({title, toggle, open}) => {
     return(
         <div className={`h-[70px] backdrop-blur-lg fixed z-[999] w-[100vw] bg-secondary-50 flex items-center`}>
-            <div className="pl-[15px] sm:pl-[30px] md:pl-[0px] md:min-w-[300px] flex justify-center">
-                <h1 className="text-[20px] sm:text-[25px] hidden md:block md:text-[35px] text-center font-semibold ">
+            <div className="pl-[15px] sm:pl-[30px] md:pl-[0px] md:min-w-[200px] flex justify-center">
+                <h1 className="text-[20px] sm:text-[25px] hidden md:block md:text-[30px] text-center font-semibold ">
                     WPScans
                 </h1>
                 {!open ? <VscLayoutSidebarLeft onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`} /> : <IoCloseCircleSharp onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`}/>}
             </div>
-            <div className={`w-full h-full flex items-center justify-between px-[20px] md:px-[100px]`}>
+            <div className={`w-full h-full flex items-center justify-between px-[20px] md:px-[70px]`}>
                 <h1 className="sm:text-[20px] md:text-[30px] font-medium ">
                     {title}
                 </h1>
@@ -56,25 +56,25 @@ const SideNav = ({open}) => {
         {
             id: 1,
             title : 'Dashboard',
-            img : <MdDashboard color="#226F78" size={`25`} />,
+            img : <MdDashboard color="#226F78" size={`20`} />,
             link : '/dashboard'
         },
         {
             id: 2,
             title : 'Scans',
-            img : <RiScan2Line color="#226F78" size={`25`}/>,
+            img : <RiScan2Line color="#226F78" size={`20`}/>,
             link : '/scans'
         },
         {
             id: 3,
             title : 'Findings',
-            img : <MdWifiFind color="#226F78" size={`25`}/>,
+            img : <MdWifiFind color="#226F78" size={`20`}/>,
             link : '/findings'
         },
         {
             id: 4,
             title : 'Report',
-            img : <TbReportAnalytics color="#226F78" size={`25`} />,
+            img : <TbReportAnalytics color="#226F78" size={`20`} />,
             link : '/report'
         },
     
@@ -85,14 +85,14 @@ const SideNav = ({open}) => {
     }
     return(
         <>
-            <div className={`w-[300px] fixed mt-[70px] custom-height hidden md:flex items-center flex-col  bg-secondary-50`}>
-                <div className={`flex flex-col gap-[30px] py-[40px]`}>
+            <div className={`w-[220px] fixed mt-[70px] custom-height hidden md:flex items-center flex-col  bg-secondary-50`}>
+                <div className={`flex flex-col gap-[20px] py-[40px]`}>
                     {
                         sideNavLinks.map((ele) => (
                            <Link to={ele.link} key={ele.id}>
-                                <div className={`flex gap-[10px] py-[10px] px-[30px] rounded-full ${isActiveLink(ele.link) ? 'bg-primary' : ''} items-center`}>
+                                <div className={`flex gap-[10px] py-[7px] px-[20px] rounded-full ${isActiveLink(ele.link) ? 'bg-primary' : ''} items-center`}>
                                     {ele.img}
-                                    <p className={`text-[22px]`}>{ele.title}</p>
+                                    <p className={`text-[18px]`}>{ele.title}</p>
                                 </div>
                            </Link>
                         ))

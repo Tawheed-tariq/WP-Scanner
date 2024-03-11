@@ -3,7 +3,7 @@ import { GiGalaxy } from "react-icons/gi";
 
 export default function Result({title, img, target, response}){
     return(
-        <div className={`mx-[20px] my-[30px]`}>
+        <div className={`my-[20px]`}>
             <div className={`flex gap-[10px] items-center`}>
                 <img src={img} alt="" />
                 <p className={`font-semibold text-[32px] text-accent`}>{title}</p>
