@@ -2,7 +2,7 @@ import { properties } from "../../../constants"
 
 export default function About(){
     return(
-        <div id="about" className={`bg-home-bg w-full px-[250px] text-txt`}>
+        <div id="about" className={`bg-home-bg w-full px-[20px] md:px-[100px] lg:px-[200px] text-txt`}>
             <h1 className="text-[58px] font-extrabold w-[1000px]">
                 It's really easy to scan your web application for vulnerabilities
             </h1>

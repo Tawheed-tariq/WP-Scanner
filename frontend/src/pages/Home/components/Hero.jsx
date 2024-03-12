@@ -2,9 +2,9 @@ import {Link} from 'react-router-dom'
 export default function Hero(){
     return(
         <>
-            <div className={`w-full h-[100vh] hero px-[250px] flex items-center justify-between`}>
-                <div className="text-txt max-w-[700px]">
-                    <h1 className="text-[64px] font-extrabold w-[600px]">Website Vulnerability Scanner</h1>
+            <div className={`w-full min-h-[100vh] hero px-[20px] mt-[70px] lg:px-[100px] xl:px-[200px] flex flex-col md:flex-row items-center justify-center md:justify-between`}>
+                <div className="text-txt max-w-[500px] lg:max-w-[620px] xl:max-w-[700px]">
+                    <h1 className="text-[64px] font-extrabold md:w-[600px]">Website Vulnerability Scanner</h1>
 
                     <p className={`text-[20px] mt-[10px]`}>The Website Vulnerability Scanner is a highly-accurate vulnerability  
                         scanning solution, battle-tested in real life penetration testing  engagements.
@@ -21,9 +21,7 @@ export default function Hero(){
                         </button>
                     </Link>
                 </div>
-                <div>
-                    <img className={`max-w-[700px] relative z-[3] max-h-[700px]`} src="scanner.png" alt="" />
-                </div>
+                <img className={`w-[700px] aspect-square`} src="scanner.png" alt="" />
             </div>
         </>
     )

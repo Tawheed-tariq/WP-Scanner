@@ -2,7 +2,7 @@ import { navLinks } from "../../../constants"
 import { Link } from "react-router-dom"
 export default function NavBar(){
     return(
-        <nav className={`w-full h-[70px] bg-home-secondary fixed z-[999] backdrop-blur-xl px-[250px] flex items-center justify-between`}>
+        <nav className={`w-full h-[70px] bg-home-secondary fixed z-[999] backdrop-blur-xl px-[20px] md:px-[100px] lg:px-[200px] flex items-center justify-between`}>
             <h1 className={`text-[32px] text-txt font-bold`}>WPScans</h1>
             <div className={`flex items-center gap-[20px]`}>
                 
