@@ -2,8 +2,8 @@ import {Link} from 'react-router-dom'
 export default function Hero(){
     return(
         <>
-            <div className={`w-full h-[100vh] hero px-[250px] flex items-center justify-between`}>
-                <div className="text-txt max-w-[700px]">
+            <div className={`w-full h-[100vh] hero px-[20px] md:px-[100px] lg:px-[200px] flex items-center justify-between`}>
+                <div className="text-txt w-[700px]">
                     <h1 className="text-[64px] font-extrabold w-[600px]">Website Vulnerability Scanner</h1>
 
                     <p className={`text-[20px] mt-[10px]`}>The Website Vulnerability Scanner is a highly-accurate vulnerability  
@@ -22,7 +22,7 @@ export default function Hero(){
                     </Link>
                 </div>
                 <div>
-                    <img className={`max-w-[700px] relative z-[3] max-h-[700px]`} src="scanner.png" alt="" />
+                    <img className={`w-[400px] h-[400px] lg:w-[600px] lg:h-[600px]`} src="scanner.png" alt="" />
                 </div>
             </div>
         </>
