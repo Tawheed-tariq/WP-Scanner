@@ -16,19 +16,19 @@
     -webkit-background-clip: text;
 }
 
-.hero{
+/* .hero{
     background: url('rect.svg');
     background-repeat: no-repeat;
     background-position-y: 22vh;
     background-size: contain;
 }
-
-.working{
+ */
+/* .working{
     background: url('design.svg');
     background-repeat: no-repeat;
     background-size: contain;
 }
-
+ */
 
 .custom-height {
     height: calc(100vh - 70px);
