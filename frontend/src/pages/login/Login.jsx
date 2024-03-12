@@ -53,7 +53,7 @@ export default function Login(){
     return(
         <>
             <FormLayout>
-                <div className={`bg-background-50 flex flex-col px-[40px] md:px-[70px] items-center justify-center py-[30px] rounded-2xl`}>
+                <div className={`bg-background-50 flex flex-col px-[20px] sm:px-[40px] md:px-[70px] items-center justify-center py-[30px] rounded-2xl`}>
                     <h1 className="text-[20px] sm:text-[30px] md:text-[40px] text-text font-bold ">Sign In</h1>
 
                     <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-[20px] my-[20px]">
@@ -69,7 +69,7 @@ export default function Login(){
                                 />
                             ))
                         }
-                        <button type="submit" className={`flex text-txt sm:text-xl md:text-2xl font-medium items-center justify-center w-[220px] sm:w-[300px] md:w-[450px] bg-accent h-[40px] md:h-[60px] rounded-full`}>
+                        <button type="submit" className={`flex text-txt sm:text-xl md:text-2xl font-medium items-center justify-center w-[250px] sm:w-[300px] md:w-[450px] bg-accent h-[40px] md:h-[60px] rounded-full`}>
                             Sign In
                         </button>
                     </form>
