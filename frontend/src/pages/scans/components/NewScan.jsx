@@ -1,12 +1,14 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import DashboardLayout from "../../../components/DashboardLayout";
 import {descs} from '../../../constants/newScan'
 import { useState } from "react";
+import axios from 'axios'
+import {host} from '../../../utils/apiRoutes'
 export default function NewScan(){
     const location = useLocation()
     const recievedData = location.state.data /*recieves data from the template clicked in scan tempaltes*/
     const data = descs[recievedData-1]
-
+    const navigate = useNavigate()
     const [values , setValues] = useState({
         name : '',
         target : '',
@@ -20,9 +22,21 @@ export default function NewScan(){
         })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(values)
+    const handleSubmit = async (e) => {
+       try {
+            e.preventDefault()
+            const {name, target, description} = values
+            const {data} = await axios.post(`${host}/start-active-scan`, {
+                name,
+                target,
+                description
+            })
+            if(data.scan_id){
+                navigate(`/scan-results/${data.scan_id}`)
+            }
+       } catch (error) {
+            console.log(error.message)
+       }
     }
     return(
        <DashboardLayout title={`Scans/${data.title}`}>

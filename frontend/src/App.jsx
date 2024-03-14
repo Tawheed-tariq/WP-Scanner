@@ -18,7 +18,7 @@ function App() {
         <Route path='/login' Component={Login}/>
         <Route path='/dashboard' Component={Dashboard}/>
         <Route path='/scans/*' Component={Scans}/>
-        <Route path='/findings' Component={Findings}/>
+        <Route path='/scan-results/*' Component={Findings}/>
         <Route path='/report' Component={Report}/>
       </Routes>
     </Router>

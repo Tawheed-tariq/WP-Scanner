@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from scan import run_nmap_scan, run_whatweb_scan
 import threading
 from filter import parse_nmap_results, filter_whatweb_scan  
 import uuid
 
 app = Flask("__name___")
-
+CORS(app)
 scans = {}
 
 def active_scan(target, scan_id):
