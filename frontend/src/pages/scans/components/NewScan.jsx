@@ -3,12 +3,13 @@ import DashboardLayout from "../../../components/DashboardLayout";
 import {descs} from '../../../constants/newScan'
 import { useState } from "react";
 import axios from 'axios'
-import {host} from '../../../utils/apiRoutes'
+import {host} from '../../../utils/apiRoutes' 
 export default function NewScan(){
     const location = useLocation()
     const recievedData = location.state.data /*recieves data from the template clicked in scan tempaltes*/
     const data = descs[recievedData-1]
     const navigate = useNavigate()
+
     const [values , setValues] = useState({
         name : '',
         target : '',
@@ -35,7 +36,7 @@ export default function NewScan(){
                 navigate(`/scan-results/${data.scan_id}`)
             }
        } catch (error) {
-            console.log(error.message)
+            console.log("error in scan section " +error.message)
        }
     }
     return(

@@ -16,10 +16,21 @@ def resolve_domain_to_ip(domain):
     except socket.gaierror:
         return None
 
+# def run_nmap_scan(target):
+#     ip = resolve_domain_to_ip(target)
+#     command = ['nmap', '-sV', ip, '-F', '-n', '-T5']
+#     return run_scan(command)
+
 def run_nmap_scan(target):
     ip = resolve_domain_to_ip(target)
+    if ip is None:
+        return "Unable to resolve domain to IP address."
     command = ['nmap', '-sV', ip, '-F', '-n', '-T5']
-    return run_scan(command)
+    try:
+        return run_scan(command)
+    except subprocess.CalledProcessError as e:
+        return f"Error running {command[0]}: {e.output}"
+
 
 def run_whatweb_scan(target):
     command = ['whatweb', target]

@@ -16,7 +16,6 @@ def active_scan(target, scan_id):
 
         parsed_nmap_results = parse_nmap_results(nmap_results)
         filtered_whatweb_results = filter_whatweb_scan(whatweb_results)
-
         scans[scan_id] = {
             'nmap': parsed_nmap_results,
             'whatweb': filtered_whatweb_results

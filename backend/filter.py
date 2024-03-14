@@ -103,20 +103,19 @@ def filter_whatweb_scan(scan_output):
         'email': re.compile(r'Email\[(.*?)\]'),
         'bootstrap': re.compile(r'Bootstrap\[(.*?)\]'),
         'jquery': re.compile(r'JQuery\[(.*?)\]'),
-        'title': re.compile(r'Title\[(.*?)\]')
     }
     result = {
         'res': 'General Info',
         'data': {
-            'headings': ["Title", "Country", "HTTP Server", "IP", "Email", "Bootstrap Version", "JQuery Version"],
+            'headings': ["Country", "HTTP Server", "IP", "Email", "Bootstrap Version", "JQuery Version"],
             'dataRows': []
         }
     }
-
+    res = []
     for key, pattern in patterns.items():
         match = pattern.search(scan_output)
-        result['data']['dataRows'].append(match.group(1) if match else '')
-
+        res.append(match.group(1) if match else '')
+    result['data']['dataRows'].append(res)
     return result
 
 def parse_wp_results(wp_output):
