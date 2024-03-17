@@ -52,11 +52,9 @@ def scan_results(scan_id):
     result = {
         'nmap': parsed_nmap_results,
         'whatweb': filtered_whatweb_results,
-        'wpscan': {
-            'general': parsed_wpscan_general,
-            'vulnerabilities': wpscan_vulnerabilities,
-            'users': wpscan_users
-        }
+        'general': parsed_wpscan_general,
+        'vulnerabilities': wpscan_vulnerabilities,
+        'users': wpscan_users
     }
 
     return jsonify(result)
