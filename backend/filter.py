@@ -53,50 +53,102 @@ def parse_wp_results(wp_output):
     robots_txt_pattern = re.compile(r'robots.txt found: (.*)')
     xml_rpc_pattern = re.compile(r'XML-RPC seems to be enabled: (.*)')
     wordpress_readme_pattern = re.compile(r'WordPress readme found: (.*)')
-    wordpress_version_pattern = re.compile(r'WordPress version (.+) identified')
+    wordpress_version_pattern = re.compile(r'WordPress version (.+)')
 
     robots_match = robots_txt_pattern.search(wp_output)
     xml_match = xml_rpc_pattern.search(wp_output)
-    wordpress_readme_match = wordpress_readme_pattern.search(wp_output)
-    wordpress_version_match = wordpress_version_pattern.search(wp_output)
+    wordpress_readme = wordpress_readme_pattern.search(wp_output)
+    wordpress_version = wordpress_version_pattern.search(wp_output)
 
-    findings = {
-        'robots_txt': robots_match.group(1) if robots_match else 'Not Found',
-        'xml_rpc': xml_match.group(1) if xml_match else 'Not Found',
-        'wordpress_readme': wordpress_readme_match.group(1) if wordpress_readme_match else 'Not Found',
-        'wordpress_version': wordpress_version_match.group(1) if wordpress_version_match else 'Not Identified'
+    matches = {
+        'res' : '',
+        'data' : {
+            'headings' : ["Files", "Description"],
+            'dataRows' : [
+                ["Robots.txt", robots_match.group(1) if robots_match else 'None'],
+                ['xml-RPC' , xml_match.group(1) if xml_match else 'None'],
+                ['wordpress readme', wordpress_readme.group(1) if wordpress_readme else 'None'],
+                ['wordpress version',  wordpress_version.group(1) if wordpress_version else 'NA'],
+            ]
+        }
     }
-    
-    return findings
+    matches['res'] = str(len(matches['data']['dataRows'])) + ' Intresting Enteries Found'
+    return matches
+
+def plugin_vulnerabilities(vulnerabilities):
+    pattern = r'\[!\](.*?)References'
+    vuln_arr = re.findall(pattern , vulnerabilities.group(0).strip(), re.DOTALL)
+    num_of_vuln = len(vuln_arr)
+
+    vulns = []
+    for vuln in vuln_arr:
+        title_pattern = re.compile(r'Title: (.*)')
+        fixed_pattern = re.compile(r'Fixed in: (.*)')
+
+        title = title_pattern.search(vuln)
+        fixed = fixed_pattern.search(vuln)
+
+        data = {
+            'title' : title.group(1),
+            'Version' : fixed.group(1)
+        }
+        vulns.append(data)
+    return [num_of_vuln, vulns]
+
+
 
 def find_vulnerabilities(wp_output):
-    vuln_pattern = re.compile(r'\[!\](.*?)(?=\n\n|\Z)', re.DOTALL)
-    vulns = vuln_pattern.findall(wp_output)
-    
-    vulnerabilities = []
-    for vuln in vulns:
-        title_match = re.search(r'Title: (.+?)(?=\n|$)', vuln)
-        fixed_in_match = re.search(r'Fixed in: (.+?)(?=\n|$)', vuln)
-        
-        vuln_info = {
-            'title': title_match.group(1) if title_match else 'No title found',
-            'fixed_in': fixed_in_match.group(1) if fixed_in_match else 'Not specified'
-        }
-        vulnerabilities.append(vuln_info)
-    
-    return vulnerabilities
+    try:
+        plugins_pattern = r'\[i\] Plugin\(s\) Identified:\n(.*?)(?:Interesting Finding\(s\):|\[i\])'
+        plugins = re.search(plugins_pattern, wp_output, re.DOTALL)
+
+        if(plugins):
+            plugin_output = plugins.group(1).strip() 
+            plugin_arr = re.findall(r'\[\+\]\s(.*?)\n\n',plugin_output , re.DOTALL) 
+            output_data = {
+                'res' : '',
+                'data' : {
+                    'headings' : ["Plugin","number", "vulnerabilities"],
+                    'dataRows' : []
+                }
+            }
+            number = int()
+            for plugin in plugin_arr:
+                plugin_name_pattern = r'(.*)'
+                plugin_name = re.match(plugin_name_pattern, plugin).group(1)
+
+                vuln_pattern = r'vulnerabilit.* identified:(.*)'
+                vulnerabilities = re.search(vuln_pattern,plugin, re.DOTALL)
+
+                if(vulnerabilities):
+                    data = plugin_vulnerabilities(vulnerabilities)
+                    output_data['data']['dataRows'].append([plugin_name, data[0], data[1]])
+                    number += data[0]
+            output_data['res'] = str(number) + ' Vulnerabilities Found'
+            return output_data if len(output_data) > 0 else None
+    except:
+        print('error')
 
 def find_users(wp_output):
-    user_pattern = re.compile(r'\[i\] User\(s\) Identified:\n\n((?:.+\n)+)', re.MULTILINE)
-    users_match = user_pattern.search(wp_output)
-    
-    users = []
-    if users_match:
-        users_info = users_match.group(1)
-        user_lines = users_info.strip().split('\n')
-        for line in user_lines:
-            user_name_match = re.search(r'\[\+\] (.+)', line)
-            if user_name_match:
-                users.append(user_name_match.group(1))
+    users_pattern = r'\[i\] User\(s\) Identified:\n(.*?)(?:\[\+\] WPScan DB API|\[\+\] Finished|$)'
+    users = re.search(users_pattern, wp_output , re.DOTALL)
+
+    response = {
+        'res' : '',
+        'data' : {
+            'headings' : ["username"],
+            'dataRows' : []
+        }
+    }
+    if users:
+        users_output = users.group(1).strip()
+        pattern = r'\[\+\](.*)'
+        users_arr = re.findall(pattern, users_output)
+
+        for user in users_arr:
+            response['data']['dataRows'].append([user])
+        response['res'] = str(len(response['data']['dataRows'])) + ' User(s) Found'
+
+        return response
                 
     return users
