@@ -3,7 +3,7 @@ import threading
 import uuid
 from db import save_scan_results, get_scan_results
 from scan import run_nmap_scan, run_whatweb_scan, run_wpscan
-from filter import parse_nmap_results, filter_whatweb_scan, parse_wp_results, find_vulnerabilities, find_users
+from filter import parse_nmap_results, filter_whatweb_scan, parse_wp_results, find_vulnerabilities, find_users, find_themes
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -46,14 +46,16 @@ def scan_results(scan_id):
     parsed_nmap_results = parse_nmap_results(nmap_raw)
     filtered_whatweb_results = filter_whatweb_scan(whatweb_raw)
     parsed_wpscan_general = parse_wp_results(wpscan_raw)
-    wpscan_vulnerabilities = find_vulnerabilities(wpscan_raw)
+    wpscan_plugins = find_vulnerabilities(wpscan_raw)
     wpscan_users = find_users(wpscan_raw)
+    wpscan_themes = find_themes(wpscan_raw)
 
     result = {
         'nmap': parsed_nmap_results,
         'whatweb': filtered_whatweb_results,
         'general': parsed_wpscan_general,
-        'vulnerabilities': wpscan_vulnerabilities,
+        'plugins': wpscan_plugins,
+        'themes' : wpscan_themes,
         'users': wpscan_users
     }
 
