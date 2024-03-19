@@ -20,7 +20,6 @@ export default function Findings(){
                     if (data.status === 'pending') {
                         setScanStatus('Pending');
                         setTimeout(getResult, 10000); // Check again after 5 seconds
-                        console.log("pending")
                     } else {
                         setScanStatus('Completed');
                         setResult(prev => data);
@@ -52,7 +51,6 @@ export default function Findings(){
 
         setScanResult(prev => [existingObject])
     },[result])
-    console.log(result)
 
     return(
         <DashboardLayout title={`Findings`}>

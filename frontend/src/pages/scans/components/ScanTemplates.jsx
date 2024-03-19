@@ -45,7 +45,7 @@ export default function ScanTemplates(){
     ]
     return(
         <DashboardLayout title={`Scan Templates`}>
-            <div className={`py-[5px] flex flex-wrap gap-[10px] md:gap-[25px]`}>
+            <div className={`py-[15px] flex flex-wrap gap-[10px] md:gap-[25px]`}>
                 {
                     templates.map((template) => (
                         <Link to={template.url} state={{data : template.id}} key={template.id} className={`boxShadow border-text border-[2px] rounded-2xl`}>
@@ -54,7 +54,7 @@ export default function ScanTemplates(){
                                     {template.img}
                                     <p className={`font-medium text-[18px] md:text-[20px]`}>{template.title}</p>
                                 </div>
-                                <div className={`max-w-[250px] text-[12px] md:text-[16px] mt-[10px]`}>
+                                <div className={`max-w-[300px] text-[12px] md:text-[16px] mt-[10px]`}>
                                     <p>{template.desc}</p>
                                 </div>
                             </div>
