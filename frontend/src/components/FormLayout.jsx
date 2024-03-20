@@ -1,7 +1,17 @@
+import ParticlesBg from 'particles-bg' //using particles-bg because react-particles-js is not working
+
 export default function FormLayout({children}){
+    let numberOfParticles = 150
+
+    if(window.innerWidth < 786){
+        numberOfParticles = 50
+    }else if(window.innerWidth < 1024){
+        numberOfParticles = 100
+    }
+
     return(
         <div className={`flex justify-center items-center h-[100vh]`}>
-            <div className={`flex flex-col w-full justify-center items-center max-w-[350px] ss:max-w-[500px] sm:max-w-[700px] md:max-w-[900px] bg-secondary-50 px-[20px] md:px-[40px] pt-[30px] pb-[50px] rounded-3xl`}>
+            <div className={`flex flex-col w-full justify-center items-center max-w-[350px] ss:max-w-[500px] sm:max-w-[700px] md:max-w-[900px] backdrop-blur-sm bg-secondary-50 px-[20px] md:px-[40px] pt-[30px] pb-[50px] rounded-3xl`}>
                 <h1 className="text-[25px] sm:text-[30px] md:text-[40px] text-text font-bold">WPScans</h1>
 
                 <p className={`text-[12px] sm:text-[16px] md:text-[20px] text-text mt-[10px]`}>
@@ -15,6 +25,13 @@ export default function FormLayout({children}){
                     {children}
                 </div>
             </div>
+            <ParticlesBg
+                type="cobweb"
+                num={numberOfParticles}
+                bg={true} 
+                size={10} 
+                speed={3}
+            />
         </div>
     )
 }
