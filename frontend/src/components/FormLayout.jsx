@@ -10,7 +10,7 @@ export default function FormLayout({children}){
     }
 
     return(
-        <div className={`flex justify-center items-center h-[100vh]`}>
+        <div className={`flex formLayout justify-center items-center h-[100vh]`}>
             <div className={`flex flex-col w-full justify-center items-center max-w-[350px] ss:max-w-[500px] sm:max-w-[700px] md:max-w-[900px] backdrop-blur-sm bg-secondary-50 px-[20px] md:px-[40px] pt-[30px] pb-[50px] rounded-3xl`}>
                 <h1 className="text-[25px] sm:text-[30px] md:text-[40px] text-text font-bold">WPScans</h1>
 

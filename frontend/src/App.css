@@ -50,3 +50,10 @@
     font-size: 20px;
     font-weight: 500;
 }
+
+.formLayout{
+    background: url('cyber-theme.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
