@@ -15,19 +15,35 @@ export default function ScanHome(){
             name : "2nd scan",
             schedule : "on demand",
             status : "saved",
-            time : "tommorow 12:00pm"
+            time : "11-12-2003 1:09pm"
+        },
+        {
+            name : "3rd scan",
+            schedule : "on demand",
+            status : "completed",
+            time : "12-02-2024 8:57pm"
+        },
+        {
+            name : "4th scan",
+            schedule : "on demand",
+            status : "completed",
+            time : "12-02-2024 2:03pm"
         }
     ]
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
-            <div className={` py-[20px] md:py-[50px] px-[10px] flex justify-end`}>
+            <div className={` py-[20px] border-b-2 border-accent md:py-[40px] px-[10px] flex justify-end mb-[20px]`}>
                 <Link className={`bg-secondary boxShadow rounded-xl`} to={`/scans/scan-templates`}>
                     <button className={`px-[20px] flex gap-[10px] items-center text-[18px] md:text-[22px] py-[10px]`}>
                         <TbActivityHeartbeat color={`#226F78`} size={`30`}/>
                         New Scan
                     </button>
                 </Link>
+            </div>
+
+            <div className={`w-full  py-[20px]`}>
+                <input className={`px-[10px] bg-transparent border-text border-[1px] focus:outline-none py-[5px]`} type="text" placeholder="Search Scans"/>
             </div>
 
             {/* Scan results table*/}
@@ -42,7 +58,17 @@ export default function ScanHome(){
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    {
+                        rows.map((row,index) => (
+                            <tr key={index}>
+                                <td>{row.name}</td>
+                                <td>{row.schedule}</td>
+                                <td>
+                                    {row.time}
+                                </td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </table>
 

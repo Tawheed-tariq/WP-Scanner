@@ -7,7 +7,7 @@ export default function Table({target, headings, dataRows}){
                 <HiComputerDesktop color={`#226F78`} size={`25`}/>
                 <p className={`font-medium text-[20px]`}>{target}</p>
             </div>
-            <table className={`w-full border-collapse Table text-text border-text table-auto tab border-[1px]`}>
+            <table className={`w-full border-collapse Table-bordered Table text-text border-text table-auto tab border-[1px]`}>
                 <thead className="bg-primary">
                     <tr>
                         {
