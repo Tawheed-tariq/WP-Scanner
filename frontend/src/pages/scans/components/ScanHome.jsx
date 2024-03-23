@@ -1,35 +1,48 @@
 import DashboardLayout from "../../../components/DashboardLayout";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { Link } from "react-router-dom";
-export default function ScanHome(){
-    const headings = ["Name", "schedule", "Last Scanned"]
+import { FaArrowsRotate} from "react-icons/fa6";
+import { GiSave } from "react-icons/gi";
+import { MdOutlineDownloadDone} from "react-icons/md";
+import { RiArrowRightSFill } from "react-icons/ri";
+import { ImCross } from "react-icons/im";
+import { IoMdSearch } from "react-icons/io";
+import { useEffect, useState } from "react";
+import { headings, rows } from "../../../constants/scanTable";
 
-    const rows = [
-        {
-            name : "1st scan",
-            schedule : "on demand",
-            status : "running",
-            time : "today 12:00pm"
-        },
-        {
-            name : "2nd scan",
-            schedule : "on demand",
-            status : "saved",
-            time : "11-12-2003 1:09pm"
-        },
-        {
-            name : "3rd scan",
-            schedule : "on demand",
-            status : "completed",
-            time : "12-02-2024 8:57pm"
-        },
-        {
-            name : "4th scan",
-            schedule : "on demand",
-            status : "completed",
-            time : "12-02-2024 2:03pm"
+
+
+export default function ScanHome(){
+    
+    const getStatusIcon = (status) => {
+        switch (status) {
+          case "running":
+            return <RotatingIcon icon={<FaArrowsRotate size={20} color="#0BB226"/>} />;
+          case "saved":
+            return <GiSave size={20} color="#226F78"/>;
+          case "completed":
+            return <MdOutlineDownloadDone size={25} color="#226F78"/>;
+          default:
+            return null;
         }
-    ]
+    };
+
+    const RotatingIcon = ({ icon }) => {
+        const [rotation, setRotation] = useState(0);
+      
+        useEffect(() => {
+          const interval = setInterval(() => {
+            setRotation((prevRotation) => prevRotation + 15);
+          }, 100);
+          return () => clearInterval(interval);
+        }, []);
+      
+        return (
+          <div className="rotating-icon" style={{ transform: `rotate(${rotation}deg)` }}>
+            {icon}
+          </div>
+        );
+      };
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
@@ -41,9 +54,12 @@ export default function ScanHome(){
                     </button>
                 </Link>
             </div>
-
-            <div className={`w-full  py-[20px]`}>
-                <input className={`px-[10px] bg-transparent border-text border-[1px] focus:outline-none py-[5px]`} type="text" placeholder="Search Scans"/>
+            {/* search bar  */}
+            <div className={`w-full flex py-[20px]`}>
+                <div className="flex items-center px-[20px] gap-[20px] border-text border-[1px]">
+                    <input className={` bg-transparent focus:outline-none py-[5px]`} type="text" placeholder="Search Scans"/>
+                    <IoMdSearch color="#040807" size={25}/>
+                </div>
             </div>
 
             {/* Scan results table*/}
@@ -63,8 +79,15 @@ export default function ScanHome(){
                             <tr key={index}>
                                 <td>{row.name}</td>
                                 <td>{row.schedule}</td>
-                                <td>
-                                    {row.time}
+                                <td className="flex items-center justify-between mr-[20px]">
+                                    <div className="flex gap-[15px] items-center">
+                                        {getStatusIcon(row.status)}
+                                        {row.time}
+                                    </div>
+                                    <div className="flex gap-[40px] items-center">
+                                        {row.status == "saved" ? <RiArrowRightSFill className="rotate-infinit" color="#226F78" size={35}/> : ''}
+                                        <ImCross color="#F90000"/>
+                                    </div>
                                 </td>
                             </tr>
                         ))

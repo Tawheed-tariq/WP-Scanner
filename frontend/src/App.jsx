@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Report from './pages/report/Report'
 import Findings from './pages/findings/Findings';
 import Scans from './pages/scans/Scans'
-import Error404 from './pages/Error404';
+import Notfound from './components/Notfound';
 function App() {
 
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route path='/scans/*' Component={Scans}/>
         <Route path='/scan-results/*' Component={Findings}/>
         <Route path='/report' Component={Report}/>
-        <Route path='/*' Component={Error404}/>
+        <Route path='/*' Component={Notfound}/>
       </Routes>
     </Router>
     </>
