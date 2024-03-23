@@ -2,7 +2,7 @@ import { properties } from "../../../constants"
 
 export default function About(){
     return(
-        <div id="about" className={`bg-home-bg w-full px-[20px] md:px-[100px] lg:px-[200px] text-txt`}>
+        <div id="about" className={`w-full px-[20px] md:px-[100px] lg:px-[200px] text-txt`}>
             <h1 className="text-[34px] sm:text-[44px] md:text-[58px] font-extrabold md:w-[1000px]">
                 It's really easy to scan your web application for vulnerabilities
             </h1>
@@ -32,7 +32,7 @@ export default function About(){
 
 const Property = ({title, desc, img}) => {
     return(
-        <div className={`flex items-center my-[30px] px-[20px] md:px-[60px] py-[10px] md:py-[30px] property gap-[20px] rounded-r-full `}>
+        <div className={`flex text-text items-center my-[30px] px-[20px] md:px-[60px] py-[10px] md:py-[30px] property gap-[20px] rounded-r-full `}>
             <div className={`w-[80%]`}>
                 <h1 className="text-[20px] sm:text-[24px] md:text-[40px] font-semibold mb-[10px] md:mb-[20px]">
                     {title}

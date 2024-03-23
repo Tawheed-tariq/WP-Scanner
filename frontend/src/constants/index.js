@@ -13,20 +13,6 @@ export const properties = [
     }
 ]
 
-export const navLinks = [
-    {
-        id : 1,
-        title: 'How it Works',
-        img : 'work.svg',
-        url : 'work'
-    },
-    {
-        id: 2,
-        title : 'About',
-        img : 'about.svg',
-        url : 'about'
-    }
-]
 
 export const elements = [
     {

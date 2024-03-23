@@ -18,8 +18,9 @@ export default {
         'accent': 'rgba(34, 111, 120, 1)',
         'home-bg' : '#040B08',
         'home-primary' : '#269C6F',
-        'home-secondary' : 'rgba(29, 99, 73, 0.6)',
-        'txt' : '#F8FCFB',
+        'home-secondary' : '#3A8698',
+        'home-secondary-60' : 'rgba(55, 136, 150, 0.6)',
+        'txt' : '#333333',
         'home-accent' : '#3EBB8C'
        },
     },

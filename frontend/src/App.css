@@ -3,7 +3,7 @@
 }
 
 .property{
-    background: linear-gradient(to right ,rgba(29, 99, 73, 0.2) , rgba(29, 99, 73, 1));
+    background: linear-gradient(to right ,rgba(55, 136, 150, 0.3) , rgba(55, 136, 150, 1));
 }
 
 .rotated-text{
@@ -16,19 +16,12 @@
     -webkit-background-clip: text;
 }
 
-/* .hero{
-    background: url('rect.svg');
+.hero{
+    background: url('herobg.png');
     background-repeat: no-repeat;
-    background-position-y: 22vh;
-    background-size: contain;
+    background-size: cover;
 }
- */
-/* .working{
-    background: url('design.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-}
- */
+
 
 .custom-height {
     height: calc(100vh - 70px);
