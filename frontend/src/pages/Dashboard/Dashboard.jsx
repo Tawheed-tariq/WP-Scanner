@@ -35,7 +35,7 @@ export default function Dashboard(){
             {/* attack surface summary + vulnerability summary  */}
             <div className={`py-[5px] mt-[30px] px-[10px] flex flex-wrap items-center gap-[25px]`}>
 
-                <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[400px]`}>
+                <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[450px]`}>
                     <div className={`flex gap-[15px] items-center `}>
                         <AiFillPieChart color={`#226F78`} size={`25`}/>
                         <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Attack Surface Summary</p>
@@ -52,7 +52,7 @@ export default function Dashboard(){
                     </div>
                 </div>
 
-                <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[400px]`}>
+                <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[450px]`}>
                     <div className={`flex  gap-[15px] items-center `}>
                         <AiFillSignal color={`#226F78`} size={`25`}/>
                         <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Vulnerability Summary</p>
