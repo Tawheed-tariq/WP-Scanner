@@ -22,6 +22,18 @@ def active_scan(target, scan_id):
         }
         save_scan_results(scan_id, scan_data)
 
+        processed_data = {
+            'nmap': parse_nmap_results(nmap_results),
+            'whatweb': filter_whatweb_scan(whatweb_results),
+            'wpscan': {
+            'general': parse_wp_results(wpscan_results),
+            'vulnerabilities': find_vulnerabilities(wpscan_results),
+            'users': find_users(wpscan_results)
+            }
+        }
+
+        save_processed_results(scan_id, processed_data)
+
     thread = threading.Thread(target=run_scans)
     thread.start()
 
@@ -39,6 +51,10 @@ def scan_results(scan_id):
     if not scan_data:
         return jsonify({'error': 'Scan not found'}), 404
 
+    processed_data = get_processed_results(scan_id)
+    if not processed_data:
+        return jsonify({'error': 'Processed scan data not found'}), 404
+        
     nmap_raw = scan_data.get('nmap_raw', '')
     whatweb_raw = scan_data.get('whatweb_raw', '')
     wpscan_raw = scan_data.get('wpscan_raw', '')
