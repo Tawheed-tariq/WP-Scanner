@@ -11,9 +11,28 @@ import { useEffect, useState } from "react";
 import { headings, rows } from "../../../constants/scanTable";
 
 
-
 export default function ScanHome(){
     
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [scanToDelete, setScanToDelete] = useState(null);
+    const [popupText, setPopupText] = useState("")
+
+    
+    const handleDeleteScan = (scan) => {
+        setShowDeletePopup(true);
+        setScanToDelete(scan);
+        if(scan.status == 'running'){
+            setPopupText(prev => "stop")
+        }else{
+            setPopupText(prev => "delete")
+        }
+    };
+
+    const handleClosePopup = () => {
+        setShowDeletePopup(false);
+        setScanToDelete(null);
+    };
+
     const getStatusIcon = (status) => {
         switch (status) {
           case "running":
@@ -27,6 +46,7 @@ export default function ScanHome(){
         }
     };
 
+    // rotating the running icon infinitely until it becomes completed
     const RotatingIcon = ({ icon }) => {
         const [rotation, setRotation] = useState(0);
       
@@ -42,7 +62,18 @@ export default function ScanHome(){
             {icon}
           </div>
         );
-      };
+    };
+
+
+    // using search bar to filter the table based on names
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearch = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const filteredRows = rows.filter(row => row.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    const totalScans = rows.length
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
@@ -55,10 +86,19 @@ export default function ScanHome(){
                 </Link>
             </div>
             {/* search bar  */}
-            <div className={`w-full flex py-[20px]`}>
+            <div className={`w-full flex items-center py-[20px]`}>
                 <div className="flex items-center px-[20px] gap-[20px] border-text border-[1px]">
-                    <input className={` bg-transparent focus:outline-none py-[5px]`} type="text" placeholder="Search Scans"/>
+                    <input 
+                        className={` bg-transparent focus:outline-none py-[5px]`} 
+                        type="text" 
+                        placeholder="Search Scans"
+                        value={searchQuery}
+                        onChange={handleSearch}
+                    />
                     <IoMdSearch color="#040807" size={25}/>
+                </div>
+                <div className="px-[20px] text-sm text-gray-500">
+                    Total Scans : {filteredRows.length} of {totalScans}
                 </div>
             </div>
 
@@ -75,7 +115,7 @@ export default function ScanHome(){
                 </thead>
                 <tbody>
                     {
-                        rows.map((row,index) => (
+                        filteredRows.map((row,index) => (
                             <tr key={index}>
                                 <td>{row.name}</td>
                                 <td>{row.schedule}</td>
@@ -85,8 +125,12 @@ export default function ScanHome(){
                                         {row.time}
                                     </div>
                                     <div className="flex gap-[40px] items-center">
-                                        {row.status == "saved" ? <RiArrowRightSFill className="rotate-infinit" color="#226F78" size={35}/> : ''}
-                                        <ImCross color="#F90000"/>
+                                        {row.status == "saved" ? <RiArrowRightSFill className="cursor-pointer" color="#226F78" size={35}/> : ''}
+                                        <ImCross 
+                                            className="cursor-pointer" 
+                                            color="#F90000"
+                                            onClick={() => handleDeleteScan(row)}
+                                        />
                                     </div>
                                 </td>
                             </tr>
@@ -95,6 +139,22 @@ export default function ScanHome(){
                 </tbody>
             </table>
 
+            {/* Delete popup */}
+            {showDeletePopup && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+                    <div className="bg-white p-8 rounded-lg">
+                        <p className="text-lg font-semibold mb-4">Do you want to {popupText} the scan?</p>
+                        <div className="flex justify-end">
+                            <button className="bg-red-500 text-white px-4 py-2 mr-2 rounded" onClick={handleClosePopup}>
+                                Cancel
+                            </button>
+                            <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={handleClosePopup}>
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </DashboardLayout>
     )
 }
