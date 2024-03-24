@@ -53,7 +53,7 @@ export default function Findings(){
     },[result])
 
     return(
-        <DashboardLayout title={`Findings`}>
+        <DashboardLayout title={`Scan Results`}>
             {   scanResult ?
                 scanResult.map((result) => (
                     <Result

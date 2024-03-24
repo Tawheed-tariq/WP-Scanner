@@ -1,6 +1,6 @@
 import DashboardLayout from "../../../components/DashboardLayout";
 import { TbActivityHeartbeat } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowsRotate} from "react-icons/fa6";
 import { GiSave } from "react-icons/gi";
 import { MdOutlineDownloadDone} from "react-icons/md";
@@ -17,6 +17,7 @@ export default function ScanHome(){
     const [scanToDelete, setScanToDelete] = useState(null);
     const [popupText, setPopupText] = useState("")
 
+    const navigate = useNavigate()
     
     const handleDeleteScan = (scan) => {
         setShowDeletePopup(true);
@@ -116,7 +117,7 @@ export default function ScanHome(){
                 <tbody>
                     {
                         filteredRows.map((row,index) => (
-                            <tr key={index}>
+                            <tr onClick={() => navigate("/scans/scan-results/")} key={index}>
                                 <td>{row.name}</td>
                                 <td>{row.schedule}</td>
                                 <td className="flex items-center justify-between mr-[20px]">

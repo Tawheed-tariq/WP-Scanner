@@ -67,12 +67,6 @@ const SideNav = ({open}) => {
         },
         {
             id: 3,
-            title : 'Findings',
-            img : <MdWifiFind color="#226F78" size={`20`}/>,
-            link : '/scan-results'
-        },
-        {
-            id: 4,
             title : 'Report',
             img : <TbReportAnalytics color="#226F78" size={`20`} />,
             link : '/report'
