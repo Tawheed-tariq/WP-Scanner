@@ -85,7 +85,7 @@ export const loginInputs = [
         icon : 'user.png',
         placeholder : 'Username',
         type : 'username',
-        name : 'userame'
+        name : 'username'
     },
     {
         id: 2,
