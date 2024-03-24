@@ -20,7 +20,7 @@ def run_nmap_scan(target):
     ip = resolve_domain_to_ip(target)
     if ip is None:
         return "Unable to resolve domain to IP address."
-    command = ['nmap', '-sV', ip, '-F', '-n', '-T5']
+    command = ['nmap', '-sV', ip, '-F', '-n', '-T5', '--min-rate', '1000']
     try:
         return run_scan(command)
     except subprocess.CalledProcessError as e:
@@ -34,7 +34,7 @@ def run_whatweb_scan(target):
     return clean_result
 
 def run_wpscan(target):
-    command = ['wpscan', '--url', target, '--random-user-agent', '--enumerate', 'u,vp,vt', '--api-token', 'SYWmg4sM5UesbypI6U5J4gDkRubjHxMZdXL2mkWMDxU']
+    command = ['wpscan', '--url', target, '--random-user-agent', '--enumerate', 'u,vp,vt', '--api-token', 'Ipvl9EcSSt1DuHPJbAoH9JhLsnYtAwAQGmprgcUdaHw', '-t', '100']
     raw_result = run_scan(command)
     clean_result = re.sub(r'\033\[[0-9;]*[mK]', '', raw_result)
     return clean_result
