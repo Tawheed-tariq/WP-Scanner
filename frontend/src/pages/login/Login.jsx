@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormLayout from "../../components/FormLayout";
 import InputIcon from '../../components/InputIcon'
 import { loginInputs } from "../../constants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
+import {loginRoute} from '../../utils/apiRoutes'
+import axios from 'axios'
 export default function Login(){
+    const navigate = useNavigate()
     const [values , setValues] = useState({
         username : "",
         password: "",
@@ -44,12 +46,34 @@ export default function Login(){
         return true;
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        if(handleValidation()){
-            console.log(values)
+    const handleSubmit = async (event) => {
+        try{
+            event.preventDefault()
+            if(handleValidation()){
+                const {username , password } = values
+                const {data} = await axios.post(loginRoute, {
+                    username,
+                    password,
+                })
+                if(data.status === false){
+                    toast.error(data.message, toastOptions)
+                }
+                else{
+                    localStorage.setItem("wp-scan-user", JSON.stringify(data.username))
+                    navigate('/dashboard')
+                }
+            }
+        }
+        catch(error){
+            console.log(error.message)
         }
     }
+
+    //if user already present in local storage then navigates to chat section
+    useEffect(() =>{
+        if(localStorage.getItem("wp-scan-user"))
+        navigate('/dashboard')
+    }, [])
     return(
         <>
             <FormLayout>
