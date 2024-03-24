@@ -33,7 +33,7 @@ export default function NewScan(){
                 description
             })
             if(data.scan_id){
-                navigate(`/scan-results/${data.scan_id}`)
+                navigate(`/scans/scan-results/${data.scan_id}`)
             }
        } catch (error) {
             console.log("error in scan section " +error.message)

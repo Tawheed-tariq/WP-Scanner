@@ -11,7 +11,7 @@ export default function Result({title, img, target, response}){
             {
                 response.map((item, id) => (
                     <span key={id}>
-                        {item &&
+                        {item && item.data &&
                             <div  className={`mt-[20px]`}>
                                 <div className={`flex gap-[10px] items-center`}>
                                     <GiGalaxy color={`#226F78`} size={`25`}/>

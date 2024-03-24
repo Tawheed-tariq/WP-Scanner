@@ -7,16 +7,17 @@ import { useLocation } from "react-router-dom";
 import {host} from '../../utils/apiRoutes'
 export default function Findings(){
     const location = useLocation()
-    const scan_id = location.pathname.split('/')[2] //gives us the scan id
+    const scan_id = location.pathname.split('/')[3] //gives us the scan id
     const [result , setResult] = useState()
     const [scanStatus, setScanStatus] = useState('')
     const [scanResult, setScanResult] = useState()
-
+    
     if(scan_id){
         useEffect(() => {
             const getResult = async () => {
+                console.log(location.pathname)
                 try{
-                    const {data} = await axios.get(`${host}${location.pathname}`)
+                    const {data} = await axios.get(`${host}/scan-results/${scan_id}`)
                     if (data.status === 'pending') {
                         setScanStatus('Pending');
                         setTimeout(getResult, 10000); // Check again after 5 seconds
@@ -51,7 +52,6 @@ export default function Findings(){
 
         setScanResult(prev => [existingObject])
     },[result])
-
     return(
         <DashboardLayout title={`Scan Results`}>
             {   scanResult ?
