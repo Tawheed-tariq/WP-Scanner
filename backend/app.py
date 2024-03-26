@@ -17,7 +17,14 @@ def active_scan(target, scan_id):
         nmap_results = run_nmap_scan(target)
         whatweb_results = run_whatweb_scan(target)
         wpscan_results = run_wpscan(target)
-
+        
+        scan_data = {
+            'nmap_raw': nmap_results,
+            'whatweb_raw': whatweb_results,
+            'wpscan_raw': wpscan_results
+        }
+        save_scan_results(scan_id, scan_data)
+        
         processed_data = {
             'nmap': parse_nmap_results(nmap_results),
             'whatweb': filter_whatweb_scan(whatweb_results),
