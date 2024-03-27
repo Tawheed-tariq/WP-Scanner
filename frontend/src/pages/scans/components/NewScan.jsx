@@ -4,6 +4,9 @@ import {descs} from '../../../constants/newScan'
 import { useState } from "react";
 import axios from 'axios'
 import {host} from '../../../utils/apiRoutes' 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function NewScan(){
     const location = useLocation()
     const recievedData = location.state.data /*recieves data from the template clicked in scan tempaltes*/
@@ -16,6 +19,13 @@ export default function NewScan(){
         description : ''
     })
 
+    const toastOptions = {
+        position: "top-right",
+        autoClose: 5000,
+        pauseOnHover: true,
+        draggable: true,
+    };
+
     const handleChange = (e) => {
         setValues({
             ...values,
@@ -23,17 +33,47 @@ export default function NewScan(){
         })
     }
 
+    const handleValidation = () => {
+        const {name, target} = values
+        if(name === ''){
+            toast.error(
+                "Name of scan cannot be empty",
+                toastOptions
+            )
+            return false
+        }
+        if (target === '') {
+            toast.error(
+              "Please specify the target",
+              toastOptions
+            );
+            return false;
+        }
+        return true;
+    }
     const handleSubmit = async (e) => {
        try {
             e.preventDefault()
-            const {name, target, description} = values
-            const {data} = await axios.post(`${host}/start-active-scan`, {
-                name,
-                target,
-                description
-            })
-            if(data.scan_id){
-                navigate(`/scans/scan-results/${data.scan_id}`)
+            if(handleValidation()){
+                const {name, target, description} = values
+                const {data} = await axios.post(`${host}/start-active-scan`, {
+                    target,
+                })
+                const {scan_id, status} = data;
+                if(scan_id){
+
+                    const {result} = await axios.post(``, {
+                        name,
+                        target,
+                        scan_id,
+                        status
+                    })
+
+                    toast.success("Scan Started Successfully", toastOptions)
+                    setTimeout(() => { 
+                        navigate('/dashboard')
+                    }, 3000);
+                }
             }
        } catch (error) {
             console.log("error in scan section " +error.message)
@@ -85,6 +125,7 @@ export default function NewScan(){
                     </ol>
                 </div>
             </div>
+            <ToastContainer/>
        </DashboardLayout>
     )
 }

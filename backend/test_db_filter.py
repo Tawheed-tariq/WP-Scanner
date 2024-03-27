@@ -2,7 +2,8 @@ from db import get_scan_results
 from filter import parse_nmap_results, filter_whatweb_scan, parse_wp_results, find_vulnerabilities, find_users, find_themes
 
 # Assume 'scan_id' is known and corresponds to a record in your MongoDB
-scan_id = "172661e7-2ae8-495b-90af-7b2016bb2e70"
+scan_id = "3caecded-9f38-48c4-9af4-04d0d146df45"
+
 
 
 def test_filters(scan_id):

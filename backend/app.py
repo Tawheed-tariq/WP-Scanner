@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import threading
 import uuid
-from db import get_processed_results, save_processed_results
+from db import get_processed_results, save_processed_results, save_scan_results
 from scan import run_nmap_scan, run_whatweb_scan, run_wpscan
 from filter import parse_nmap_results, filter_whatweb_scan, parse_wp_results, find_vulnerabilities, find_users, find_themes
 from flask_cors import CORS
