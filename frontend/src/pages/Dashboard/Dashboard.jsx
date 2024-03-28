@@ -6,8 +6,8 @@ import { AiFillPieChart } from "react-icons/ai";
 import { AiFillSignal } from "react-icons/ai";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { Link } from "react-router-dom";
+
 export default function Dashboard(){
-    
     return(
         <DashboardLayout title={`Dashboard`}>
 
@@ -78,10 +78,10 @@ export default function Dashboard(){
 
 const Icon = ({title, url, id}) => {
     return(
-        <Link to={url} state={{data : id}} className={`border-text boxShadow border-[1px] rounded-xl md:rounded-3xl`}>
-            <div className={`flex items-center gap-[10px] py-[20px] px-[40px]`}>
+        <Link to={url} state={{data : id}} className={`border-text boxShadow border-[1px] rounded-md md:rounded-3xl`}>
+            <div className={`flex items-center gap-[10px] py-[15px] px-[30px]`}>
                 <BsFillLightningChargeFill color={`#226F78`} size={`20`}/>
-                <p className={`text-text text-[16px] sm:text-[20px] md:text-[24px]`}>{title}</p>
+                <p className={`text-text text-lg sm:text-xl md:text-2xl`}>{title}</p>
             </div>
         </Link>
     )

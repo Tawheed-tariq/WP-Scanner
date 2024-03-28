@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
-import { resultToSend } from "../../constants/finding";
 import Result from "./components/Result";
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
@@ -54,18 +53,8 @@ export default function Findings(){
     },[result])
     return(
         <DashboardLayout title={`Scan Results`}>
-            {   scanResult ?
+            {scanResult && 
                 scanResult.map((result) => (
-                    <Result
-                        key={result.id}
-                        title={result.title}
-                        img={result.img}
-                        target={result.target}
-                        response={result.response}
-                    />
-                ))
-                :
-                resultToSend.map((result) => (
                     <Result
                         key={result.id}
                         title={result.title}
