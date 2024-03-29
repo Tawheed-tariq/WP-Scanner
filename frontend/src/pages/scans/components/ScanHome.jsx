@@ -24,11 +24,6 @@ export default function ScanHome(){
     const handleDeleteScan = (scan) => {
         setShowDeletePopup(true);
         setScanToDelete(scan);
-        if(scan.status == 'running'){
-            setPopupText(prev => "stop")
-        }else{
-            setPopupText(prev => "delete")
-        }
     };
 
     const handleClosePopup = () => {
@@ -161,12 +156,13 @@ export default function ScanHome(){
                                             {row.time}
                                         </div>
                                         <div className="flex gap-[40px] items-center">
-                                            {row.status == "saved" ? <RiArrowRightSFill className="cursor-pointer" color="#226F78" size={35}/> : ''}
-                                            <ImCross 
-                                                className="cursor-pointer" 
-                                                color="#F90000"
-                                                onClick={() => handleDeleteScan(row)}
-                                            />
+                                            {row.status === 'completed' &&
+                                                <ImCross 
+                                                    className="cursor-pointer" 
+                                                    color="#F90000"
+                                                    onClick={() => handleDeleteScan(row)}
+                                                />
+                                            }
                                         </div>
                                     </td>
                                 </tr>
@@ -180,9 +176,9 @@ export default function ScanHome(){
 
             {/* Delete popup */}
             {showDeletePopup && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+                <div className="fixed inset-0 flex z-[999] items-center justify-center bg-gray-800 bg-opacity-75">
                     <div className="bg-white p-8 rounded-lg">
-                        <p className="text-lg font-semibold mb-4">Do you want to {popupText} the scan?</p>
+                        <p className="text-lg font-semibold mb-4">Do you want to delete the scan?</p>
                         <div className="flex justify-end">
                             <button className="bg-red-500 text-white px-4 py-2 mr-2 rounded" onClick={handleClosePopup}>
                                 Cancel

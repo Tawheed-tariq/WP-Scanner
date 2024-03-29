@@ -19,7 +19,7 @@ function App() {
         <Route path='/dashboard' Component={Dashboard}/>
         <Route path='/scans/*' Component={Scans}/>
         <Route path='/report' Component={Report}/>
-        <Route path='/*' Component={Notfound}/>
+        <Route path='*' Component={Notfound}/>
       </Routes>
     </Router>
     </>
