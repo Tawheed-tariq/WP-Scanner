@@ -10,7 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function NewScan(){
     const location = useLocation()
     const recievedData = location.state.data /*recieves data from the template clicked in scan tempaltes*/
-    const data = descs[recievedData-1]
+    const index = recievedData.id - 1
+    const data = descs[index]
     const navigate = useNavigate()
 
     const [values , setValues] = useState({
@@ -66,7 +67,8 @@ export default function NewScan(){
                         name,
                         target,
                         scan_id,
-                        status
+                        status,
+                        time,
                     })
 
                     toast.success("Scan Started Successfully", toastOptions)
@@ -84,28 +86,36 @@ export default function NewScan(){
             <div className={`flex justify-between gap-[30px] md:gap-0 flex-wrap px-[20px] py-[10px]`}>
 
                 {/* form for the scan  */}
-                <div className={`md:flex-1 ss:min-w-[400px] sm:min-w-[450px]`}>
-                    <form className={`flex flex-col gap-[10px]`}>
-                        <div className={`flex flex-col gap-[5px] p-[5px]`}>
-                            <label className={`font-medium text-text text-[14px] sm:text-[20px]`} htmlFor="name">Name</label>
-                            <input onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} type="text" name="name" placeholder="Name of scan" />
-                        </div>
+                {recievedData.isReady ?
+                    <div className={`md:flex-1 ss:min-w-[400px] sm:min-w-[450px]`}>
+                        <form className={`flex flex-col gap-[10px]`}>
+                            <div className={`flex flex-col gap-[5px] p-[5px]`}>
+                                <label className={`font-medium text-text text-[14px] sm:text-[20px]`} htmlFor="name">Name</label>
+                                <input onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} type="text" name="name" placeholder="Name of scan" />
+                            </div>
 
-                        <div className={`flex flex-col gap-[5px]`}>
-                            <label className={`font-medium text-text text-[14px] sm:text-[20px]`} htmlFor="target">Target</label>
-                            <input onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} type="text" name="target" placeholder="Example : 127.0.0.1" />
-                        </div>
+                            <div className={`flex flex-col gap-[5px]`}>
+                                <label className={`font-medium text-text text-[14px] sm:text-[20px]`} htmlFor="target">Target</label>
+                                <input onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} type="text" name="target" placeholder="Example : 127.0.0.1" />
+                            </div>
 
-                        <div className={`flex flex-col gap-[5px]`}>
-                            <label className={`font-medium text-text text-[14px] sm:text-[20px]`} htmlFor="description">Description</label>
-                            <textarea onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} name="description" placeholder="Description of your scan" cols="30" rows="5"></textarea>
-                        </div>
+                            <div className={`flex flex-col gap-[5px]`}>
+                                <label className={`font-medium text-text text-[14px] sm:text-[20px]`} htmlFor="description">Description</label>
+                                <textarea onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} name="description" placeholder="Description of your scan" cols="30" rows="5"></textarea>
+                            </div>
 
-                        <button onClick={ (e) => handleSubmit(e)} className={`bg-accent boxShadow mt-[10px] sm:text-[20px] text-txt font-medium max-w-[120px] px-[10px] py-[10px] rounded-xl`} type="submit">
-                            Start Scan
-                        </button>
-                    </form>
-                </div>
+                            <button onClick={ (e) => handleSubmit(e)} className={`bg-accent boxShadow mt-[10px] sm:text-[20px] text-txt font-medium max-w-[120px] px-[10px] py-[10px] rounded-xl`} type="submit">
+                                Start Scan
+                            </button>
+                        </form>
+                    </div>
+                :
+                    <div className={`md:flex-1 ss:min-w-[400px] sm:min-w-[450px]`}>
+                        <h1 className={`text-5xl h-full text-accent font-bold`}>
+                            Comming Soon .......
+                        </h1>
+                    </div>
+                }
 
                 {/* description about the scan  */}
                 <div className={`md:flex-1 ss:min-w-[400px] sm:min-w-[450px]`}>

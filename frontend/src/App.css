@@ -58,3 +58,12 @@
     background-size: 100% 100%;
 }
 
+/* For Webkit/Blink browsers */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(155, 215, 222, 1) inset !important;
+}
+
+/* For Firefox */
+input:-moz-placeholder {
+    -moz-box-shadow: 0 0 0px 1000px rgba(155, 215, 222, 1) inset !important;
+}

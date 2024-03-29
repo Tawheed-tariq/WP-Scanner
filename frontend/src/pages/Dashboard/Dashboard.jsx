@@ -26,6 +26,7 @@ export default function Dashboard(){
                                 key={item.id}
                                 url={item.url}
                                 id={item.id}
+                                isReady={item.isReady}
                             />
                         ))
                     }
@@ -76,9 +77,9 @@ export default function Dashboard(){
 }
 
 
-const Icon = ({title, url, id}) => {
+const Icon = ({title, url, id, isReady}) => {
     return(
-        <Link to={url} state={{data : id}} className={`border-text boxShadow border-[1px] rounded-md md:rounded-3xl`}>
+        <Link to={url} state={{data : {id: id, isReady: isReady}}} className={`border-text boxShadow border-[1px] rounded-md md:rounded-3xl`}>
             <div className={`flex items-center gap-[10px] py-[15px] px-[30px]`}>
                 <BsFillLightningChargeFill color={`#226F78`} size={`20`}/>
                 <p className={`text-text text-lg sm:text-xl md:text-2xl`}>{title}</p>

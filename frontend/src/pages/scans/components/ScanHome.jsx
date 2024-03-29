@@ -118,8 +118,20 @@ export default function ScanHome(){
                     {
                         filteredRows.map((row,index) => (
                             <tr className="hover:bg-secondary-50" key={index}>
-                                <td className="cursor-pointer font-semibold text-accent text-xl" onClick={() => navigate(`/scans/scan-results/${row.scan_id}`)}>{row.name}</td>
-                                <td>{row.schedule}</td>
+                                <td 
+                                    className="cursor-pointer font-semibold text-accent text-xl" 
+                                    onClick={() => navigate(`/scans/scan-results/${row.scan_id}`)}
+                                >
+                                    {row.name}
+                                </td>
+
+                                <td 
+                                    onClick={() => navigate(`/scans/scan-results/${row.scan_id}`)}
+                                    className="cursor-pointer"
+                                >
+                                    {row.target}
+                                </td>
+
                                 <td className="flex items-center justify-between mr-[20px]">
                                     <div className="flex gap-[15px] items-center">
                                         {getStatusIcon(row.status)}
