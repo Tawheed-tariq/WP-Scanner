@@ -33,28 +33,28 @@ export default function Findings(){
     }    
 
     useEffect(() => {
-        console.log(result)
         const raw_data = {
-            ports : '0',
-            theme_vulnerabilities : '0',
-            plugin_vulnerabilities : '0',
-            users : '0'
+            ports : ['0', '#fffff'],
+            theme_vulnerabilities : ['0', '#fffff'],
+            plugin_vulnerabilities : ['0', '#fffff'],
+            users : ['0', '#fffff']
         }
         if(result){
             if(result.nmap){
-                raw_data.ports = result.nmap.res
+                raw_data.ports[0] = result.nmap.res
             }
             if(result.themes){
-                raw_data.theme_vulnerabilities = result.themes.res
+                raw_data.theme_vulnerabilities[0] = result.themes.res
             }
             if(result.users){
-                raw_data.users = result.users.res
+                raw_data.users[0] = result.users.res
             }
             if(result.vulnerabilities){
-                raw_data.plugin_vulnerabilities = result.vulnerabilities.res
+                raw_data.plugin_vulnerabilities[0] = result.vulnerabilities.res
             }
         }
-    })
+        localStorage.setItem("raw-data", JSON.stringify(raw_data))
+    }, [result, setResult])
 
     useEffect(() => {
         const existingObject = {

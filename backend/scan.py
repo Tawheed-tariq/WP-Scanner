@@ -20,7 +20,7 @@ def run_nmap_scan(target):
     ip = resolve_domain_to_ip(target)
     if ip is None:
         return "Unable to resolve domain to IP address."
-    command = ['nmap', '-sV', ip, '-F', '-n', '-T5', '--min-rate', '1000']
+    command = ['nmap', '-sV', ip, '-F', '-n', '-T4', '--min-rate', '1000']
     try:
         return run_scan(command)
     except subprocess.CalledProcessError as e:

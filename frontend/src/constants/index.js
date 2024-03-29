@@ -118,3 +118,9 @@ export const RecommendedTools = [
     }
 ]
 
+export const raw_data = {
+    ports : ['0', '#fffff'],
+    theme_vulnerabilities : ['0', '#fffff'],
+    plugin_vulnerabilities : ['0', '#fffff'],
+    users : ['0', '#fffff']
+}

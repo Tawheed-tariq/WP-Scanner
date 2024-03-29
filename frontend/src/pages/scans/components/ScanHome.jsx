@@ -139,7 +139,7 @@ export default function ScanHome(){
                     </thead>
                     <tbody>
                         {
-                            filteredRows.map((row) => (
+                            filteredRows.reverse().map((row) => (
                                 <tr className="hover:bg-secondary-50" key={row._id}>
                                     <td 
                                         className="cursor-pointer font-semibold text-accent text-xl" 
