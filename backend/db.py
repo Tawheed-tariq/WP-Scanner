@@ -38,3 +38,8 @@ def get_user(username):
     """Retrieve a user by username."""
     users_collection = db.users
     return users_collection.find_one({'_id': username})
+
+def save_scan_data(scan_data):
+    """Save scan data to MongoDB."""
+    scans_collection = db.saved_scans
+    scans_collection.insert_one(scan_data)

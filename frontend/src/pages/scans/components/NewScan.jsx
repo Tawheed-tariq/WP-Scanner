@@ -3,7 +3,7 @@ import DashboardLayout from "../../../components/DashboardLayout";
 import {descs} from '../../../constants/newScan'
 import { useState } from "react";
 import axios from 'axios'
-import {host} from '../../../utils/apiRoutes' 
+import {host, saveScanRoute} from '../../../utils/apiRoutes' 
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -52,28 +52,53 @@ export default function NewScan(){
         }
         return true;
     }
+
+    const currTime = () => {
+        let currentDate = new Date();
+        let day = currentDate.getDate();
+        let month = currentDate.getMonth() + 1; // Months are zero-based
+        let year = currentDate.getFullYear();
+        let hours = currentDate.getHours();
+        let minutes = currentDate.getMinutes();
+
+        // Add leading zero if needed
+        if (day < 10) {
+            day = '0' + day;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        if (hours < 10) {
+            hours = '0' + hours;
+        }
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+
+        return day + '-' + month + '-' + year + ' ' + hours + ':' + minutes;
+    }
     const handleSubmit = async (e) => {
        try {
             e.preventDefault()
             if(handleValidation()){
-                const {name, target, description} = values
+                const {name, target} = values
                 const {data} = await axios.post(`${host}/start-active-scan`, {
-                    target,
+                    target
                 })
                 const {scan_id, status} = data;
                 if(scan_id){
-
-                    const {result} = await axios.post(``, {
+                    const Time = currTime()
+                    const result = await axios.post(saveScanRoute, {
                         name,
                         target,
                         scan_id,
                         status,
-                        time,
+                        Time,
                     })
 
                     toast.success("Scan Started Successfully", toastOptions)
                     setTimeout(() => { 
-                        navigate('/dashboard')
+                        navigate('/scans')
                     }, 3000);
                 }
             }
