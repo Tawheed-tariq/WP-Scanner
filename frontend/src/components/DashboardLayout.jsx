@@ -20,7 +20,7 @@ export default function DashboardLayout({title, children}){
 
     const handleLogout = () => {
         localStorage.clear()
-        navigate('/login')
+        navigate('/')
     }
 
 

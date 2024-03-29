@@ -75,6 +75,14 @@ export default function ScanHome(){
         setSearchQuery(event.target.value);
     };
 
+    const handleClick = (row) => {
+        const data = {
+            name : row.name,
+            target : row.target
+        }
+        navigate(`/scans/scan-results/${row._id}`, {state : data})
+    }
+
     useEffect(() => {
         const get_all_scans = async () => {
             try {
@@ -118,53 +126,57 @@ export default function ScanHome(){
             </div>
 
             {/* Scan results table*/}
-            <table className={`w-full border-collapse Table text-text border-text table-auto tab border-[1px]`}>
-                <thead className="bg-primary">
-                    <tr>
+            {totalScans > 0 ?
+                <table className={`w-full border-collapse Table text-text border-text table-auto tab border-[1px]`}>
+                    <thead className="bg-primary">
+                        <tr>
+                            {
+                                headings.map((ele, eleIndex) => (
+                                    <td key={eleIndex}>{ele}</td>
+                                ))
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
                         {
-                            headings.map((ele, eleIndex) => (
-                                <td key={eleIndex}>{ele}</td>
+                            filteredRows.map((row) => (
+                                <tr className="hover:bg-secondary-50" key={row._id}>
+                                    <td 
+                                        className="cursor-pointer font-semibold text-accent text-xl" 
+                                        onClick={() => handleClick(row)}
+                                    >
+                                        {row.name}
+                                    </td>
+
+                                    <td 
+                                        onClick={() => handleClick(row)}
+                                        className="cursor-pointer"
+                                    >
+                                        {row.target}
+                                    </td>
+
+                                    <td className="flex items-center justify-between mr-[20px]">
+                                        <div className="flex gap-[15px] items-center">
+                                            {getStatusIcon(row.status)}
+                                            {row.time}
+                                        </div>
+                                        <div className="flex gap-[40px] items-center">
+                                            {row.status == "saved" ? <RiArrowRightSFill className="cursor-pointer" color="#226F78" size={35}/> : ''}
+                                            <ImCross 
+                                                className="cursor-pointer" 
+                                                color="#F90000"
+                                                onClick={() => handleDeleteScan(row)}
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
                             ))
                         }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        filteredRows.map((row) => (
-                            <tr className="hover:bg-secondary-50" key={row._id}>
-                                <td 
-                                    className="cursor-pointer font-semibold text-accent text-xl" 
-                                    onClick={() => navigate(`/scans/scan-results/${row._id}`)}
-                                >
-                                    {row.name}
-                                </td>
-
-                                <td 
-                                    onClick={() => navigate(`/scans/scan-results/${row.scan_id}`)}
-                                    className="cursor-pointer"
-                                >
-                                    {row.target}
-                                </td>
-
-                                <td className="flex items-center justify-between mr-[20px]">
-                                    <div className="flex gap-[15px] items-center">
-                                        {getStatusIcon(row.status)}
-                                        {row.time}
-                                    </div>
-                                    <div className="flex gap-[40px] items-center">
-                                        {row.status == "saved" ? <RiArrowRightSFill className="cursor-pointer" color="#226F78" size={35}/> : ''}
-                                        <ImCross 
-                                            className="cursor-pointer" 
-                                            color="#F90000"
-                                            onClick={() => handleDeleteScan(row)}
-                                        />
-                                    </div>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            :
+                <></>
+            }
 
             {/* Delete popup */}
             {showDeletePopup && (
