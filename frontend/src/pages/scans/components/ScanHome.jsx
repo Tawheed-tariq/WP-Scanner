@@ -8,14 +8,16 @@ import { RiArrowRightSFill } from "react-icons/ri";
 import { ImCross } from "react-icons/im";
 import { IoMdSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { headings, rows } from "../../../constants/scanTable";
-
+import { headings } from "../../../constants/scanTable";
+import axios from 'axios'
+import {getAllScansRoute} from '../../../utils/apiRoutes'
 
 export default function ScanHome(){
     
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [scanToDelete, setScanToDelete] = useState(null);
     const [popupText, setPopupText] = useState("")
+    const [scans, setScans] = useState([])
 
     const navigate = useNavigate()
     
@@ -36,7 +38,7 @@ export default function ScanHome(){
 
     const getStatusIcon = (status) => {
         switch (status) {
-          case "running":
+          case "pending":
             return <RotatingIcon icon={<FaArrowsRotate size={20} color="#0BB226"/>} />;
           case "saved":
             return <GiSave size={20} color="#226F78"/>;
@@ -65,7 +67,7 @@ export default function ScanHome(){
         );
     };
 
-
+    
     // using search bar to filter the table based on names
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -73,8 +75,20 @@ export default function ScanHome(){
         setSearchQuery(event.target.value);
     };
 
-    const filteredRows = rows.filter(row => row.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    const totalScans = rows.length
+    useEffect(() => {
+        const get_all_scans = async () => {
+            try {
+                const all_scans = await axios.get(getAllScansRoute)
+                setScans(all_scans.data)
+            } catch (error) {
+                console.log("error in getting scans " + error.message)
+            }
+        }
+        get_all_scans()
+    }, [])
+    
+    const filteredRows = scans.filter(row => row.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    const totalScans = scans.length
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
@@ -116,11 +130,11 @@ export default function ScanHome(){
                 </thead>
                 <tbody>
                     {
-                        filteredRows.map((row,index) => (
-                            <tr className="hover:bg-secondary-50" key={index}>
+                        filteredRows.map((row) => (
+                            <tr className="hover:bg-secondary-50" key={row._id}>
                                 <td 
                                     className="cursor-pointer font-semibold text-accent text-xl" 
-                                    onClick={() => navigate(`/scans/scan-results/${row.scan_id}`)}
+                                    onClick={() => navigate(`/scans/scan-results/${row._id}`)}
                                 >
                                     {row.name}
                                 </td>

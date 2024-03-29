@@ -41,5 +41,25 @@ def get_user(username):
 
 def save_scan_data(scan_data):
     """Save scan data to MongoDB."""
-    scans_collection = db.saved_scans
-    scans_collection.insert_one(scan_data)
+    saved_scans_collection = db.saved_scans
+    saved_scans_collection.insert_one(scan_data)
+
+def get_saved_scans():
+    """Retrieve all scans from MongoDB."""
+    saved_scans_collection = db.saved_scans
+    cursor = saved_scans_collection.find()
+    return [document for document in cursor]
+
+def change_scan_status(scan_id):
+    """Change status of scan after completed"""
+    saved_scans_collection = db.saved_scans
+    result = saved_scans_collection.update_one(
+        {'_id': scan_id},
+        {'$set': {'status': 'completed'}}
+    )
+    
+    if result.modified_count > 0:
+        print("Scan status updated successfully.")
+    else:
+        print("Scan not found.")
+    

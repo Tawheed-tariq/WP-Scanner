@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import threading
 import uuid
-from db import get_processed_results, save_processed_results, save_scan_results,save_scan_data
+from db import get_processed_results, save_processed_results, save_scan_results,save_scan_data, get_saved_scans, change_scan_status
 from scan import run_nmap_scan, run_whatweb_scan, run_wpscan
 from filter import parse_nmap_results, filter_whatweb_scan, parse_wp_results, find_vulnerabilities, find_users, find_themes
 from flask_cors import CORS
@@ -35,6 +35,7 @@ def active_scan(target, scan_id):
         }
 
         save_processed_results(scan_id, processed_data)
+        change_scan_status(scan_id)
     thread = threading.Thread(target=run_scans)
     thread.start()
 
@@ -67,6 +68,10 @@ def save_scan():
     save_scan_data(scan_data)
     return jsonify({'status' : 'done'}), 200
 
+@app.route('/all-scans', methods=['GET'])
+def get_all_scans():
+    all_saved_scans = get_saved_scans()
+    return jsonify(all_saved_scans)
 
 if __name__ == '__main__':
     app.run(debug=True)
