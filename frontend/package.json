@@ -35,5 +35,5 @@
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.4"
   },
-  "proxy": "http://localhost/5000"
+  "proxy": "http://127.0.0.1/5000"
 }

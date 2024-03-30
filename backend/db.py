@@ -62,4 +62,19 @@ def change_scan_status(scan_id):
         print("Scan status updated successfully.")
     else:
         print("Scan not found.")
-    
+
+def save_pdf_report(scan_id, pdf_data):
+    """Save PDF report binary data to MongoDB."""
+    reports_collection = db.pdf_reports
+    reports_collection.insert_one({'_id': scan_id, 'pdf_data': pdf_data})
+
+def get_reports():
+    """Retrieve a list of available report IDs."""
+    reports_collection = db.pdf_reports
+    return [report['_id'] for report in reports_collection.find({}, {'_id': 1})]
+
+def get_pdf_report(scan_id):
+    """Retrieve a specific PDF report by scan ID."""
+    reports_collection = db.pdf_reports
+    report = reports_collection.find_one({'_id': scan_id}, {'pdf_data': 1})
+    return report['pdf_data'] if report else None
