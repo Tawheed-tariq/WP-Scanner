@@ -8,7 +8,7 @@ def convert_scan_data_to_pdf(raw_data):
     y_position = 750
     
     for scan_type, results in raw_data.items():
-        p.drawString(80, y_position, f"{scan_type} Scan Results:")
+        p.drawString(80, y_position, f"{scan_type} Scan Results:\n")
         lines = results.split('\n')
         for line in lines:
             y_position -= 10

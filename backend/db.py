@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from werkzeug.security import generate_password_hash
 
 
-client = MongoClient('mongodb://127.0.0.1:27017/')
+client = MongoClient('mongodb://192.168.29.50:27017/')
 db = client.scan_results_db
 
 
@@ -68,19 +68,35 @@ def save_pdf_report(scan_id, pdf_data):
     reports_collection = db.pdf_reports
     reports_collection.insert_one({'_id': scan_id, 'pdf_data': pdf_data})
 
-def get_reports():
-    """Retrieve a list of available report IDs."""
-    reports_collection = db.pdf_reports
-    return [report['_id'] for report in reports_collection.find({}, {'_id': 1})]
-
 def get_pdf_report(scan_id):
     """Retrieve a specific PDF report by scan ID."""
     reports_collection = db.pdf_reports
     report = reports_collection.find_one({'_id': scan_id}, {'pdf_data': 1})
     return report['pdf_data'] if report else None
 
+def get_reports():
+    """Retrieve a list of available report IDs along with name and target."""
+    reports_collection = db.pdf_reports
+    saved_scans_collection = db.saved_scans
+
+    reports = []
+    for report in reports_collection.find({}, {'_id': 1}):
+        scan_id = report['_id']
+        scan = saved_scans_collection.find_one({'_id': scan_id}, {'name': 1, 'target': 1})
+        if scan:
+            reports.append({
+                'scan_id': scan_id,
+                'name': scan['name'],
+                'target': scan['target']
+            })
+    
+    return reports
+
 def get_scan_info(scan_id):
-    """Retrieve scan information by scan ID, including name and target."""
+    """Retrieve the name and target for a specific scan by scan ID."""
     saved_scans_collection = db.saved_scans
     scan_info = saved_scans_collection.find_one({'_id': scan_id}, {'name': 1, 'target': 1})
-    return scan_info
+    return {
+        'name': scan_info['name'],
+        'target': scan_info['target']
+    } if scan_info else None

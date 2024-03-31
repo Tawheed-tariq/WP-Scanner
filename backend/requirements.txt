@@ -3,5 +3,4 @@ flask_cors
 pymongo
 flask-bcrypt
 flask-jwt-extended
-fpdf
 reportlab

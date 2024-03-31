@@ -36,6 +36,7 @@ def active_scan(target, scan_id):
         }
 
         save_processed_results(scan_id, processed_data)
+        
         change_scan_status(scan_id)
         pdf_data = convert_scan_data_to_pdf(scan_data)
         save_pdf_report(scan_id, pdf_data)
@@ -79,19 +80,23 @@ def get_all_scans():
 
 @app.route('/reports', methods=['GET'])
 def list_reports():
-    report_ids = get_reports()
-    return jsonify(report_ids)
+    report_data = get_reports()
+    return jsonify(report_data)
 
 @app.route('/report/<scan_id>', methods=['GET'])
 def get_report(scan_id):
+
+    scan_info = get_scan_info(scan_id)
+
     pdf_data = get_pdf_report(scan_id)
-    if pdf_data:
+    if pdf_data and scan_info:
         response = make_response(pdf_data)
         response.headers['Content-Type'] = 'application/pdf'
-        response.headers['Content-Disposition'] = f'attachment; filename=report_{scan_id}.pdf'
+        response.headers['Content-Disposition'] = f'attachment; filename=report_{scan_info["name"]}.pdf'
         return response
     else:
-        return jsonify({'error': 'Report not found'}), 404
+        return jsonify({'error': 'Report not found or scan info missing'}), 404
+
 
 
 if __name__ == '__main__':
