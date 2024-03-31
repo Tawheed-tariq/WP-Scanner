@@ -11,7 +11,7 @@ from report import convert_scan_data_to_pdf
 app = Flask(__name__)
 CORS(app)
 
-app.register_blueprint(auth, url_prefix='/auth')
+app.register_blueprint(auth, url_prefix='/auth') #hi
 
 def active_scan(target, scan_id):
     def run_scans():
