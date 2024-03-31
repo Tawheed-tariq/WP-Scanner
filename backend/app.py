@@ -91,17 +91,20 @@ def list_reports():
     report_ids = get_reports()
     return jsonify(report_ids)
 
-@app.route('/report/<scan_id>', methods=['GET'])
-def get_report(scan_id):
-    pdf_data = get_pdf_report(scan_id)
-    if pdf_data:
-        response = make_response(pdf_data)
-        response.headers['Content-Type'] = 'application/pdf'
-        response.headers['Content-Disposition'] = f'attachment; filename=report_{scan_id}.pdf'
-        return response
-    else:
-        return jsonify({'error': 'Report not found'}), 404
-
+def list_reports():
+    report_ids = get_reports()  
+    detailed_reports = []
+    for report_id in report_ids:
+        pdf_data = get_pdf_report(report_id) 
+        if pdf_data:
+            scan_info = get_scan_info(report_id)
+            if scan_info:
+                detailed_reports.append({
+                    "report_id": report_id,
+                    "name": scan_info.get('name', 'Unknown'),
+                    "target": scan_info.get('target', 'Unknown')
+                })
+    return jsonify(detailed_reports)
 
 if __name__ == '__main__':
     app.run(debug=True)
