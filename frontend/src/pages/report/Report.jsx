@@ -42,10 +42,13 @@ export default function Report(){
     return(
         <DashboardLayout title={`Report`}>
             {
-                pdfs.map((pdf, index) => (
-                    <h1 onClick={() => handleClick(pdf)} key={index}>
-                        {pdf}
-                    </h1>
+                pdfs.map((pdf) => (
+                    <div key={pdf.scan_id} className="cursor-pointer">
+                        <h1 className={`font-semibold text-3xl text-accent`} onClick={() => handleClick(pdf.scan_id)} >
+                            {pdf.name}
+                        </h1>
+                        <p>{pdf.target}</p>
+                    </div>
                 ))
             }
         </DashboardLayout>
