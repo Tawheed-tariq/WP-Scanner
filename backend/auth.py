@@ -35,6 +35,6 @@ def login():
         if user and check_password_hash(user['password'], password):
             return jsonify({'username': username, 'status' : True}), 200
         else:
-            return jsonify({'message': 'Invalid username or password', 'status' : False}), 401
+            return jsonify({'message': 'Invalid username or password', 'status' : False})
     except:
         print('error')

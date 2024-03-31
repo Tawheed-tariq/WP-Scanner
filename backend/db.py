@@ -78,3 +78,9 @@ def get_pdf_report(scan_id):
     reports_collection = db.pdf_reports
     report = reports_collection.find_one({'_id': scan_id}, {'pdf_data': 1})
     return report['pdf_data'] if report else None
+
+def get_scan_info(scan_id):
+    """Retrieve scan information by scan ID, including name and target."""
+    saved_scans_collection = db.saved_scans
+    scan_info = saved_scans_collection.find_one({'_id': scan_id}, {'name': 1, 'target': 1})
+    return scan_info

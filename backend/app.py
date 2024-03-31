@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, make_response
 import threading
 import uuid
-from db import get_processed_results, save_processed_results, save_scan_results, save_scan_data, get_saved_scans, change_scan_status, save_pdf_report, get_reports, get_pdf_report
+from db import get_processed_results, save_processed_results, save_scan_results, save_scan_data, get_saved_scans, change_scan_status, save_pdf_report, get_reports, get_pdf_report, get_scan_info
 from scan import run_nmap_scan, run_whatweb_scan, run_wpscan
 from filter import parse_nmap_results, filter_whatweb_scan, parse_wp_results, find_vulnerabilities, find_users, find_themes
 from flask_cors import CORS
@@ -39,6 +39,7 @@ def active_scan(target, scan_id):
         change_scan_status(scan_id)
         pdf_data = convert_scan_data_to_pdf(scan_data)
         save_pdf_report(scan_id, pdf_data)
+
     thread = threading.Thread(target=run_scans)
     thread.start()
 
