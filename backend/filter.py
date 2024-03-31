@@ -23,7 +23,7 @@ def parse_nmap_results(nmap_output):
             data = [int(match.group(1)), match.group(2), match.group(3)] + get_version(match.group(4))
             results['data']['dataRows'].append(data)
 
-    results['res'] = f"{len(results['data']['dataRows'])} Ports Found"
+    results['res'] = f"{len(results['data']['dataRows'])} open Ports Found"
     return results
 
 def filter_whatweb_scan(scan_output):
@@ -45,7 +45,7 @@ def filter_whatweb_scan(scan_output):
     res = []
     for key, pattern in patterns.items():
         match = pattern.search(scan_output)
-        res.append(match.group(1) if match else '')
+        res.append(match.group(1) if match else 'None')
     result['data']['dataRows'].append(res)
     return result
 
