@@ -116,12 +116,12 @@ export default function NewScan(){
                         <form className={`flex flex-col gap-[10px]`}>
                             <div className={`flex flex-col gap-[5px] p-[5px]`}>
                                 <label className={`font-medium text-text text-[14px] sm:text-[20px]`} htmlFor="name">Name</label>
-                                <input onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} type="text" name="name" placeholder="Name of scan" />
+                                <input autocomplete="off" onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} type="text" name="name" placeholder="Name of scan" />
                             </div>
 
                             <div className={`flex flex-col gap-[5px]`}>
                                 <label className={`font-medium text-text text-[14px] sm:text-[20px]`} htmlFor="target">Target</label>
-                                <input onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} type="text" name="target" placeholder="Example : 127.0.0.1" />
+                                <input autocomplete="off" onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} type="text" name="target" placeholder="Example : 127.0.0.1" />
                             </div>
 
                             <div className={`flex flex-col gap-[5px]`}>

@@ -7,22 +7,24 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Report from './pages/report/Report'
 import Scans from './pages/scans/Scans'
 import Notfound from './components/Notfound';
+import { Provider } from 'react-redux';
+import store from './redux container/store'
 function App() {
 
   return (
-    <>
-    <Router>
-      <Routes>
-        <Route path='/' Component={Home}/>
-        <Route path='/signup' Component={SignUp}/>
-        <Route path='/login' Component={Login}/>
-        <Route path='/dashboard' Component={Dashboard}/>
-        <Route path='/scans/*' Component={Scans}/>
-        <Route path='/report' Component={Report}/>
-        <Route path='/*' Component={Notfound}/>
-      </Routes>
-    </Router>
-    </>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path='/' Component={Home}/>
+          <Route path='/signup' Component={SignUp}/>
+          <Route path='/login' Component={Login}/>
+          <Route path='/dashboard' Component={Dashboard}/>
+          <Route path='/scans/*' Component={Scans}/>
+          <Route path='/report' Component={Report}/>
+          <Route path='*' Component={Notfound}/>
+        </Routes>
+      </Router>
+    </Provider>
   )
 }
 

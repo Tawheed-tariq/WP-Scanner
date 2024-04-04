@@ -41,5 +41,62 @@ def get_user(username):
 
 def save_scan_data(scan_data):
     """Save scan data to MongoDB."""
-    scans_collection = db.saved_scans
-    scans_collection.insert_one(scan_data)
+    saved_scans_collection = db.saved_scans
+    saved_scans_collection.insert_one(scan_data)
+
+def get_saved_scans():
+    """Retrieve all scans from MongoDB."""
+    saved_scans_collection = db.saved_scans
+    cursor = saved_scans_collection.find()
+    return [document for document in cursor]
+
+def change_scan_status(scan_id):
+    """Change status of scan after completed"""
+    saved_scans_collection = db.saved_scans
+    result = saved_scans_collection.update_one(
+        {'_id': scan_id},
+        {'$set': {'status': 'completed'}}
+    )
+    
+    if result.modified_count > 0:
+        print("Scan status updated successfully.")
+    else:
+        print("Scan not found.")
+
+def save_pdf_report(scan_id, pdf_data):
+    """Save PDF report binary data to MongoDB."""
+    reports_collection = db.pdf_reports
+    reports_collection.insert_one({'_id': scan_id, 'pdf_data': pdf_data})
+
+def get_pdf_report(scan_id):
+    """Retrieve a specific PDF report by scan ID."""
+    reports_collection = db.pdf_reports
+    report = reports_collection.find_one({'_id': scan_id}, {'pdf_data': 1})
+    return report['pdf_data'] if report else None
+
+def get_reports():
+    """Retrieve a list of available report IDs along with name and target."""
+    reports_collection = db.pdf_reports
+    saved_scans_collection = db.saved_scans
+
+    reports = []
+    for report in reports_collection.find({}, {'_id': 1}):
+        scan_id = report['_id']
+        scan = saved_scans_collection.find_one({'_id': scan_id}, {'name': 1, 'target': 1})
+        if scan:
+            reports.append({
+                'scan_id': scan_id,
+                'name': scan['name'],
+                'target': scan['target']
+            })
+    
+    return reports
+
+def get_scan_info(scan_id):
+    """Retrieve the name and target for a specific scan by scan ID."""
+    saved_scans_collection = db.saved_scans
+    scan_info = saved_scans_collection.find_one({'_id': scan_id}, {'name': 1, 'target': 1})
+    return {
+        'name': scan_info['name'],
+        'target': scan_info['target']
+    } if scan_info else None

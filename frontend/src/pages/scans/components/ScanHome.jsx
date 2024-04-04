@@ -8,25 +8,22 @@ import { RiArrowRightSFill } from "react-icons/ri";
 import { ImCross } from "react-icons/im";
 import { IoMdSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { headings, rows } from "../../../constants/scanTable";
-
+import { headings } from "../../../constants/scanTable";
+import axios from 'axios'
+import {getAllScansRoute} from '../../../utils/apiRoutes'
 
 export default function ScanHome(){
     
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [scanToDelete, setScanToDelete] = useState(null);
     const [popupText, setPopupText] = useState("")
+    const [scans, setScans] = useState([])
 
     const navigate = useNavigate()
     
     const handleDeleteScan = (scan) => {
         setShowDeletePopup(true);
         setScanToDelete(scan);
-        if(scan.status == 'running'){
-            setPopupText(prev => "stop")
-        }else{
-            setPopupText(prev => "delete")
-        }
     };
 
     const handleClosePopup = () => {
@@ -36,7 +33,7 @@ export default function ScanHome(){
 
     const getStatusIcon = (status) => {
         switch (status) {
-          case "running":
+          case "pending":
             return <RotatingIcon icon={<FaArrowsRotate size={20} color="#0BB226"/>} />;
           case "saved":
             return <GiSave size={20} color="#226F78"/>;
@@ -65,7 +62,7 @@ export default function ScanHome(){
         );
     };
 
-
+    
     // using search bar to filter the table based on names
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -73,8 +70,28 @@ export default function ScanHome(){
         setSearchQuery(event.target.value);
     };
 
-    const filteredRows = rows.filter(row => row.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    const totalScans = rows.length
+    const handleClick = (row) => {
+        const data = {
+            name : row.name,
+            target : row.target
+        }
+        navigate(`/scans/scan-results/${row._id}`, {state : data})
+    }
+
+    useEffect(() => {
+        const get_all_scans = async () => {
+            try {
+                const all_scans = await axios.get(getAllScansRoute)
+                setScans(all_scans.data)
+            } catch (error) {
+                console.log("error in getting scans " + error.message)
+            }
+        }
+        get_all_scans()
+    }, [])
+    
+    const filteredRows = scans.filter(row => row.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    const totalScans = scans.length
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
@@ -104,59 +121,64 @@ export default function ScanHome(){
             </div>
 
             {/* Scan results table*/}
-            <table className={`w-full border-collapse Table text-text border-text table-auto tab border-[1px]`}>
-                <thead className="bg-primary">
-                    <tr>
+            {totalScans > 0 ?
+                <table className={`w-full border-collapse Table text-text border-text table-auto tab border-[1px]`}>
+                    <thead className="bg-primary">
+                        <tr>
+                            {
+                                headings.map((ele, eleIndex) => (
+                                    <td key={eleIndex}>{ele}</td>
+                                ))
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
                         {
-                            headings.map((ele, eleIndex) => (
-                                <td key={eleIndex}>{ele}</td>
+                            filteredRows.reverse().map((row) => (
+                                <tr className="hover:bg-secondary-50" key={row._id}>
+                                    <td 
+                                        className="cursor-pointer font-semibold text-accent text-xl" 
+                                        onClick={() => handleClick(row)}
+                                    >
+                                        {row.name}
+                                    </td>
+
+                                    <td 
+                                        onClick={() => handleClick(row)}
+                                        className="cursor-pointer"
+                                    >
+                                        {row.target}
+                                    </td>
+
+                                    <td className="flex items-center justify-between mr-[20px]">
+                                        <div className="flex gap-[15px] items-center">
+                                            {getStatusIcon(row.status)}
+                                            {row.time}
+                                        </div>
+                                        <div className="flex gap-[40px] items-center">
+                                            {row.status === 'completed' &&
+                                                <ImCross 
+                                                    className="cursor-pointer" 
+                                                    color="#F90000"
+                                                    onClick={() => handleDeleteScan(row)}
+                                                />
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
                             ))
                         }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        filteredRows.map((row,index) => (
-                            <tr className="hover:bg-secondary-50" key={index}>
-                                <td 
-                                    className="cursor-pointer font-semibold text-accent text-xl" 
-                                    onClick={() => navigate(`/scans/scan-results/${row.scan_id}`)}
-                                >
-                                    {row.name}
-                                </td>
-
-                                <td 
-                                    onClick={() => navigate(`/scans/scan-results/${row.scan_id}`)}
-                                    className="cursor-pointer"
-                                >
-                                    {row.target}
-                                </td>
-
-                                <td className="flex items-center justify-between mr-[20px]">
-                                    <div className="flex gap-[15px] items-center">
-                                        {getStatusIcon(row.status)}
-                                        {row.time}
-                                    </div>
-                                    <div className="flex gap-[40px] items-center">
-                                        {row.status == "saved" ? <RiArrowRightSFill className="cursor-pointer" color="#226F78" size={35}/> : ''}
-                                        <ImCross 
-                                            className="cursor-pointer" 
-                                            color="#F90000"
-                                            onClick={() => handleDeleteScan(row)}
-                                        />
-                                    </div>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            :
+                <></>
+            }
 
             {/* Delete popup */}
             {showDeletePopup && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+                <div className="fixed inset-0 flex z-[999] items-center justify-center bg-gray-800 bg-opacity-75">
                     <div className="bg-white p-8 rounded-lg">
-                        <p className="text-lg font-semibold mb-4">Do you want to {popupText} the scan?</p>
+                        <p className="text-lg font-semibold mb-4">Do you want to delete the scan?</p>
                         <div className="flex justify-end">
                             <button className="bg-red-500 text-white px-4 py-2 mr-2 rounded" onClick={handleClosePopup}>
                                 Cancel

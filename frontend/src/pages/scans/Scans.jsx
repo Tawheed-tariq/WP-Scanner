@@ -12,7 +12,7 @@ export default function Scans(){
             <Route path="/scan-templates" element={<ScanTemplates/>} />
             <Route path="/new-scan" element={<NewScan/>} />
             <Route path="/scan-results/*" element={<Findings/>} />
-            <Route path="/*" element={<Notfound />} />
+            <Route path="*" element={<Notfound />} />
         </Routes>
     )
 }

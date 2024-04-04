@@ -3,11 +3,10 @@ import { TbReportAnalytics } from "react-icons/tb";
 import { RiScan2Line } from "react-icons/ri";
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import { FaUser } from "react-icons/fa";
-import { VscLayoutSidebarLeft } from "react-icons/vsc";
 import { useEffect, useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { IoLogOutSharp } from "react-icons/io5";
-
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export default function DashboardLayout({title, children}){
     const [open, setOpen] = useState(false)
@@ -21,7 +20,7 @@ export default function DashboardLayout({title, children}){
 
     const handleLogout = () => {
         localStorage.clear()
-        navigate('/login')
+        navigate('/')
     }
 
 
@@ -87,7 +86,7 @@ const TopNav = ({title, toggle, open, setShowlogoutPopup,currUsr}) => {
                 <h1 className="text-[20px] sm:text-[25px] hidden md:block md:text-[30px] text-center font-semibold ">
                     WPScans
                 </h1>
-                {!open ? <VscLayoutSidebarLeft onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`} /> : <IoCloseCircleSharp onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`}/>}
+                {!open ? <GiHamburgerMenu onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`} /> : <IoCloseCircleSharp onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`}/>}
             </div>
             <div className={`w-full h-full flex items-center justify-between px-[20px] md:px-[70px]`}>
                 <h1 className="sm:text-[20px] md:text-[30px] font-medium ">

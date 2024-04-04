@@ -1,12 +1,11 @@
 import Table from './Table'
 import { GiGalaxy } from "react-icons/gi";
 
-export default function Result({title, img, target, response}){
+export default function Result({response,data}){
     return(
         <div className={`my-[20px]`}>
             <div className={`flex gap-[10px] items-center`}>
-                <img src={img} alt="" />
-                <p className={`font-semibold text-[32px] text-accent`}>{title}</p>
+                <p className={`font-semibold text-[32px] text-accent`}>{data.name}</p>
             </div>
             {
                 response.map((item, id) => (
@@ -20,7 +19,7 @@ export default function Result({title, img, target, response}){
 
                                 {/* table start  */}
                                 <Table
-                                    target={target}
+                                    target={data.target}
                                     headings={item.data.headings}
                                     dataRows={item.data.dataRows}
                                 />
