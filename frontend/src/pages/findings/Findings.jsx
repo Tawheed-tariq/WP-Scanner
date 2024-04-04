@@ -4,14 +4,24 @@ import Result from "./components/Result";
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
 import {host} from '../../utils/apiRoutes'
+import { useDispatch } from 'react-redux';
+import { updateScanResults } from '../../constants/actions';
+
+
 export default function Findings(){
     const location = useLocation()
+    const dispatch = useDispatch();
     const scan_id = location.pathname.split('/')[3] //gives us the scan id
     const res = location.state
     const [result , setResult] = useState()
     const [scanStatus, setScanStatus] = useState('')
     const [scanResult, setScanResult] = useState()
     
+    const handleScanComplete = (results) => {
+        dispatch(updateScanResults(results));
+        console.log("updated")
+    };
+
     if(scan_id){
         useEffect(() => {
             const getResult = async () => {
@@ -23,6 +33,7 @@ export default function Findings(){
                     } else {
                         setScanStatus('Completed');
                         setResult(prev => data);
+                        handleScanComplete(data)
                     }
                 }catch(error){
                     console.log(error.message)
@@ -31,6 +42,7 @@ export default function Findings(){
             getResult()
         }, [])
     }    
+
 
     useEffect(() => {
         const raw_data = {

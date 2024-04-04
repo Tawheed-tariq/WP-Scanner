@@ -9,9 +9,11 @@ import { Link } from "react-router-dom";
 import { raw_data } from "../../constants/index";
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import {Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend,} from 'chart.js';
+import {Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-  
+import { useSelector } from 'react-redux';
+
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -46,7 +48,8 @@ export const data = {
 
 
 export default function Dashboard(){
-    
+    const scanResults = useSelector((state) => state.scanResults);
+    console.log(scanResults)
     return(
         <DashboardLayout title={`Dashboard`}>
 

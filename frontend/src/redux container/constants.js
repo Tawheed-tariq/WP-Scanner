@@ -1,0 +1,1 @@
+export const update_scan_results = 'UPDATE_SCAN_RESULTS'
