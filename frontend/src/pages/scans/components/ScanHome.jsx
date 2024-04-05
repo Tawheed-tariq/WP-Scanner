@@ -91,7 +91,7 @@ export default function ScanHome(){
     }, [])
     
     const filteredRows = scans.filter(row => row.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    const totalScans = scans.length
+    const totalScans = filteredRows.length
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
@@ -171,7 +171,11 @@ export default function ScanHome(){
                     </tbody>
                 </table>
             :
-                <></>
+                <div className={`w-full flex flex-col justify-center items-center`}>
+                    <h1 className="text-gray-400 font-bold text-3xl">
+                        No Scans To show
+                    </h1>
+                </div>
             }
 
             {/* Delete popup */}

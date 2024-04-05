@@ -3,7 +3,6 @@ import axios from 'axios'
 import {getAllPdfsRoute, getPdfRoute} from '../../utils/apiRoutes'
 import { useEffect, useState } from "react";
 export default function Report(){
-
     const [pdfs,  setPdfs] = useState([])
     const [pdfUrl, setPdfUrl] = useState('')
     useEffect(() => {
@@ -41,7 +40,7 @@ export default function Report(){
 
     return(
         <DashboardLayout title={`Report`}>
-            {
+            {pdfs.length> 0?
                 pdfs.map((pdf) => (
                     <div key={pdf.scan_id} className="cursor-pointer">
                         <h1 className={`font-semibold text-3xl text-accent`} onClick={() => handleClick(pdf.scan_id)} >
@@ -50,6 +49,12 @@ export default function Report(){
                         <p>{pdf.target}</p>
                     </div>
                 ))
+            :
+                <div className={`w-full h-[80vh] flex  justify-center items-center`}>
+                    <p className="text-gray-400 overflow-hidden font-bold text-5xl">
+                        No Scans To show
+                    </p>
+                </div>
             }
         </DashboardLayout>
     )

@@ -8,7 +8,7 @@ export default function InputIcon({ icon, placeholder, handleChange, type, name 
         className={`w-full h-full text-text rounded-full text-[12px] sm:text-[14px] md:text-[20px] placeholder:text-text-80 focus:outline-none px-[10px] bg-primary`}
         type={type}
         placeholder={placeholder}
-        autocomplete="off"
+        autoComplete="off"
       />
     </div>
   );

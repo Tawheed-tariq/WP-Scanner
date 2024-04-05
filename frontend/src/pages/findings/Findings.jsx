@@ -3,7 +3,6 @@ import DashboardLayout from "../../components/DashboardLayout";
 import Result from "./components/Result";
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
-import {host} from '../../utils/apiRoutes'
 import { useDispatch } from 'react-redux';
 import { updateScanResults } from '../../redux container/actions';
 import { getScanResult } from "../../utils/apiRoutes";
@@ -45,7 +44,7 @@ export default function Findings(){
     handleScanComplete(scanStatus)
 
     useEffect(() => {
-        const raw_data = {
+        const scan_data = {
             ports : ['0', '#fffff'],
             theme_vulnerabilities : ['0', '#fffff'],
             plugin_vulnerabilities : ['0', '#fffff'],
@@ -53,19 +52,19 @@ export default function Findings(){
         }
         if(result){
             if(result.nmap){
-                raw_data.ports[0] = result.nmap.res
+                scan_data.ports[0] = result.nmap.res
             }
             if(result.themes){
-                raw_data.theme_vulnerabilities[0] = result.themes.res
+                scan_data.theme_vulnerabilities[0] = result.themes.res
             }
             if(result.users){
-                raw_data.users[0] = result.users.res
+                scan_data.users[0] = result.users.res
             }
             if(result.vulnerabilities){
-                raw_data.plugin_vulnerabilities[0] = result.vulnerabilities.res
+                scan_data.plugin_vulnerabilities[0] = result.vulnerabilities.res
             }
         }
-        localStorage.setItem("raw-data", JSON.stringify(raw_data))
+        localStorage.setItem("scan-data", JSON.stringify(scan_data))
     }, [result, setResult])
 
     useEffect(() => {

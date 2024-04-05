@@ -6,12 +6,12 @@ import { AiFillPieChart } from "react-icons/ai";
 import { AiFillSignal } from "react-icons/ai";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { raw_data } from "../../constants/index";
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import { useState } from "react";
 
 
 ChartJS.register(
@@ -33,19 +33,20 @@ export const options = {
 };
   
 
-export const data = {
-    labels : ['Ports', 'Plugin vulnerabilities', 'Theme vulnerabilities', 'Users'],
-    datasets: [
-        {
-            data: [15, 7, 5, 2],
-            backgroundColor: ['rgba(34, 111, 120, 1)', 'rgba(12, 211, 110, 1)', 'rgba(34, 111, 120, 0.5)', 'rgba(34, 110, 10, 1)'],
-        }
-    ],
-};
+// export const data = {
+//     labels : ['Ports', 'Plugin vulnerabilities', 'Theme vulnerabilities', 'Users'],
+//     datasets: [
+//         {
+//             data: [15, 7, 5, 2],
+//             backgroundColor: 'rgba(34, 111, 120, 1)',
+//         }
+//     ],
+// };
 
 
 
 export default function Dashboard(){
+    const [scanData, setScanData] = useState(null)
     const scanResults = useSelector((state) => state.scanResults);
     console.log(scanResults)
     return(
@@ -83,12 +84,20 @@ export default function Dashboard(){
                     </div>
                     <div className={`border-text flex items-center justify-center h-[300px] border-[1px] my-[10px]`}>
                         <div className={`flex flex-col items-center justify-center gap-[10px]`}>
-                            <p>You don't have any scans yet</p>
-                            <Link to={`/scans/scan-templates`}>
-                                <button className={`px-[20px] bg-secondary rounded-xl text-[16px] md:text-[20px] py-[10px]`}>
-                                    Start a Scan
-                                </button>
-                            </Link>
+                            {scanData ?
+                                <>
+                                    
+                                </>
+                            :
+                                <>
+                                    <p>You don't have any scans yet</p>
+                                    <Link to={`/scans/scan-templates`}>
+                                        <button className={`px-[20px] bg-secondary rounded-xl text-[16px] md:text-[20px] py-[10px]`}>
+                                            Start a Scan
+                                        </button>
+                                    </Link>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>
@@ -99,7 +108,11 @@ export default function Dashboard(){
                         <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Vulnerability Summary</p>
                     </div>
                     <div className={`border-text flex items-center justify-center h-[300px] border-[1px] my-[10px] `}>
-                        <Bar data={data} options={options} />
+                        {scanData ?
+                            <Bar data={scanData} options={options} />
+                        :
+                            <p>You don't have any scans yet</p>
+                        }
                     </div>
                 </div>
             </div>
@@ -125,25 +138,13 @@ export default function Dashboard(){
                     </div>
                     <div className="w-48 h-48">
                         <CircularProgressbarWithChildren 
-                            value={4*100/10}
+                            value={0}
                             styles={{
                                 path: {stroke: '#226F78'},
                                 trail: {stroke: '#9AE2C7'}
                             }}
                         >
-                            <p className={`text-accent font-semibold text-xl md:text-2xl`}>4/10</p>
-                            <p className={`text-text text-sm md:text-lg`}>Waiting Scans</p>
-                        </CircularProgressbarWithChildren>
-                    </div>
-                    <div className="w-48 h-48">
-                        <CircularProgressbarWithChildren 
-                            value={7*100/10}
-                            styles={{
-                                path: {stroke: '#226F78'},
-                                trail: {stroke: '#9AE2C7'}
-                            }}
-                        >
-                            <p className={`text-accent font-semibold text-xl md:text-2xl`}>7/10</p>
+                            <p className={`text-accent font-semibold text-xl md:text-2xl`}>0/10</p>
                             <p className={`text-text text-sm md:text-lg`}>Waiting Scans</p>
                         </CircularProgressbarWithChildren>
                     </div>
