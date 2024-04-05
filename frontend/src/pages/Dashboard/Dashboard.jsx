@@ -10,8 +10,7 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { useSelector } from 'react-redux';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 ChartJS.register(
@@ -47,8 +46,14 @@ export const options = {
 
 export default function Dashboard(){
     const [scanData, setScanData] = useState(null)
-    const scanResults = useSelector((state) => state.scanResults);
-    console.log(scanResults)
+    const [scanStatus, setScanStatus] = useState(0)
+
+    useEffect(() => {
+        const val =  localStorage.getItem('scan-status')
+        setScanStatus(prev => val)
+    }, [])
+
+
     return(
         <DashboardLayout title={`Dashboard`}>
 
@@ -126,13 +131,13 @@ export default function Dashboard(){
                 <div className={`py-6 flex gap-4 justify-around`}>
                     <div className="w-48 h-48">
                         <CircularProgressbarWithChildren  
-                            value={1*100}
+                            value={scanStatus*100}
                             styles={{
                                 path: {stroke: '#226F78'},
                                 trail: {stroke: '#9AE2C7'}
                             }}
                         >
-                            <p className={`text-accent font-semibold text-xl md:text-2xl`}>1/1</p>
+                            <p className={`text-accent font-semibold text-xl md:text-2xl`}>{scanStatus}/1</p>
                             <p className={`text-text text-sm md:text-lg`}>Running Scans</p>
                         </CircularProgressbarWithChildren>
                     </div>

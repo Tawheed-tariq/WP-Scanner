@@ -45,7 +45,7 @@ def filter_whatweb_scan(scan_output):
     res = []
     for key, pattern in patterns.items():
         match = pattern.search(scan_output)
-        res.append(match.group(1) if match else '')
+        res.append(match.group(1) if match else 'None')
     result['data']['dataRows'].append(res)
     return result
 

@@ -3,22 +3,18 @@ import DashboardLayout from "../../components/DashboardLayout";
 import Result from "./components/Result";
 import axios from 'axios'
 import { useLocation } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { updateScanResults } from '../../redux container/actions';
 import { getScanResult } from "../../utils/apiRoutes";
 
 export default function Findings(){
     const location = useLocation()
-    const dispatch = useDispatch();
     const scan_id = location.pathname.split('/')[3] //gives us the scan id
     const res = location.state
     const [result , setResult] = useState()
-    const [scanStatus, setScanStatus] = useState('')
     const [scanResult, setScanResult] = useState()
+    const [scanStatus, setScanStatus] = useState(0)
     
-    const handleScanComplete = (results) => {
-        dispatch(updateScanResults(results));
-        console.log("updated")
+    const handleScanComplete = (value) => {
+        localStorage.setItem('scan-status', value)
     };
 
     if(scan_id){
@@ -27,10 +23,10 @@ export default function Findings(){
                 try{
                     const {data} = await axios.get(getScanResult + scan_id)
                     if (data.status === 'pending') {
-                        setScanStatus('Pending');
+                        setScanStatus(1);
                         setTimeout(getResult, 10000); // Check again after 10 seconds
                     } else {
-                        setScanStatus('Completed');
+                        setScanStatus(0);
                         setResult(prev => data);
                     }
                 }catch(error){
@@ -85,14 +81,22 @@ export default function Findings(){
     },[result])
     return(
         <DashboardLayout title={`Scan Results`}>
-            {scanResult && 
-                scanResult.map((result) => (
-                    <Result
-                        key={result.id}
-                        response={result.response}
-                        data={res}
-                    />
-                ))
+            {scanStatus==0 ?
+                scanResult && 
+                    scanResult.map((result) => (
+                        <Result
+                            key={result.id}
+                            response={result.response}
+                            data={res}
+                        />
+                    ))
+            :
+                <div className="flex flex-col justify-center items-center h-[80vh]">
+                    <div className="spinner w-32 h-32 rounded-full mb-6"></div>
+                    <h1 className="text-gray-400 font-medium text-3xl">
+                        Your scan is running
+                    </h1>
+                </div>
             }
         </DashboardLayout>
     )

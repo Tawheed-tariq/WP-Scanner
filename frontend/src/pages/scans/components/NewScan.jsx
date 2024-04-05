@@ -77,6 +77,11 @@ export default function NewScan(){
 
         return day + '-' + month + '-' + year + ' ' + hours + ':' + minutes;
     }
+
+    const handleScanStart = (value) => {
+        localStorage.setItem('scan-status', value)
+    };
+
     const handleSubmit = async (e) => {
        try {
             e.preventDefault()
@@ -97,6 +102,7 @@ export default function NewScan(){
                     })
 
                     toast.success("Scan Started Successfully", toastOptions)
+                    handleScanStart(1)
                     setTimeout(() => { 
                         navigate('/scans')
                     }, 3000);

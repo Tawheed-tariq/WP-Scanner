@@ -68,3 +68,14 @@ input:-moz-placeholder {
     -moz-box-shadow: 0 0 0px 1000px rgba(155, 215, 222, 1) inset !important;
 }
 
+.spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-left-color: rgba(34, 111, 120, 1);
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
