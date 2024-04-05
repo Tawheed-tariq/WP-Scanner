@@ -32,15 +32,13 @@ export const options = {
     },
 };
   
-const labels = ['Ports', 'Plugin vulnerabilities', 'Theme vulnerabilities', 'Users'];
 
 export const data = {
-    labels,
+    labels : ['Ports', 'Plugin vulnerabilities', 'Theme vulnerabilities', 'Users'],
     datasets: [
         {
-            labels: ['Ports', 'Plugin vulnerabilities', 'Theme vulnerabilities', 'Users'],
             data: [15, 7, 5, 2],
-            backgroundColor: 'rgba(34, 111, 120, 1)',
+            backgroundColor: ['rgba(34, 111, 120, 1)', 'rgba(12, 211, 110, 1)', 'rgba(34, 111, 120, 0.5)', 'rgba(34, 110, 10, 1)'],
         }
     ],
 };

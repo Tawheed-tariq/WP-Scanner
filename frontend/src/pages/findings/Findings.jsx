@@ -5,8 +5,8 @@ import axios from 'axios'
 import { useLocation } from "react-router-dom";
 import {host} from '../../utils/apiRoutes'
 import { useDispatch } from 'react-redux';
-import { updateScanResults } from '../../constants/actions';
-
+import { updateScanResults } from '../../redux container/actions';
+import { getScanResult } from "../../utils/apiRoutes";
 
 export default function Findings(){
     const location = useLocation()
@@ -26,14 +26,13 @@ export default function Findings(){
         useEffect(() => {
             const getResult = async () => {
                 try{
-                    const {data} = await axios.get(`${host}/scan-results/${scan_id}`)
+                    const {data} = await axios.get(getScanResult + scan_id)
                     if (data.status === 'pending') {
                         setScanStatus('Pending');
-                        // setTimeout(getResult, 10000); // Check again after 5 seconds
+                        setTimeout(getResult, 10000); // Check again after 10 seconds
                     } else {
                         setScanStatus('Completed');
                         setResult(prev => data);
-                        handleScanComplete(data)
                     }
                 }catch(error){
                     console.log(error.message)
@@ -43,6 +42,7 @@ export default function Findings(){
         }, [])
     }    
 
+    handleScanComplete(scanStatus)
 
     useEffect(() => {
         const raw_data = {

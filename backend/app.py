@@ -56,7 +56,7 @@ def start_active_scan():
 def scan_results(scan_id):
     processed_data = get_processed_results(scan_id)
     if not processed_data:
-        return jsonify({'error': 'Processed scan data not found'}), 404
+        return jsonify({'status' : 'pending'})
         
     return jsonify(processed_data)
 

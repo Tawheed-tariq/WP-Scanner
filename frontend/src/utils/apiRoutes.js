@@ -6,3 +6,4 @@ export const saveScanRoute = `${host}/save-scan`
 export const getAllScansRoute = `${host}/all-scans`
 export const getAllPdfsRoute = `${host}/reports`
 export const getPdfRoute = `${host}/report/`
+export const getScanResult = `${host}/scan-results/`

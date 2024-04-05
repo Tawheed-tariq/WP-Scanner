@@ -8,7 +8,7 @@ import Report from './pages/report/Report'
 import Scans from './pages/scans/Scans'
 import Notfound from './components/Notfound';
 import { Provider } from 'react-redux';
-import store from './redux container/store'
+import {store} from './redux container/store'
 function App() {
 
   return (
