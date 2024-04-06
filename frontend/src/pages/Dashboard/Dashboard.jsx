@@ -39,8 +39,10 @@ export default function Dashboard(){
         const getScanData = async () => {
             const val =  localStorage.getItem('scan-status')
             const scan_data = await JSON.parse(localStorage.getItem('scan-data'))
-            setScanStatus(prev => val)
-            setScanData(prev => scan_data)
+            if(scan_data)
+                setScanStatus(prev => val)
+            if(val)
+                setScanData(prev => scan_data)
         }
         getScanData()
     }, [])
