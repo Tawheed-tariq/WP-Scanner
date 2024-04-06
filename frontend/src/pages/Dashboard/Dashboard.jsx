@@ -154,7 +154,7 @@ export default function Dashboard(){
                     </div>
                     <div className="w-48 h-48">
                         <CircularProgressbarWithChildren 
-                            value={scanStatus*100}
+                            value={scanStatus*100/5}
                             styles={{
                                 path: {stroke: '#226F78'},
                                 trail: {stroke: '#9AE2C7'}

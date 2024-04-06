@@ -48,26 +48,26 @@ export default function Findings(){
     }
     useEffect(() => {
         const scan_data = {
-            labels : ['Ports', 'Users','Theme vulnerabilities', 'Plugin vulnerabilities'],
+            labels : ['Users','Plugin vulnerabilities', 'Theme vulnerabilities','Ports'],
             datasets: [
                 {
                     data: [0, 0, 0, 0],
-                    backgroundColor: ['#498FF8', '#EB4646', '#F4E23F', '#1AF215'],
+                    backgroundColor: ['#ff0000','#ffa500', '#ffff00', '#008000',],
                 }
             ],
         };
         if(result){
-            if(result.nmap){
-                scan_data.datasets[0].data[0] = extractIntFromRes(result.nmap.res)
-            }
             if(result.users){
-                scan_data.datasets[0].data[1] = extractIntFromRes(result.users.res)
+                scan_data.datasets[0].data[0] = extractIntFromRes(result.users.res)
             }
             if(result.themes){
                 scan_data.datasets[0].data[2] = extractIntFromRes(result.themes.res)
             }
             if(result.vulnerabilities){
-                scan_data.datasets[0].data[3] = extractIntFromRes(result.vulnerabilities.res)
+                scan_data.datasets[0].data[1] = extractIntFromRes(result.vulnerabilities.res)
+            }
+            if(result.nmap){
+                scan_data.datasets[0].data[3] = extractIntFromRes(result.nmap.res)
             }
             localStorage.setItem("scan-data", JSON.stringify(scan_data))
         }
