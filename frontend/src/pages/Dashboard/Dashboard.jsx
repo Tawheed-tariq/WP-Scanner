@@ -30,27 +30,19 @@ export const options = {
         },
     },
 };
-  
-
-// export const data = {
-//     labels : ['Ports', 'Plugin vulnerabilities', 'Theme vulnerabilities', 'Users'],
-//     datasets: [
-//         {
-//             data: [15, 7, 5, 2],
-//             backgroundColor: 'rgba(34, 111, 120, 1)',
-//         }
-//     ],
-// };
-
-
 
 export default function Dashboard(){
     const [scanData, setScanData] = useState(null)
     const [scanStatus, setScanStatus] = useState(0)
 
     useEffect(() => {
-        const val =  localStorage.getItem('scan-status')
-        setScanStatus(prev => val)
+        const getScanData = async () => {
+            const val =  localStorage.getItem('scan-status')
+            const scan_data = await JSON.parse(localStorage.getItem('scan-data'))
+            setScanStatus(prev => val)
+            setScanData(prev => scan_data)
+        }
+        getScanData()
     }, [])
 
 
@@ -87,23 +79,30 @@ export default function Dashboard(){
                         <AiFillPieChart color={`#226F78`} size={`25`}/>
                         <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Attack Surface Summary</p>
                     </div>
-                    <div className={`border-text flex items-center justify-center h-[300px] border-[1px] my-[10px]`}>
-                        <div className={`flex flex-col items-center justify-center gap-[10px]`}>
+                    <div className={`border-text flex ${!scanData ? 'justify-center items-center' : ''} h-[300px] border-[1px] my-[10px]`}>
+                        
                             {scanData ?
                                 <>
-                                    
+                                    <div className="p-4 flex flex-col gap-4 w-full">
+                                        <h3 className="text-accent text-center text-2xl font-semibold">Last Scan Results</h3>
+                                        {scanData.labels.map((label, index) => (
+                                            <div key={index} className="flex gap-3 items-center">
+                                                <div className="w-5 h-5 rounded-full" style={{ backgroundColor: scanData.datasets[0].backgroundColor[index] }}></div>
+                                                <p className="text-xl">{scanData.datasets[0].data[index]} {label} found</p>
+                                            </div>
+                                        ))}
+                                    </div> 
                                 </>
                             :
-                                <>
+                                <div className={`flex flex-col items-center justify-center gap-[10px]`}>
                                     <p>You don't have any scans yet</p>
                                     <Link to={`/scans/scan-templates`}>
                                         <button className={`px-[20px] bg-secondary rounded-xl text-[16px] md:text-[20px] py-[10px]`}>
                                             Start a Scan
                                         </button>
                                     </Link>
-                                </>
+                                </div>
                             }
-                        </div>
                     </div>
                 </div>
 
@@ -128,7 +127,7 @@ export default function Dashboard(){
                     <TbActivityHeartbeat color={`#226F78`} size={`25`}/>
                     <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Scan Activity</p>
                 </div>
-                <div className={`py-6 flex gap-4 justify-around`}>
+                <div className={`py-6 flex gap-4  justify-around`}>
                     <div className="w-48 h-48">
                         <CircularProgressbarWithChildren  
                             value={scanStatus*100}
@@ -153,6 +152,19 @@ export default function Dashboard(){
                             <p className={`text-text text-sm md:text-lg`}>Waiting Scans</p>
                         </CircularProgressbarWithChildren>
                     </div>
+                    <div className="w-48 h-48">
+                        <CircularProgressbarWithChildren 
+                            value={scanStatus*100}
+                            styles={{
+                                path: {stroke: '#226F78'},
+                                trail: {stroke: '#9AE2C7'}
+                            }}
+                        >
+                            <p className={`text-accent font-semibold text-xl md:text-2xl`}>{scanStatus}/5</p>
+                            <p className={`text-text text-sm md:text-lg`}>Template</p>
+                        </CircularProgressbarWithChildren>
+                    </div>
+
                 </div>
             </div>
         </DashboardLayout>

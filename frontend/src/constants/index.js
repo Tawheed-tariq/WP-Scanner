@@ -115,5 +115,11 @@ export const RecommendedTools = [
         title : 'Vulnerability Scan',
         url: '/scans/new-scan',
         isReady : false
+    },
+    {
+        id : 4,
+        title : 'Password Attack',
+        url: '/scans/new-scan',
+        isReady : false
     }
 ]

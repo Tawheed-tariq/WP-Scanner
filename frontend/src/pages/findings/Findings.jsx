@@ -39,28 +39,38 @@ export default function Findings(){
 
     handleScanComplete(scanStatus)
 
+
+    const extractIntFromRes = (str) => {
+        const regex = /^\d+/;
+        const match = str.match(regex);
+        const firstInteger = match ? parseInt(match[0]) : null;
+        return firstInteger;
+    }
     useEffect(() => {
         const scan_data = {
-            ports : ['0', '#fffff'],
-            theme_vulnerabilities : ['0', '#fffff'],
-            plugin_vulnerabilities : ['0', '#fffff'],
-            users : ['0', '#fffff']
-        }
+            labels : ['Ports', 'Users','Theme vulnerabilities', 'Plugin vulnerabilities'],
+            datasets: [
+                {
+                    data: [0, 0, 0, 0],
+                    backgroundColor: ['#498FF8', '#EB4646', '#F4E23F', '#1AF215'],
+                }
+            ],
+        };
         if(result){
             if(result.nmap){
-                scan_data.ports[0] = result.nmap.res
-            }
-            if(result.themes){
-                scan_data.theme_vulnerabilities[0] = result.themes.res
+                scan_data.datasets[0].data[0] = extractIntFromRes(result.nmap.res)
             }
             if(result.users){
-                scan_data.users[0] = result.users.res
+                scan_data.datasets[0].data[1] = extractIntFromRes(result.users.res)
+            }
+            if(result.themes){
+                scan_data.datasets[0].data[2] = extractIntFromRes(result.themes.res)
             }
             if(result.vulnerabilities){
-                scan_data.plugin_vulnerabilities[0] = result.vulnerabilities.res
+                scan_data.datasets[0].data[3] = extractIntFromRes(result.vulnerabilities.res)
             }
+            localStorage.setItem("scan-data", JSON.stringify(scan_data))
         }
-        localStorage.setItem("scan-data", JSON.stringify(scan_data))
     }, [result, setResult])
 
     useEffect(() => {

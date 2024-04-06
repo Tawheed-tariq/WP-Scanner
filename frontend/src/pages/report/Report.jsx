@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export default function Report(){
     const [pdfs,  setPdfs] = useState([])
     const [pdfUrl, setPdfUrl] = useState('')
+    
     useEffect(() => {
         const get_all_pdfs = async () => {
             try {
