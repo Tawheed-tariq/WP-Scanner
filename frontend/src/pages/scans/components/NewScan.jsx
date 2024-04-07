@@ -135,7 +135,7 @@ export default function NewScan(){
                                 <textarea onChange={(e) => handleChange(e)} className={`bg-secondary px-[20px] max-w-[400px] py-[10px] rounded-xl placeholder:text-text-80 sm:placeholder:text-[18px] focus:outline-none`} name="description" placeholder="Description of your scan" cols="30" rows="5"></textarea>
                             </div>
 
-                            <button onClick={ (e) => handleSubmit(e)} className={`bg-accent boxShadow mt-[10px] sm:text-[20px] text-txt font-medium max-w-[120px] px-[10px] py-[10px] rounded-xl`} type="submit">
+                            <button onClick={ (e) => handleSubmit(e)} className={`bg-accent boxShadow mt-[10px] sm:text-[20px] text-background font-medium max-w-[120px] px-[10px] py-[10px] rounded-xl`} type="submit">
                                 Start Scan
                             </button>
                         </form>

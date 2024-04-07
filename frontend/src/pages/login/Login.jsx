@@ -93,7 +93,7 @@ export default function Login(){
                                 />
                             ))
                         }
-                        <button type="submit" className={`flex text-txt sm:text-xl md:text-2xl font-medium items-center justify-center w-[250px] sm:w-[300px] md:w-[450px] bg-accent h-[40px] md:h-[60px] rounded-full`}>
+                        <button type="submit" className={`flex text-background sm:text-xl md:text-2xl font-medium items-center justify-center w-[250px] sm:w-[300px] md:w-[450px] bg-accent h-[40px] md:h-[60px] rounded-full`}>
                             Sign In
                         </button>
                     </form>

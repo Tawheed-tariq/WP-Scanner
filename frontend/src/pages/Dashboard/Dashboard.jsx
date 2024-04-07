@@ -163,7 +163,7 @@ export default function Dashboard(){
                             }}
                         >
                             <p className={`text-accent font-semibold text-xl md:text-2xl`}>{scanStatus}/5</p>
-                            <p className={`text-text text-sm md:text-lg`}>Template</p>
+                            <p className={`text-text text-sm md:text-lg`}>Templates</p>
                         </CircularProgressbarWithChildren>
                     </div>
 
