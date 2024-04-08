@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from werkzeug.security import generate_password_hash
 
 
-client = MongoClient('mongodb://192.168.29.50:27017/')
+client = MongoClient('mongodb://192.168.144.92:27017/')
 db = client.scan_results_db
 
 

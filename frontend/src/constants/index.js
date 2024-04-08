@@ -17,35 +17,36 @@ export const properties = [
 export const elements = [
     {
         id: 1,
-        title : 'Active Scan',
-        desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
-        url : 'active-scan.svg'
+        title: 'Active Scan',
+        desc: 'Performs an intensive examination of the web application to identify live vulnerabilities and security loopholes.',
+        url: 'active-scan.svg'
     },
     {
         id: 2,
-        title : 'Subdomain Finder',
-        desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
-        url : 'sub-domain.svg'
+        title: 'Subdomain Finder',
+        desc: 'Discovers hidden subdomains to unveil a broader attack surface of the target web application.',
+        url: 'sub-domain.svg'
     },
     {
         id: 3,
-        title : 'Password Attack',
-        desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
-        url : 'password-attack.svg'
+        title: 'Password Attack',
+        desc: 'Simulates attack scenarios to test the strength of passwords and identify weak authentication mechanisms.',
+        url: 'password-attack.svg'
     },
     {
         id: 4,
-        title : 'Vulnerability Scan',
-        desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
-        url : 'vuln.svg'
+        title: 'Vulnerability Scan',
+        desc: 'Scans and assesses the web application for known vulnerabilities, providing insights for mitigation.',
+        url: 'vuln.svg'
     },
     {
         id: 5,
-        title : "Way BAck Url's",
-        desc : 'While the Spider is running, another component of the Website Scanner takes each previously discovered Injection Point and injects multiple payloads to detect vulnerabilities.',
-        url : 'way-back.svg'
+        title: "Wayback URLs",
+        desc: 'Retrieves historical URLs of the web application from the Wayback Machine for comprehensive security analysis.',
+        url: 'way-back.svg'
     }
 ]
+
 
 export const signupInputs = [
     {
