@@ -10,7 +10,7 @@ export default function About(){
             <div className={`w-full flex justify-between md:min-h-[100vh]`}>
                 <div className={`w-[30%] hidden md:block`}>
                     <h1 className="text-[130px] mt-[30px] rotate-180 rotated-text font-extrabold">
-                        WPScans
+                        WP-Scanner
                     </h1>
                 </div>
                 <div className="md:w-[60%] mt-[10px] md:mt-[60px]">

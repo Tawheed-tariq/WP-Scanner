@@ -84,7 +84,7 @@ const TopNav = ({title, toggle, open, setShowlogoutPopup,currUsr}) => {
         <div className={`h-[70px] backdrop-blur-lg fixed z-[9] w-[100vw] bg-secondary-50 flex items-center`}>
             <div className="pl-[15px] sm:pl-[30px] md:pl-[0px] md:min-w-[200px] flex justify-center">
                 <h1 className="text-[20px] sm:text-[25px] hidden md:block md:text-[30px] text-center font-semibold ">
-                    WPScans
+                    WP-Scanner
                 </h1>
                 {!open ? <GiHamburgerMenu onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`} /> : <IoCloseCircleSharp onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`}/>}
             </div>

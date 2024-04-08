@@ -63,7 +63,7 @@ export default function Report(){
             {filteredPdfs.length> 0?
                 <div className="flex gap-7 flex-wrap">
                     {
-                        filteredPdfs.map((pdf) => (
+                        filteredPdfs.reverse().map((pdf) => (
                             <div onClick={() => handleClick(pdf.scan_id)} key={pdf.scan_id} className="flex gap-4 border-[1px] rounded-2xl border-text p-2 pr-6 cursor-pointer">
                                 <img className="w-20 h-20" src="pdf.png" alt="" />
                                 <div>

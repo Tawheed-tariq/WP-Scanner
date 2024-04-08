@@ -10,7 +10,7 @@ export default function ScanTemplates(){
         {
             id : 1,
             title : 'Active Scan',
-            desc : 'Detect issues in WP websites: plugin & theme vulns, user enumeration, config backups, etc.',
+            desc : 'Performs an intensive examination of the web application to identify live vulnerabilities and security loopholes.',
             img : <RiScan2Line color={`#226F78`} size={`20`}/>,
             url : '/scans/new-scan',
             isReady : true
@@ -18,7 +18,7 @@ export default function ScanTemplates(){
         {
             id : 2,
             title : 'Subdomain Finder',
-            desc : 'Discover all the subdomains of your target and thoroughly map its attack surface.',
+            desc : 'Discovers hidden subdomains to unveil a broader attack surface of the target web application.',
             img :<TbWorld color={`#226F78`} size={`20`}/>,
             url : '/scans/new-scan',
             isReady : false
@@ -26,7 +26,7 @@ export default function ScanTemplates(){
         {
             id : 3,
             title : 'Vulnerability Scan',
-            desc : 'Detect issues in WP websites: plugin & theme vulns, user enumeration, config backups, etc.',
+            desc : 'Simulates attack scenarios to test the strength of passwords and identify weak authentication mechanisms.',
             img : <FaBug color={`#226F78`} size={`20`}/>,
             url : '/scans/new-scan',
             isReady : false
@@ -34,7 +34,7 @@ export default function ScanTemplates(){
         {
             id : 4,
             title : 'Password Auditor',
-            desc : 'Uncover weak or default credentials in network services or web pages that require auth.',
+            desc : 'Scans and assesses the web application for known vulnerabilities, providing insights for mitigation.',
             img : <TbPasswordUser color={`#226F78`} size={`20`}/>,
             url : '/scans/new-scan',
             isReady : false
@@ -42,7 +42,7 @@ export default function ScanTemplates(){
         {
             id : 5,
             title : "Way-back url's",
-            desc : 'Detect issues in WP websites: plugin & theme vulns, user enumeration, config backups, etc.',
+            desc : 'Retrieves historical URLs of the web application from the Wayback Machine for comprehensive security analysis.',
             img : <GiTentacurl color={`#226F78`} size={`20`}/>,
             url : '/scans/new-scan',
             isReady : false
