@@ -9,7 +9,7 @@ export default function About(){
 
             <div className={`w-full flex justify-between md:min-h-[100vh]`}>
                 <div className={`w-[30%] hidden md:block`}>
-                    <h1 className="text-[130px] mt-[30px] rotate-180 rotated-text font-extrabold">
+                    <h1 className="text-8xl mt-[30px] rotate-180 rotated-text font-extrabold">
                         WP-Scanner
                     </h1>
                 </div>
@@ -46,4 +46,4 @@ const Property = ({title, desc, img}) => {
             </div>
         </div>
     )
-} 
+}

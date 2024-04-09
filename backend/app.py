@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, make_response
 import threading
 import uuid
-from db import get_processed_results, save_processed_results, save_scan_results, save_scan_data, get_saved_scans, change_scan_status, save_pdf_report, get_reports, get_pdf_report, get_scan_info
+from db import get_processed_results, save_processed_results, save_scan_results, save_scan_data, get_saved_scans, change_scan_status, save_pdf_report, get_reports, get_pdf_report, get_scan_info, delete_scan
 from scan import run_nmap_scan, run_whatweb_scan, run_wpscan
 from filter import parse_nmap_results, filter_whatweb_scan, parse_wp_results, find_vulnerabilities, find_users, find_themes
 from flask_cors import CORS
@@ -97,6 +97,18 @@ def get_report(scan_id):
     else:
         return jsonify({'error': 'Report not found or scan info missing'}), 404
 
+@app.route('/delete-scan', methods=['POST'])
+def delete_scan_route():
+    data = request.get_json()
+    if 'scan_id' not in data:
+        return jsonify({"error": "Scan ID is required"}), 400
+    
+    scan_id = data['scan_id']
+    try:
+        delete_scan(scan_id)
+        return jsonify({"message": "Scan deleted successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == '__main__':

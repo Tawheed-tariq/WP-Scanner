@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from werkzeug.security import generate_password_hash
 
 
-client = MongoClient('mongodb://192.168.144.92:27017/')
+client = MongoClient('mongodb://127.0.0.1:27017/')
 db = client.scan_results_db
 
 
@@ -100,3 +100,14 @@ def get_scan_info(scan_id):
         'name': scan_info['name'],
         'target': scan_info['target']
     } if scan_info else None
+
+def delete_scan(scan_id):
+    saved_scans_collection = db.saved_scans
+    reports_collection = db.pdf_reports
+    processed_scans_collection = db.processed_scans
+    scans_collection = db.scans
+
+    saved_scans_collection.delete_one({"_id": scan_id})
+    reports_collection.delete_one({"_id": scan_id})
+    processed_scans_collection.delete_one({"_id": scan_id})
+    scans_collection.delete_one({"_id": scan_id})

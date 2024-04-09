@@ -10,17 +10,25 @@ import { IoMdSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { headings } from "../../../constants/scanTable";
 import axios from 'axios'
-import {getAllScansRoute} from '../../../utils/apiRoutes'
+import {getAllScansRoute, deleteScanRoute} from '../../../utils/apiRoutes'
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function ScanHome(){
     
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [scanToDelete, setScanToDelete] = useState(null);
-    const [popupText, setPopupText] = useState("")
     const [scans, setScans] = useState([])
-
     const navigate = useNavigate()
     
+    const toastOptions = {
+        position: "top-right",
+        autoClose: 5000,
+        pauseOnHover: true,
+        draggable: true,
+    };
+
     const handleDeleteScan = (scan) => {
         setShowDeletePopup(true);
         setScanToDelete(scan);
@@ -30,6 +38,18 @@ export default function ScanHome(){
         setShowDeletePopup(false);
         setScanToDelete(null);
     };
+
+    const deleteScan = async () => {
+        const data = await axios.post(deleteScanRoute, {
+            scan_id : scanToDelete._id
+        })
+        console.log("mmm")
+        if(data.status === 200){
+            setShowDeletePopup(prev => !prev)
+            toast.success("scan deleted successfully", toastOptions)
+            localStorage.removeItem('scan-data')
+        }
+    }
 
     const getStatusIcon = (status) => {
         switch (status) {
@@ -88,7 +108,7 @@ export default function ScanHome(){
             }
         }
         get_all_scans()
-    }, [])
+    }, [setShowDeletePopup, showDeletePopup])
     
     const filteredRows = scans.filter(row => row.name.toLowerCase().includes(searchQuery.toLowerCase()));
     const totalScans = filteredRows.length
@@ -187,13 +207,14 @@ export default function ScanHome(){
                             <button className="bg-red-500 text-white px-4 py-2 mr-2 rounded" onClick={handleClosePopup}>
                                 Cancel
                             </button>
-                            <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={handleClosePopup}>
+                            <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={deleteScan}>
                                 Confirm
                             </button>
                         </div>
                     </div>
                 </div>
             )}
+            <ToastContainer/>
         </DashboardLayout>
     )
 }
