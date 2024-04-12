@@ -1,13 +1,14 @@
 import subprocess
 import re
 import socket
+import tldextract
 
-def run_scan(command):
+def run_scan(command, shell=False):
     try:
-        result = subprocess.check_output(command, stderr=subprocess.STDOUT, universal_newlines=True)
+        result = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=shell, universal_newlines=True)
         return result
     except subprocess.CalledProcessError as e:
-        return f"Error running {command[0]}: {e.output}"
+        return f"Error running command: {e.output}"
     
 def resolve_domain_to_ip(domain):
     try:
@@ -20,7 +21,7 @@ def run_nmap_scan(target):
     ip = resolve_domain_to_ip(target)
     if ip is None:
         return "Unable to resolve domain to IP address."
-    command = ['nmap', '-sV', ip, '-F', '-n', '-T5', '--min-rate', '1000']
+    command = ['nmap', '-sV', ip, '-F', '-n', '-T4', '--min-rate', '1000']
     try:
         return run_scan(command)
     except subprocess.CalledProcessError as e:
@@ -33,7 +34,25 @@ def run_whatweb_scan(target):
     return clean_result
 
 def run_wpscan(target):
-    command = ['wpscan', '--url', target, '--random-user-agent', '--enumerate', 'u,vp,vt', '--api-token', 'Ipvl9EcSSt1DuHPJbAoH9JhLsnYtAwAQGmprgcUdaHw', '-t', '100']
+    # command = ['wpscan', '--url', target, '--random-user-agent', '--enumerate', 'u,vp,vt', '--api-token', 'Ipvl9EcSSt1DuHPJbAoH9JhLsnYtAwAQGmprgcUdaHw', '-t', '100']
+    command = ['wpscan', '--url', target, '--random-user-agent', '-t', '100']
+
     raw_result = run_scan(command)
     clean_result = re.sub(r'\033\[[0-9;]*[mK]', '', raw_result)
     return clean_result
+
+def find_subdomains(domain):
+    extracted = tldextract.extract(domain)
+    normalized_domain = f"{extracted.domain}.{extracted.suffix}" 
+    find_command = f"assetfinder --subs-only {normalized_domain} | sort -u"
+    subdomains = run_scan(find_command, shell=True).splitlines()
+    alive_subdomains = []
+    
+    for subdomain in subdomains:
+        if subdomain:
+            httpx_command = f"echo {subdomain} | httpx -silent"
+            result = run_scan(httpx_command, shell=True)
+            if result.strip():
+                alive_subdomains.append(subdomain)
+    
+    return alive_subdomains

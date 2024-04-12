@@ -210,3 +210,16 @@ def find_users(wp_output):
         return response
                 
     return users
+
+def filter_subdomains(alive_subdomains):
+    if not alive_subdomains:
+        return {'res': 'No alive subdomains found', 'data': {'headings': ['Subdomains'], 'dataRows': []}}
+    
+    result = {
+        'res': f"{len(alive_subdomains)} Subdomains Found",
+        'data': {
+            'headings': ['Subdomains'],
+            'dataRows': [[subdomain] for subdomain in alive_subdomains]
+        }
+    }
+    return result
