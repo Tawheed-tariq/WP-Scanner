@@ -8,5 +8,5 @@ def normalize_domain(target):
 
 # Use this normalize_domain in the same way as shown above
 
-domain = normalize_domain("me.edu.in")
+domain = normalize_domain("dpssrinagar.com")
 print(domain)
