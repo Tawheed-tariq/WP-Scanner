@@ -113,9 +113,4 @@ export const descs = [
             }
         ]
     }    
-    
-
-    
-    
-
 ]
