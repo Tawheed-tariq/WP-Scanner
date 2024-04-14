@@ -4,3 +4,4 @@ pymongo
 flask-bcrypt
 flask-jwt-extended
 reportlab
+tldextract
