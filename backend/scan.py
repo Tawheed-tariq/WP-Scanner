@@ -35,7 +35,7 @@ def run_whatweb_scan(target):
 
 def run_wpscan(target):
     command = ['wpscan', '--url', target, '--random-user-agent', '--enumerate', 'u,vp,vt', '--api-token', 'pMSnMTtaJO2yOC6ERtHqps9qqpbJzVZEizjaVo4DKtY']
-    # command = ['wpscan', '--url', target, '--random-user-agent', '-t', '100']
+    #command = ['wpscan', '--url', target, '--random-user-agent', '-t', '100']
 
     raw_result = run_scan(command)
     clean_result = re.sub(r'\033\[[0-9;]*[mK]', '', raw_result)
