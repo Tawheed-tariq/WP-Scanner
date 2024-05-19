@@ -1,5 +1,7 @@
 FROM node:current-slim
 
+RUN apt update && apt install git
+
 RUN git clone https://github.com/Tawheed-tariq/vuln-scanner.git /vuln-scanner
 
 WORKDIR /vuln-scanner/frontend
