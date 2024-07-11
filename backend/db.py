@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash
 
 
 
-client = MongoClient('mongodb://mongodb:27017/')
+client = MongoClient('mongodb://localhost:27017/')
 
 db = client.scan_results_db
 
@@ -31,10 +31,13 @@ def get_processed_results(scan_id):
     return processed_scans_collection.find_one({'_id': scan_id})
 
 def create_user(username, password):
-    """Create a new user with hashed password."""
-    users_collection = db.users
-    hashed_password = generate_password_hash(password)
-    users_collection.insert_one({'_id': username, 'password': hashed_password})
+    hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+    user = {
+        "username": username,
+        "password": hashed_password
+    }
+    db.users.insert_one(user)
+
 
 def get_user(username):
     """Retrieve a user by username."""

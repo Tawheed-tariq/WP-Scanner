@@ -1,5 +1,7 @@
 Flask
 flask_cors
+flask-smorest
+python-dotenv
 pymongo
 flask-bcrypt
 flask-jwt-extended
