@@ -21,4 +21,3 @@ api = Api(app)
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(scans_blp)
 app.register_blueprint(reports_blp)
-

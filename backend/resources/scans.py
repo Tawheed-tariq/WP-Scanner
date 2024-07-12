@@ -4,14 +4,15 @@ import uuid
 from scan_templates.active_scan import active_scan
 from flask_smorest import Blueprint, abort
 from db import get_processed_results, save_scan_data, get_saved_scans, delete_scan
+from schemas import ActiveScanSchema, SaveScanSchema, DeleteScanSchema
 
 blp = Blueprint('scans', __name__, description='Operations on scans')
 
 @blp.route('/start-active-scan')
 class ActiveScan(MethodView):
-    def post(self):
+    @blp.arguments(ActiveScanSchema)
+    def post(self, data):
         try:
-            data = request.json
             target = data['target']
             scan_id = str(uuid.uuid4())
             active_scan(target, scan_id)
@@ -30,6 +31,7 @@ class ScanResults(MethodView):
     
 @blp.route('/save-scan')
 class SaveScan(MethodView):
+    @blp.arguments(SaveScanSchema)
     def post(self):
         data = request.json
         scan_data = {
@@ -50,12 +52,9 @@ class AllScans(MethodView):
 
 @blp.route('/delete-scan')
 class DeleteScan(MethodView):
+    @blp.arguments(DeleteScanSchema)
     def delete(self):
         data = request.get_json()
-        # add marshmallow validation
-        if 'scan_id' not in data:
-            return {"error": "Scan ID is required"}, 400
-    
         scan_id = data['scan_id']
         try:
             delete_scan(scan_id)
