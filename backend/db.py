@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash
 
 
 
-client = MongoClient('mongodb://host.docker.internal:27017/')
+client = MongoClient('mongodb://127.0.0.1:27017/')
 
 db = client.scan_results_db
 

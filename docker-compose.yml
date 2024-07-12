@@ -10,14 +10,15 @@ services:
   ui:
     build: ./frontend
     ports:
-      - "3000:5173"
+      - "5173:5173"
     volumes:
       - ./frontend:/vuln-scanner/frontend
 
   mongodb:
-    image: mongo
+    image: mongo:latest
+    container_name: mongo
     ports:
-      - "27010:27017"
+      - "27017:27017"
     volumes:
       - mongodb-data:/data/db
 
