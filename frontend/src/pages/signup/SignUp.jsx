@@ -7,7 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 import {registerRoute} from '../../utils/apiRoutes'
-export default function SignUp(){
+// export default 
+function SignUp(){
     const navigate = useNavigate()
 
     const [values , setValues] = useState({

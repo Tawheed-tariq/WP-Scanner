@@ -1,7 +1,9 @@
 import Home from './pages/Home/Home'
 import './App.css'
-import SignUp from './pages/signup/SignUp'
-import Login from './pages/login/Login'
+// import SignUp from './pages/signup/SignUp'
+// import Login from './pages/login/Login'
+import Login from './pages/auth/Login'
+import Register from './pages/auth/Register'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Dashboard from './pages/Dashboard/Dashboard';
 import Report from './pages/report/Report'
@@ -14,7 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/signup' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/dashboard' element={<Dashboard  />}/>
           <Route path='/scans/*' element={<Scans />}/>
