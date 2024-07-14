@@ -14,15 +14,15 @@ export default function Layout() {
     // }
   return (
     <>
-        <div className="fixed left-0 top-0 w-64 h-full bg-[#f8f4f3] p-4 z-50 sidebar-menu transition-transform">
+        <div className="fixed left-0 top-0 w-64 h-full bg-white p-4 z-50 sidebar-menu transition-transform">
         {/* <a href="#" className="flex items-center pb-4 border-b border-b-gray-800">
             <h2 className="font-bold text-2xl">
             LOREM{" "}
             <span className="bg-[#f84525] text-white px-2 rounded-md">IPSUM</span>
             </h2>
         </a> */}
-        <ul className="mt-4">
-            <span className="text-gray-400 font-bold">ADMIN</span>
+        <ul className="mt-4 gap-3">
+            {/* <span className="text-gray-400 font-bold">ADMIN</span> */}
             <li className="mb-1 group">
             <a
                 href=""
@@ -69,7 +69,7 @@ export default function Layout() {
                 <span className="text-sm">Activities</span>
             </a>
             </li>
-            <span className="text-gray-400 font-bold">BLOG</span>
+            {/* <span className="text-gray-400 font-bold">BLOG</span> */}
             <li className="mb-1 group">
             <a
                 href=""
@@ -107,7 +107,7 @@ export default function Layout() {
                 <span className="text-sm">Archive</span>
             </a>
             </li>
-            <span className="text-gray-400 font-bold">PERSONAL</span>
+            {/* <span className="text-gray-400 font-bold">PERSONAL</span> */}
             <li className="mb-1 group">
             <a
                 href=""

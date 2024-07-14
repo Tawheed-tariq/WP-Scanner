@@ -42,16 +42,18 @@ export default function DashboardLayout({title, children}){
         getUser()
     }, [])
     return(
+        // <w-full md:w-[calc(100%-256px)] md:ml-64 >
         <>
-            {/* <TopNav 
-                open={open} 
-                toggle={toggle} 
-                title={title}
-                setShowlogoutPopup={setShowlogoutPopup}
-                currUsr={currUsr}
-            /> */}
-            <div className="flex w-[100vw]">
-                <SideNav open={open} />
+            <SideNav open={open} />
+            
+            <div className="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main ">
+                <TopNav 
+                    open={open} 
+                    toggle={toggle} 
+                    title={title}
+                    setShowlogoutPopup={setShowlogoutPopup}
+                    currUsr={currUsr}
+                />
                 <div className="w-full overflow-y-auto md:ml-[200px] overflow-x-hidden px-[20px] md:px-[70px] py-[30px]">
                     {children}
                 </div>
@@ -81,35 +83,69 @@ export default function DashboardLayout({title, children}){
 
 const TopNav = ({title, toggle, open, setShowlogoutPopup,currUsr}) => {
     return(
-        <div className={`h-[70px] backdrop-blur-lg fixed z-[9] w-[100vw] bg-secondary-50 flex items-center`}>
-            <div className="pl-[15px] sm:pl-[30px] md:pl-[0px] md:min-w-[200px] flex justify-center">
-                <h1 className="text-[20px] sm:text-[25px] hidden md:block md:text-[30px] text-center font-semibold ">
-                    WP-Scanner
-                </h1>
-                {!open ? <GiHamburgerMenu onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`} /> : <IoCloseCircleSharp onClick={toggle} className={`md:hidden`} color="#226F78" size={`25`}/>}
-            </div>
-            <div className={`w-full h-full flex items-center justify-between px-[20px] md:px-[70px]`}>
-                <h1 className="sm:text-[20px] md:text-[30px] font-medium ">
-                    {title}
-                </h1>
+        <div className="py-2 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
+            <button type="button" className="text-lg text-gray-900 font-semibold sidebar-toggle">
+                toggle 
+            </button>
+            {/* <h1 className="sm:text-[20px] md:text-[30px] font-medium ">
+                   title
+            </h1> */}
 
-                {/* user icon */}
-                <div className="flex items-center gap-3 md:mr-10">
-                    <div className={`bg-primary flex gap-[10px] md:gap-[15px] items-center pl-[15px] md:pl-[20px] pr-[10px] py-[10px] rounded-full`}>
-                        <p className="text-[12px] sm:text-[16px] md:text-[18px] ">{currUsr}</p>
-                        <div className={`w-[20px] md:w-[30px] flex items-center justify-center h-[20px] md:h-[30px] bg-accent rounded-full`}>
-                            <FaUser size={`15`} color="#F8FCFB"/>
-                        </div>
+            <ul className="ml-auto flex items-center">
+                {/* search bar  */}
+                <li className="mr-1 dropdown">
+                    <button type="button" className="dropdown-toggle text-gray-400 mr-4 w-8 h-8 rounded flex items-center justify-center  hover:text-gray-600">
+                        btn1
+                    </button>
+                    {/* search bar  */}
+                    <div className="dropdown-menu shadow-md shadow-black/5 z-30 hidden max-w-xs w-full bg-white rounded-md border border-gray-100">
+                        <form action="" className="p-4 border-b border-b-gray-100">
+                            <div className="relative w-full">
+                                <input type="text" className="py-2 pr-4 pl-10 bg-gray-50 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-blue-500" placeholder="Search..."/>
+                                <i className="ri-search-line absolute top-1/2 left-4 -translate-y-1/2 text-gray-900"></i>
+                            </div>
+                        </form>
                     </div>
-                    <IoLogOutSharp 
-                        className="cursor-pointer" 
-                        size={`30`} 
-                        color="#226F78"
-                        onClick={() => setShowlogoutPopup(true)}
-                    />
-                </div>
-            </div>
-            
+                </li>
+                <li className="dropdown">
+                    <button type="button" className="dropdown-toggle text-gray-400 mr-4 w-8 h-8 rounded flex items-center justify-center  hover:text-gray-600">
+                        btn2
+                    </button>
+                </li>
+                
+                <li className="dropdown ml-3">
+                    <button type="button" className="dropdown-toggle flex items-center">
+                        <div className="flex-shrink-0 w-10 h-10 relative">
+                            <div className="p-1 bg-white rounded-full focus:outline-none focus:ring">
+                                <img className="w-8 h-8 rounded-full" src="https://laravelui.spruko.com/tailwind/ynex/build/assets/images/faces/9.jpg" alt=""/>
+                                <div className="top-0 left-7 absolute w-3 h-3 bg-lime-400 border-2 border-white rounded-full animate-ping"></div>
+                                <div className="top-0 left-7 absolute w-3 h-3 bg-lime-500 border-2 border-white rounded-full"></div>
+                            </div>
+                        </div>
+                        <div className="p-2 md:block text-left">
+                            <h2 className="text-sm font-semibold text-gray-800">John Doe</h2>
+                            <p className="text-xs text-gray-500">Administrator</p>
+                        </div>                
+                    </button>
+                    <ul className="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
+                        <li>
+                            <a href="#" className="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Profile</a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
+                        </li>
+                        <li>
+                            <form method="POST" action="">
+                                <a role="menuitem" className="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
+                                    // onclick="event.preventDefault();this.closest('form').submit();"
+                                    >
+                                    Log Out
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     )
 }
@@ -117,7 +153,7 @@ const TopNav = ({title, toggle, open, setShowlogoutPopup,currUsr}) => {
 
 // side nav 
 const SideNav = ({open}) => {
-    const sideNavLinks = [
+    const TopLinks = [
         {
             id: 1,
             title : 'Dashboard',
@@ -132,11 +168,31 @@ const SideNav = ({open}) => {
         },
         {
             id: 3,
-            title : 'Report',
+            title : 'New Scan',
             img : <TbReportAnalytics color="#226F78" size={`20`} />,
             link : '/report'
         },
+        {
+            id: 3,
+            title : 'Report',
+            img : <TbReportAnalytics color="#226F78" size={`20`} />,
+            link : '/report'
+        }
     
+    ]
+    const bottomLinks = [
+        {
+            id: 1,
+            title : 'Profile',
+            img : <TbReportAnalytics color="#226F78" size={`20`} />,
+            link : '/profile'
+        },
+        {
+            id: 2,
+            title : 'Setting',
+            img : <TbReportAnalytics color="#226F78" size={`20`} />,
+            link : '/setting'
+        }
     ]
     const location = useLocation()
     const isActiveLink = (link) => {
@@ -144,10 +200,22 @@ const SideNav = ({open}) => {
     }
     return(
         <>
-            <div className={`w-64 fixed h-full hidden md:flex items-center flex-col shadow-lg shadow-black  bg-white`}>
+            <div className={`w-64 fixed h-full hidden md:flex items-center justify-between flex-col shadow-lg shadow-black  bg-white`}>
+                <div className={`flex flex-col gap-[20px] mt-20 pb-10 w-full`}>
+                    {
+                        TopLinks.map((ele) => (
+                           <Link to={ele.link} key={ele.id}>
+                                <div className={`flex gap-[10px] py-3 px-[20px] ${isActiveLink(ele.link) ? 'bg-newprimary border-r-2 border-blue-500 text-accent' : ''} items-center`}>
+                                    {ele.img}
+                                    <p className={`text-sm`}>{ele.title}</p>
+                                </div>
+                           </Link>
+                        ))
+                    }
+                </div>
                 <div className={`flex flex-col gap-[20px] py-10 w-full`}>
                     {
-                        sideNavLinks.map((ele) => (
+                        bottomLinks.map((ele) => (
                            <Link to={ele.link} key={ele.id}>
                                 <div className={`flex gap-[10px] py-3 px-[20px] ${isActiveLink(ele.link) ? 'bg-newprimary border-r-2 border-blue-500 text-accent' : ''} items-center`}>
                                     {ele.img}
@@ -163,7 +231,19 @@ const SideNav = ({open}) => {
             <div className={`w-[200px] backdrop-blur-sm ${open ? '' : 'translate-x-[-250px]'} transition-all fixed mt-[70px] custom-height flex md:hidden items-center flex-col  bg-secondary-50`}>
                 <div className={`flex flex-col gap-[20px] py-[20px]`}>
                     {
-                        sideNavLinks.map((ele) => (
+                        TopLinks.map((ele) => (
+                           <Link to={ele.link} key={ele.id}>
+                                <div className={`flex gap-[5px] py-[10px] px-[30px] rounded-full ${isActiveLink(ele.link) ? 'bg-primary' : ''} items-center`}>
+                                    {ele.img}
+                                    <p className={`text-[14px]`}>{ele.title}</p>
+                                </div>
+                           </Link>
+                        ))
+                    }
+                </div>
+                <div className={`flex flex-col gap-[20px] py-[20px]`}>
+                    {
+                        bottomLinks.map((ele) => (
                            <Link to={ele.link} key={ele.id}>
                                 <div className={`flex gap-[5px] py-[10px] px-[30px] rounded-full ${isActiveLink(ele.link) ? 'bg-primary' : ''} items-center`}>
                                     {ele.img}
