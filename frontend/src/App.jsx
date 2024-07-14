@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Report from './pages/report/Report'
 import Scans from './pages/scans/Scans'
 import Notfound from './components/Notfound';
+import DashboardNew from 'pages/NewDashboard/Dashboard';
 function App() {
   
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/signup' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/dashboard' element={<Dashboard  />}/>
+          <Route path='/dashboard' element={<DashboardNew  />}/>
           <Route path='/scans/*' element={<Scans />}/>
           <Route path='/report' element={<Report/>}/>
           <Route path='*' element={<Notfound/>}/>

@@ -12,6 +12,7 @@ export default {
         'background': 'rgb(244, 251, 248)',
         'background-50' : 'rgba(244, 251, 248, 0.7)',
         'primary': 'rgba(155, 215, 222, 1)',
+        'newprimary': 'rgba(155, 215, 222, 0.4)',
         'secondary': '#B9E4EA',
         'secondary-50' : '#B9E4EA',
         'secondary-80' : '#B9E4EA',
