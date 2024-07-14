@@ -1,4 +1,4 @@
-import DashboardLayout from "../../components/DashboardLayout";
+import DashboardLayout from "@components/DashboardLayout";
 import { HiCheckBadge } from "react-icons/hi2";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import {RecommendedTools} from '../../constants/index'
@@ -52,7 +52,7 @@ export default function Dashboard(){
         <DashboardLayout title={`Dashboard`}>
 
             {/* recommended Tools */}
-            <div className={`py-[5px] px-[10px]`}>
+            <div >
                 <div className={`flex gap-[7px] md:gap-[15px] items-center`}>
                     <HiCheckBadge color={`#226F78`} size={`25`}/>
                     <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Recommended Tools</p>
