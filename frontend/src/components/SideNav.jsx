@@ -52,7 +52,7 @@ const SideNav = ({ open }) => {
     <div
       className={`w-60 fixed h-full ${
         open ? "" : "translate-x-[-260px]"
-      } transition-all hidden md:flex items-center justify-between flex-col shadow-lg shadow-black/5  bg-white`}
+      } transition-all hidden md:flex items-center justify-between flex-col shadow-lg shadow-black/5 border-gray-200 border-r  bg-white`}
     >
       <div className={`flex flex-col gap-[20px] mt-20 pb-10 w-full`}>
         {TopLinks.map((ele) => (

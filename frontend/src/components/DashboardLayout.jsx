@@ -41,7 +41,7 @@ export default function DashboardLayout({ title, children }) {
       <div
         className={`w-full ${
           open ? "md:w-[calc(100%-15rem)] md:ml-60" : ""
-        } bg-gray-100 min-h-screen absolute transition-all main`}
+        } bg-gray-50 min-h-screen absolute transition-all main`}
       >
         <TopNav
           open={open}
@@ -50,7 +50,7 @@ export default function DashboardLayout({ title, children }) {
           setShowlogoutPopup={setShowlogoutPopup}
           currUsr={currUsr}
         />
-        <div className="w-full mt-20 overflow-y-auto overflow-x-hidden px-[20px] md:px-[70px] py-[30px]">
+        <div className="w-full mt-24 overflow-y-auto overflow-x-hidden px-3 ">
           {children}
         </div>
       </div>

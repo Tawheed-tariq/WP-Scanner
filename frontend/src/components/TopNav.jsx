@@ -12,7 +12,7 @@ const TopNav = ({ title, toggle, open, setShowlogoutPopup, currUsr }) => {
   };
 
   return (
-    <div className="px-6 bg-white flex items-center shadow-md shadow-black/5 fixed w-[inherit] z-30">
+    <div className="px-6 bg-white flex items-center border-b border-gray-200 shadow-md shadow-black/5 fixed w-[inherit] z-30">
       <button
         onClick={toggle}
         type="button"

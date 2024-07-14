@@ -11,7 +11,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import {Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useEffect, useState } from "react";
-
+import ReactApexChart from 'react-apexcharts';
 
 ChartJS.register(
     CategoryScale,
@@ -31,9 +31,48 @@ export const options = {
     },
 };
 
+
 export default function Dashboard(){
     const [scanData, setScanData] = useState(null)
     const [scanStatus, setScanStatus] = useState(0)
+
+
+    const [chartData] = useState({
+        series: [
+          {
+            name: 'Series 1',
+            data: [31, 40, 28, 51, 42, 109, 100]
+          },
+          {
+            name: 'Series 2',
+            data: [21, 43, 50, 67, 18,112, 132]
+          }
+        ],
+        options: {
+            chart: {
+                height: 450,
+                type: 'area',
+                toolbar: {
+                    show: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+              },
+            stroke: {
+                curve: 'smooth',
+                width: 2
+            },
+            grid: {
+                strokeDashArray: 0
+            },
+            xaxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+            }
+        }
+      });
+
+    
 
     useEffect(() => {
         const getScanData = async () => {
@@ -76,37 +115,15 @@ export default function Dashboard(){
             {/* attack surface summary + vulnerability summary  */}
             <div className={`py-[5px] mt-[30px] px-[10px] flex flex-wrap items-center gap-[25px]`}>
 
-                <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[450px]`}>
-                    <div className={`flex gap-[15px] items-center `}>
-                        <AiFillPieChart color={`#226F78`} size={`25`}/>
-                        <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Attack Surface Summary</p>
-                    </div>
-                    <div className={`border-text flex ${!scanData ? 'justify-center items-center' : ''} h-[300px] border-[1px] my-[10px]`}>
-                        
-                            {scanData ?
-                                <>
-                                    <div className="p-4 flex flex-col gap-4 w-full">
-                                        <h3 className="text-accent text-center text-2xl font-semibold">Last Scan Results</h3>
-                                        {scanData.labels.map((label, index) => (
-                                            <div key={index} className="flex gap-3 items-center">
-                                                <div className="w-5 h-5 rounded-full" style={{ backgroundColor: scanData.datasets[0].backgroundColor[index] }}></div>
-                                                <p className="text-xl">{scanData.datasets[0].data[index]} {label} found</p>
-                                            </div>
-                                        ))}
-                                    </div> 
-                                </>
-                            :
-                                <div className={`flex flex-col items-center justify-center gap-[10px]`}>
-                                    <p>You don't have any scans yet</p>
-                                    <Link to={`/scans/scan-templates`}>
-                                        <button className={`px-[20px] bg-secondary rounded-xl text-[16px] md:text-[20px] py-[10px]`}>
-                                            Start a Scan
-                                        </button>
-                                    </Link>
-                                </div>
-                            }
-                    </div>
+                <div className={`sm:flex-1 w-full sm:w-auto bg-white sm:min-w-[450px]`}>
+                    <ReactApexChart
+                        options={chartData.options}
+                        series={chartData.series}
+                        type="area"
+                        height={360}
+                    />
                 </div>
+                
 
                 <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[450px]`}>
                     <div className={`flex  gap-[15px] items-center `}>
