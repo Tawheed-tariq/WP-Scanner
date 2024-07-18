@@ -93,7 +93,7 @@ export default function Dashboard(){
             {/* recommended Tools */}
             <div >
                 <div className={`flex gap-[7px] md:gap-[15px] items-center`}>
-                    <HiCheckBadge color={`#226F78`} size={`25`}/>
+                    {/* <HiCheckBadge color={`#226F78`} size={`25`}/> */}
                     <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Recommended Tools</p>
                 </div>
 
@@ -116,6 +116,10 @@ export default function Dashboard(){
             <div className={`py-[5px] mt-[30px] px-[10px] flex flex-wrap items-center gap-[25px]`}>
 
                 <div className={`sm:flex-1 w-full sm:w-auto bg-white sm:min-w-[450px]`}>
+                    <div className={`flex  gap-[15px] items-center `}>
+                        {/* <AiFillSignal color={`#226F78`} size={`25`}/> */}
+                        <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Attack Surface Summary</p>
+                    </div>
                     <ReactApexChart
                         options={chartData.options}
                         series={chartData.series}
@@ -127,7 +131,7 @@ export default function Dashboard(){
 
                 <div className={`sm:flex-1 w-full sm:w-auto sm:min-w-[450px]`}>
                     <div className={`flex  gap-[15px] items-center `}>
-                        <AiFillSignal color={`#226F78`} size={`25`}/>
+                        {/* <AiFillSignal color={`#226F78`} size={`25`}/> */}
                         <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Vulnerability Summary</p>
                     </div>
                     <div className={`border-text flex items-center justify-center h-[300px] border-[1px] my-[10px] `}>
@@ -143,7 +147,7 @@ export default function Dashboard(){
             {/* scan activity */}
             <div className={`py-[5px] px-[10px] mt-[20px]`}>
                 <div className={`flex gap-[15px] items-center`}>
-                    <TbActivityHeartbeat color={`#226F78`} size={`25`}/>
+                    {/* <TbActivityHeartbeat color={`#226F78`} size={`25`}/> */}
                     <p className={`text-text font-medium text-[18px] md:text-[22px]`}>Scan Activity</p>
                 </div>
                 <div className={`py-6 flex gap-4  justify-around`}>
