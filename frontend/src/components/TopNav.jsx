@@ -12,14 +12,19 @@ const TopNav = ({ title, toggle, open, setShowlogoutPopup, currUsr }) => {
   };
 
   return (
-    <div className="px-6 bg-white flex items-center border-b border-gray-200 shadow-md shadow-black/5 fixed w-[inherit] z-30">
-      <button
-        onClick={toggle}
-        type="button"
-        className="text-lg text-gray-900 font-semibold sidebar-toggle"
-      >
-        <FaSlidersH size={24} />
-      </button>
+    <div className="px-10 bg-white flex items-center border-b border-gray-200 shadow-md shadow-black/5 fixed w-[inherit] z-30">
+      <div className="flex gap-5">
+        <button
+          onClick={toggle}
+          type="button"
+          className="text-lg text-gray-900 font-semibold sidebar-toggle"
+        >
+          <FaSlidersH size={24} />
+        </button>
+        <p className="text-2xl text-gray-900 font-medium">
+          {title}
+        </p>
+      </div>
 
       <ul className="ml-auto flex items-center">
         <li className="mr-2 dropdown">

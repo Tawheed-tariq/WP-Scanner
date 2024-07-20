@@ -50,7 +50,7 @@ export default function DashboardLayout({ title, children }) {
           setShowlogoutPopup={setShowlogoutPopup}
           currUsr={currUsr}
         />
-        <div className="w-full mt-24 overflow-y-auto overflow-x-hidden px-3 ">
+        <div className="w-full mt-24 overflow-y-auto overflow-x-hidden px-10 ">
           {children}
         </div>
       </div>

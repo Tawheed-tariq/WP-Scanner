@@ -1,1 +1,1 @@
-export const headings = ["Name", "target", "Last Scanned", "Action"]
+export const headings = ["Name", "target", "Last Scanned","status", "Action"]

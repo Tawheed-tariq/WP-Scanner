@@ -4,7 +4,7 @@ export default function ScanTable() {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-gray-700 bg-blue-50">
-        <thead className="text-xs text-gray-700 uppercase bg-blue-100">
+        <thead className="text-sm text-gray-700 uppercase bg-blue-200">
           <tr>
             {headings.map((ele, index) => (
               <th key={index} scope="col" className="px-6 py-3">
@@ -13,11 +13,12 @@ export default function ScanTable() {
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-sm">
           <TableData
             Name="Neil Sims"
             Email="hello.usergamil"
             Target={"React"}
+            LastScanned={"12-02-2004"}
             Status={'online'}
             Action={"delete"}
           />
@@ -25,6 +26,7 @@ export default function ScanTable() {
             Name="Neil Sims"
             Email="hello.usergamil"
             Target={"React"}
+            LastScanned={"12-02-2004"}
             Status={'online'}
             Action={"delete"}
           />
@@ -32,6 +34,7 @@ export default function ScanTable() {
             Name="Neil Sims"
             Email="hello.usergamil"
             Target={"React"}
+            LastScanned={"12-02-2004"}
             Status={'online'}
             Action={"delete"}
           />
@@ -39,6 +42,7 @@ export default function ScanTable() {
             Name="Neil Sims"
             Email="hello.usergamil"
             Target={"React"}
+            LastScanned={"12-02-2004"}
             Status={'online'}
             Action={"delete"}
           />
@@ -48,9 +52,9 @@ export default function ScanTable() {
   );
 }
 
-const TableData = ({Name, Email, Target,Status, Action}) => {
+const TableData = ({Name, Email, Target,Status, Action, LastScanned}) => {
   return (
-    <tr className="bg-blue-50 border-b hover:bg-blue-100">
+    <tr className="bg-blue-50 border-b hover:bg-blue-200">
       <th
         scope="row"
         className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
@@ -63,6 +67,7 @@ const TableData = ({Name, Email, Target,Status, Action}) => {
         </div>
       </th>
       <td className="px-6 py-4">{Target}</td>
+      <td className="px-6 py-4">{LastScanned}</td>
       <td className="px-6 py-4">
         <div className="flex items-center">
           <div className="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>{" "}

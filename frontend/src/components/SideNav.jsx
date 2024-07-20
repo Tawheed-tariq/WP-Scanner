@@ -21,7 +21,7 @@ const SideNav = ({ open }) => {
       id: 3,
       title: "New Scan",
       img: <TbReportAnalytics color="#226F78" size={`20`} />,
-      link: "/report",
+      link: "/scan-templates",
     },
     {
       id: 3,

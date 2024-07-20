@@ -10,6 +10,9 @@ import Report from './pages/report/Report'
 import Scans from './pages/scans/Scans'
 import Notfound from './components/Notfound';
 import DashboardNew from 'pages/NewDashboard/Dashboard';
+import ScanTemplates from 'pages/scan templates/ScanTemplates';
+import Profile from 'pages/profile/Profile';
+import Setting from 'pages/setting/Setting';
 function App() {
   
   return (
@@ -22,6 +25,9 @@ function App() {
           <Route path='/dashboard' element={<Dashboard  />}/>
           <Route path='/scans/*' element={<Scans />}/>
           <Route path='/report' element={<Report/>}/>
+          <Route path="/scan-templates" element={<ScanTemplates/>} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/setting" element={<Setting/>} />
           <Route path='*' element={<Notfound/>}/>
         </Routes>
       </Router>

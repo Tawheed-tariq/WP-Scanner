@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import DashboardLayout from "../../../components/DashboardLayout";
+import DashboardLayout from "../../components/DashboardLayout";
 import { RiScan2Line } from "react-icons/ri";
 import { FaBug } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";

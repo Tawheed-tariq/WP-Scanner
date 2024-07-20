@@ -1,4 +1,4 @@
-import DashboardLayout from "../../../components/DashboardLayout";
+import DashboardLayout from "@components/DashboardLayout";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowsRotate} from "react-icons/fa6";
@@ -116,8 +116,8 @@ export default function ScanHome(){
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
-            <div className={` py-[20px] border-b-2 border-accent md:py-[40px] px-[10px] flex justify-end mb-[20px]`}>
-                <Link className={`bg-secondary boxShadow rounded-xl`} to={`/scans/scan-templates`}>
+            <div className={`px-3 py-5 border-b-2 border-accent md:py-[40px] flex justify-end mb-[20px]`}>
+                <Link className={`bg-secondary boxShadow rounded-xl`} to={`/scan-templates`}>
                     <button className={`px-[20px] flex gap-[10px] items-center text-[18px] md:text-[22px] py-[10px]`}>
                         <TbActivityHeartbeat color={`#226F78`} size={`30`}/>
                         New Scan
