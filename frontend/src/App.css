@@ -79,3 +79,7 @@ input:-moz-placeholder {
       transform: rotate(360deg);
     }
   }
+
+.navbar{
+    width: calc(100vw - 16rem);
+}

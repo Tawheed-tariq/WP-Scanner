@@ -1,11 +1,22 @@
-version: '3.8'
 services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
   api:
     build: ./backend
     ports:
       - "5000:5000"
     volumes:
       - ./backend:/vuln-scanner/backend
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/
 
   ui:
     build: ./frontend
@@ -14,13 +25,6 @@ services:
     volumes:
       - ./frontend:/vuln-scanner/frontend
 
-  mongodb:
-    image: mongo:latest
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb-data:/data/db
 
 volumes:
   mongodb-data:

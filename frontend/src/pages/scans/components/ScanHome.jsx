@@ -1,4 +1,4 @@
-import DashboardLayout from "../../../components/DashboardLayout";
+import DashboardLayout from "@components/DashboardLayout";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowsRotate} from "react-icons/fa6";
@@ -13,6 +13,7 @@ import axios from 'axios'
 import {getAllScansRoute, deleteScanRoute} from '../../../utils/apiRoutes'
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import ScanTable from "./ScanTable";
 
 
 export default function ScanHome(){
@@ -115,8 +116,8 @@ export default function ScanHome(){
     return(
         <DashboardLayout title={`Scans`}>
             {/* New Scan  */}
-            <div className={` py-[20px] border-b-2 border-accent md:py-[40px] px-[10px] flex justify-end mb-[20px]`}>
-                <Link className={`bg-secondary boxShadow rounded-xl`} to={`/scans/scan-templates`}>
+            <div className={`px-3 py-5 border-b-2 border-accent md:py-[40px] flex justify-end mb-[20px]`}>
+                <Link className={`bg-secondary boxShadow rounded-xl`} to={`/scan-templates`}>
                     <button className={`px-[20px] flex gap-[10px] items-center text-[18px] md:text-[22px] py-[10px]`}>
                         <TbActivityHeartbeat color={`#226F78`} size={`30`}/>
                         New Scan
@@ -141,55 +142,56 @@ export default function ScanHome(){
             </div>
 
             {/* Scan results table*/}
-            {totalScans > 0 ?
-                <table className={`w-full border-collapse Table text-text border-text table-auto tab border-[1px]`}>
-                    <thead className="bg-primary">
-                        <tr>
-                            {
-                                headings.map((ele, eleIndex) => (
-                                    <td key={eleIndex}>{ele}</td>
-                                ))
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            filteredRows.reverse().map((row) => (
-                                <tr className="hover:bg-secondary-50" key={row._id}>
-                                    <td 
-                                        className="cursor-pointer font-semibold text-accent text-xl" 
-                                        onClick={() => handleClick(row)}
-                                    >
-                                        {row.name}
-                                    </td>
+            {totalScans > -1 ?
+                // <table className={`w-full border-collapse Table text-text border-text table-auto tab border-[1px]`}>
+                //     <thead className="bg-primary">
+                //         <tr>
+                //             {
+                //                 headings.map((ele, eleIndex) => (
+                //                     <td key={eleIndex}>{ele}</td>
+                //                 ))
+                //             }
+                //         </tr>
+                //     </thead>
+                //     <tbody>
+                //         {
+                //             filteredRows.reverse().map((row) => (
+                //                 <tr className="hover:bg-secondary-50" key={row._id}>
+                //                     <td 
+                //                         className="cursor-pointer font-semibold text-accent text-xl" 
+                //                         onClick={() => handleClick(row)}
+                //                     >
+                //                         {row.name}
+                //                     </td>
 
-                                    <td 
-                                        onClick={() => handleClick(row)}
-                                        className="cursor-pointer"
-                                    >
-                                        {row.target}
-                                    </td>
+                //                     <td 
+                //                         onClick={() => handleClick(row)}
+                //                         className="cursor-pointer"
+                //                     >
+                //                         {row.target}
+                //                     </td>
 
-                                    <td className="flex items-center justify-between mr-[20px]">
-                                        <div className="flex gap-[15px] items-center">
-                                            {getStatusIcon(row.status)}
-                                            {row.time}
-                                        </div>
-                                        <div className="flex gap-[40px] items-center">
-                                            {row.status === 'completed' &&
-                                                <ImCross 
-                                                    className="cursor-pointer" 
-                                                    color="#F90000"
-                                                    onClick={() => handleDeleteScan(row)}
-                                                />
-                                            }
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
+                //                     <td className="flex items-center justify-between mr-[20px]">
+                //                         <div className="flex gap-[15px] items-center">
+                //                             {getStatusIcon(row.status)}
+                //                             {row.time}
+                //                         </div>
+                //                         <div className="flex gap-[40px] items-center">
+                //                             {row.status === 'completed' &&
+                //                                 <ImCross 
+                //                                     className="cursor-pointer" 
+                //                                     color="#F90000"
+                //                                     onClick={() => handleDeleteScan(row)}
+                //                                 />
+                //                             }
+                //                         </div>
+                //                     </td>
+                //                 </tr>
+                //             ))
+                //         }
+                //     </tbody>
+                // </table>
+                <ScanTable/>
             :
                 <div className={`w-full flex flex-col justify-center items-center`}>
                     <h1 className="text-gray-400 font-bold text-3xl">
