@@ -20,20 +20,20 @@ export default function DashboardLayout({ title, children }) {
     navigate("/");
   };
 
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        if (!localStorage.getItem("wp-scan-user")) {
-          navigate("/login");
-        } else {
-          setCurrUsr(await JSON.parse(localStorage.getItem("wp-scan-user")));
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     try {
+  //       if (!localStorage.getItem("wp-scan-user")) {
+  //         navigate("/login");
+  //       } else {
+  //         setCurrUsr(await JSON.parse(localStorage.getItem("wp-scan-user")));
+  //       }
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   };
+  //   getUser();
+  // }, []);
   return (
     <>
       <SideNav open={open} />
